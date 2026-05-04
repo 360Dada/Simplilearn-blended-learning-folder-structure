@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIML — OneDrive File Structure</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f2f1;
+    --surface: #ffffff;
+    --surface2: #faf9f8;
+    --border: #e1dfdd;
+    --border2: #c8c6c4;
+    --text: #201f1e;
+    --muted: #605e5c;
+    --accent: #0078d4;
+    --accent-light: #eff6fc;
+    --accent-hover: #106ebe;
+    --folder: #f4b942;
+    --folder-dark: #d49a1a;
+    --mp4: #c72f2f;
+    --vtt: #6b21a8;
+    --url: #b45309;
+    --zip-ppt: #be185d;
+    --zip-cam: #0369a1;
+    --zip-ae: #c2410c;
+    --success: #107c10;
+    --warning: #797673;
+    --prog1: #0078d4;
+    --prog2: #7a7574;
+    --prog3: #7a7574;
+    --prog4: #7a7574;
+    --prog5: #7a7574;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', 'Segoe UI', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+  }
+
+  /* TOP BAR — OneDrive style */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .od-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .od-logo-icon {
+    width: 22px;
+    height: 22px;
+    background: var(--accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .od-logo-icon svg { width: 14px; height: 14px; fill: white; }
+  .topbar-search {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+  }
+  .topbar-search input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    padding: 6px 12px 6px 32px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+  }
+  .topbar-search input:focus { border-color: var(--accent); background: white; }
+  .topbar-search input::placeholder { color: var(--muted); }
+  .topbar-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .topbar-avatar {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 12px; font-weight: 600;
+  }
+
+  /* COMMAND BAR */
+  .cmdbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .cmd-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    transition: background 0.1s;
+  }
+  .cmd-btn:hover { background: var(--bg); }
+  .cmd-btn.primary { color: var(--accent); font-weight: 500; }
+  .cmd-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .bc-item {
+    color: var(--accent);
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 2px 4px;
+    transition: background 0.1s;
+  }
+  .bc-item:hover { background: var(--accent-light); }
+  .bc-item.current { color: var(--text); cursor: default; font-weight: 500; }
+  .bc-item.current:hover { background: none; }
+  .bc-sep { color: var(--muted); font-size: 12px; }
+
+  /* LAYOUT */
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 120px); }
+
+  /* LEFT NAV */
+  .leftnav {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 12px 0;
+  }
+  .nav-section { margin-bottom: 8px; }
+  .nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 8px 20px 4px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--muted);
+    border-left: 3px solid transparent;
+    transition: all 0.1s;
+  }
+  .nav-item:hover { background: var(--bg); color: var(--text); }
+  .nav-item.active { background: var(--accent-light); color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+  .nav-icon { font-size: 15px; flex-shrink: 0; }
+
+  /* MAIN CONTENT */
+  .main { background: var(--surface2); overflow-y: auto; }
+
+  /* VIEW TOOLBAR */
+  .view-toolbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .item-count { font-size: 12px; color: var(--muted); }
+  .view-toggle { margin-left: auto; display: flex; gap: 2px; }
+  .view-btn {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    background: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .view-btn.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+  /* FILE GRID — programme level */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 24px;
+  }
+  .prog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .prog-card:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,120,212,0.1); }
+  .prog-card.active { border-color: var(--accent); background: var(--accent-light); }
+  .prog-card.dummy { opacity: 0.5; cursor: default; }
+  .prog-card.dummy:hover { border-color: var(--border); box-shadow: none; }
+  .prog-folder-icon { font-size: 32px; }
+  .prog-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .prog-code { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
+  .prog-meta { font-size: 11px; color: var(--muted); }
+
+  /* FILE LIST — OneDrive table style */
+  .file-list { padding: 0; }
+  .file-list-header {
+    display: grid;
+    grid-template-columns: 32px 1fr 100px 120px 100px;
+    gap: 8px;
+    padding: 8px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .file-row {
+    display: grid;
+    grid-template-columns: 32px 1fr 100px 120px 100px;
+    gap: 8px;
+    padding: 6px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.1s;
+    background: var(--surface);
+  }
+  .file-row:hover { background: var(--bg); }
+  .file-row.folder-row { font-weight: 500; }
+  .file-row.selected { background: var(--accent-light); }
+  .file-row.transcript-row { background: #fdfcff; }
+  .file-icon { font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .file-name-cell { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .file-name-text {
+    font-size: 13px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-name-text.folder-name { color: var(--accent); }
+  .file-sub { font-size: 11px; color: var(--muted); }
+  .file-type-cell { font-size: 12px; color: var(--muted); }
+  .file-badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-mp4 { background: #fef2f2; color: var(--mp4); }
+  .badge-vtt { background: #f5f3ff; color: var(--vtt); }
+  .badge-url { background: #fffbeb; color: var(--url); }
+  .badge-zip-ppt { background: #fdf2f8; color: var(--zip-ppt); }
+  .badge-zip-cam { background: #f0f9ff; color: var(--zip-cam); }
+  .badge-zip-ae  { background: #fff7ed; color: var(--zip-ae); }
+  .badge-folder  { background: #fff8e1; color: #92400e; }
+  .file-size { font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .file-action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+  .file-row:hover .file-action { opacity: 1; }
+  .action-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .action-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+  .action-btn.copied { color: var(--success); border-color: var(--success); }
+
+  /* COMING SOON */
+  .coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 12px;
+    color: var(--muted);
+  }
+  .coming-soon-icon { font-size: 48px; opacity: 0.4; }
+  .coming-soon-text { font-size: 16px; font-weight: 500; }
+  .coming-soon-sub { font-size: 13px; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--text);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.2s;
+    pointer-events: none;
+    z-index: 999;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* INDENT for nested rows */
+  .indent-1 .file-name-cell { padding-left: 24px; }
+  .indent-2 .file-name-cell { padding-left: 48px; }
+  .indent-3 .file-name-cell { padding-left: 72px; }
+
+  .section-divider {
+    background: var(--bg);
+    padding: 6px 24px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="od-logo">
+    <div class="od-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M13.5 6A6.5 6.5 0 007 12.5a6.5 6.5 0 00.07.9A5 5 0 0012 18h8a4 4 0 000-8 4 4 0 00-.78.08A6.5 6.5 0 0013.5 6z"/></svg>
+    </div>
+    OneDrive
+  </div>
+  <div class="topbar-search">
+    <span class="topbar-search-icon">⌕</span>
+    <input type="text" placeholder="Search everything" id="global-search" oninput="handleGlobalSearch(this.value)">
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-avatar">AD</div>
+  </div>
+</div>
+
+<!-- COMMAND BAR -->
+<div class="cmdbar">
+  <button class="cmd-btn primary">＋ New</button>
+  <div class="cmd-sep"></div>
+  <button class="cmd-btn">↑ Upload</button>
+  <button class="cmd-btn">⇄ Share</button>
+  <button class="cmd-btn" onclick="copyAll()">⎘ Copy all names</button>
+  <button class="cmd-btn">⋯ More</button>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb" id="breadcrumb">
+  <span class="bc-item" onclick="goTo('root')">My files</span>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT NAV -->
+  <div class="leftnav">
+    <div class="nav-section">
+      <div class="nav-item active"><span class="nav-icon">🏠</span> My files</div>
+      <div class="nav-item"><span class="nav-icon">🕐</span> Recent</div>
+      <div class="nav-item"><span class="nav-icon">⭐</span> Starred</div>
+      <div class="nav-item"><span class="nav-icon">👥</span> Shared</div>
+      <div class="nav-item"><span class="nav-icon">🗑</span> Recycle bin</div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Programmes</div>
+      <div class="nav-item" onclick="goTo('root'); navActivate(this)" id="nav-root"><span class="nav-icon">📁</span> All programmes</div>
+      <div class="nav-item" onclick="goTo('prog-aiml'); navActivate(this)" id="nav-aiml"><span class="nav-icon">📁</span> AIML</div>
+      <div class="nav-item" style="opacity:0.4"><span class="nav-icon">📁</span> Programme 02</div>
+      <div class="nav-item" style="opacity:0.4"><span class="nav-icon">📁</span> Programme 03</div>
+      <div class="nav-item" style="opacity:0.4"><span class="nav-icon">📁</span> Programme 04</div>
+      <div class="nav-item" style="opacity:0.4"><span class="nav-icon">📁</span> Programme 05</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="main-area">
+    <!-- rendered by JS -->
+  </div>
+</div>
+
+<script>
+const PROGRAMMES = [
+  { id: 'aiml', code: 'AIML', name: 'AI / ML Learning Path', courses: 9, active: true },
+  { id: 'p02',  code: 'PRG02', name: 'Programme Name 02', courses: 0, active: false },
+  { id: 'p03',  code: 'PRG03', name: 'Programme Name 03', courses: 0, active: false },
+  { id: 'p04',  code: 'PRG04', name: 'Programme Name 04', courses: 0, active: false },
+  { id: 'p05',  code: 'PRG05', name: 'Programme Name 05', courses: 0, active: false },
+];
+
+const COURSES = [
+  { id: 'crs01', code: 'CRS01', name: 'Python_Refresher_with_AI', label: 'Python Refresher with AI', lessons: buildCRS01() },
+  { id: 'crs02', code: 'CRS02', name: 'Foundations_of_AI_and_Lifecycle', label: 'Foundations of AI and Lifecycle', lessons: buildCRS02() },
+];
+
+function buildCRS01() {
+  return [
+    {
+      id: 'l01', code: 'Lesson_01', name: 'Introduction_to_Python_Fundamentals_and_Setup',
+      output: [
+        { num: '1.01', title: 'Programming_Foundations', type: 'lesson', tool: 'PPT' },
+        { num: '1.02', title: 'Exploring_Python_Development_Environment', type: 'lesson', tool: 'PPT' },
+        { num: '1.02D', title: 'Demo_Installing_VS_Code', type: 'demo', tool: 'CAM' },
+        { num: '1.03', title: 'Introduction_to_Python', type: 'lesson', tool: 'PPT' },
+        { num: '1.04', title: 'Python_Basics_Syntax_Structure_and_Execution', type: 'lesson', tool: 'PPT' },
+        { num: '1.05', title: 'Python_Variables_and_Data_Types', type: 'lesson', tool: 'PPT' },
+        { num: '1.06', title: 'Python_Operators', type: 'lesson', tool: 'PPT' },
+        { num: '1.07', title: 'Guided_Practice', type: 'guided', tool: 'CAM' },
+      ]
+    },
+    {
+      id: 'l02', code: 'Lesson_02', name: 'Data_Structures_Conditional_Statements_and_Loops',
+      output: [
+        { num: '2.01', title: 'Lists', type: 'lesson', tool: 'PPT' },
+        { num: '2.02', title: 'Tuples', type: 'lesson', tool: 'PPT' },
+        { num: '2.03', title: 'Dictionaries', type: 'lesson', tool: 'PPT' },
+        { num: '2.04', title: 'Sets', type: 'lesson', tool: 'PPT' },
+        { num: '2.05', title: 'Conditional_Statements', type: 'lesson', tool: 'PPT' },
+        { num: '2.06', title: 'Loops', type: 'lesson', tool: 'PPT' },
+        { num: '2.07', title: 'Comprehensions', type: 'lesson', tool: 'PPT' },
+        { num: '2.08', title: 'Demo_Understanding_Comprehensions_in_Python', type: 'demo', tool: 'CAM' },
+        { num: '2.09', title: 'Guided_Practice', type: 'guided', tool: 'CAM' },
+      ]
+    },
+    {
+      id: 'l03', code: 'Lesson_03', name: 'Functions_OOPs_File_and_Error_Handling',
+      output: [
+        { num: '3.01', title: 'Python_Functions', type: 'lesson', tool: 'PPT' },
+        { num: '3.02', title: 'Demo_Implementing_Generators_Lambda_and_Built_in_Functions', type: 'demo', tool: 'CAM' },
+        { num: '3.03', title: 'Object_Oriented_Programming', type: 'lesson', tool: 'PPT' },
+        { num: '3.04', title: 'Demo_Implementing_Inheritance', type: 'demo', tool: 'CAM' },
+        { num: '3.05', title: 'File_Handling_in_Python', type: 'lesson', tool: 'PPT' },
+        { num: '3.06', title: 'Error_Handling_in_Python', type: 'lesson', tool: 'PPT' },
+        { num: '3.07', title: 'Guided_Practice', type: 'guided', tool: 'CAM' },
+      ]
+    },
+    {
+      id: 'l04', code: 'Lesson_04', name: 'Practical_Use_of_AI_Code_Generation_Tools',
+      output: [
+        { num: '4.01', title: 'Introduction_to_AI_Powered_Code_Generation', type: 'lesson', tool: 'PPT' },
+        { num: '4.02', title: 'Setting_Up_GitHub_Copilot_and_AI_Code_Tools', type: 'lesson', tool: 'PPT' },
+        { num: '4.03', title: 'Writing_Effective_AI_Prompts', type: 'lesson', tool: 'PPT' },
+        { num: '4.04', title: 'Reviewing_and_Refining_AI_Generated_Code', type: 'lesson', tool: 'PPT' },
+        { num: '4.05', title: 'AI_for_Code_Optimization_and_Automation', type: 'lesson', tool: 'PPT' },
+        { num: '4.06', title: 'Debugging_AI_Suggested_Code', type: 'lesson', tool: 'PPT' },
+        { num: '4.07', title: 'Ethical_and_Legal_Considerations', type: 'lesson', tool: 'PPT' },
+        { num: '4.08', title: 'Guided_Practice', type: 'guided', tool: 'CAM' },
+      ]
+    },
+  ];
+}
+
+function buildCRS02() {
+  return [
+    {
+      id: 'l01', code: 'Lesson_01', name: 'Foundations_of_AI_and_Agentic_AI',
+      output: [
+        { num: '1.01', title: 'Program_Overview', type: 'lesson', tool: 'PPT' },
+        { num: '1.02', title: 'AI_vs_ML_vs_DL_vs_GenAI_vs_Agentic_AI', type: 'lesson', tool: 'PPT' },
+        { num: '1.03', title: 'Classical_ML_vs_Deep_Learning', type: 'lesson', tool: 'PPT' },
+        { num: '1.04', title: 'Rise_of_Transformers_and_LLMs', type: 'lesson', tool: 'PPT' },
+        { num: '1.05', title: 'Introduction_to_Agentic_AI', type: 'lesson', tool: 'PPT' },
+      ]
+    },
+    {
+      id: 'l02', code: 'Lesson_02', name: 'LangChain_Framework',
+      output: [
+        { num: '2.01', title: 'LangChain_Overview_and_Key_Concepts', type: 'lesson', tool: 'PPT' },
+        { num: '2.02', title: 'LangChain_Components_Model_Prompt_Memory_Chain', type: 'lesson', tool: 'PPT' },
+        { num: '2.03', title: 'LangChain_Architecture', type: 'lesson', tool: 'PPT' },
+        { num: '2.04', title: 'Demo_Building_Applications_with_LangChain', type: 'demo', tool: 'CAM' },
+      ]
+    },
+    {
+      id: 'l03', code: 'Lesson_03', name: 'Prompting_and_Reasoning',
+      output: [
+        { num: '3.01', title: 'Prompt_Engineering_Fundamentals', type: 'lesson', tool: 'PPT' },
+        { num: '3.02', title: 'Zero_Shot_and_Few_Shot_Prompting', type: 'lesson', tool: 'PPT' },
+        { num: '3.03', title: 'Chain_of_Thought_and_Advanced_Prompting', type: 'lesson', tool: 'PPT' },
+        { num: '3.04', title: 'LangChain_Prompts', type: 'lesson', tool: 'PPT' },
+      ]
+    },
+    {
+      id: 'l04', code: 'Lesson_04', name: 'MCP_Model_Context_Protocol',
+      output: [
+        { num: '4.01', title: 'What_is_MCP_and_Why_It_Was_Created', type: 'lesson', tool: 'PPT' },
+        { num: '4.02', title: 'Anatomy_of_MCP_and_Benefits', type: 'lesson', tool: 'PPT' },
+      ]
+    },
+    {
+      id: 'l05', code: 'Lesson_05', name: 'RAG_and_AI_Lifecycle',
+      output: [
+        { num: '5.01', title: 'RAG_Components_and_Pipeline', type: 'lesson', tool: 'PPT' },
+        { num: '5.02', title: 'Building_Knowledge_Bases_and_Retrieval', type: 'lesson', tool: 'PPT' },
+        { num: '5.03', title: 'ML_Lifecycle', type: 'lesson', tool: 'PPT' },
+        { num: '5.04', title: 'LLM_Lifecycle', type: 'lesson', tool: 'PPT' },
+      ]
+    },
+  ];
+}
+
+// STATE
+let state = { view: 'root', prog: null, course: null, folder: null, lesson: null, subview: null };
+
+function goTo(view, extra) {
+  state.view = view;
+  if (extra) Object.assign(state, extra);
+  render();
+  updateBreadcrumb();
+}
+
+function navActivate(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function updateBreadcrumb() {
+  const bc = document.getElementById('breadcrumb');
+  let html = `<span class="bc-item" onclick="goTo('root')">My files</span>`;
+  if (state.view !== 'root') {
+    if (state.prog) {
+      const p = PROGRAMMES.find(x => x.id === state.prog);
+      html += `<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('prog-${state.prog}')">${p ? p.code : ''}</span>`;
+    }
+    if (state.course) {
+      const c = COURSES.find(x => x.id === state.course);
+      html += `<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('course', {prog:state.prog, course:'${state.course}'})">${c ? c.code : ''}</span>`;
+    }
+    if (state.folder) {
+      html += `<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('folder', {prog:state.prog, course:state.course, folder:'${state.folder}'})">${state.folder}</span>`;
+    }
+    if (state.lesson) {
+      const c = COURSES.find(x => x.id === state.course);
+      const l = c ? c.lessons.find(x => x.id === state.lesson) : null;
+      html += `<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('lesson', {prog:state.prog, course:state.course, folder:'${state.folder}', lesson:'${state.lesson}'})">${l ? l.code : ''}</span>`;
+    }
+    if (state.subview) {
+      html += `<span class="bc-sep">›</span><span class="bc-item current">${state.subview}</span>`;
+    }
+  }
+  bc.innerHTML = html;
+}
+
+function render() {
+  const main = document.getElementById('main-area');
+  const v = state.view;
+
+  if (v === 'root') { renderRoot(main); return; }
+  if (v.startsWith('prog-')) { renderProg(main, v.replace('prog-','')); return; }
+  if (v === 'course') { renderCourse(main); return; }
+  if (v === 'folder') { renderFolder(main); return; }
+  if (v === 'lesson') { renderLesson(main); return; }
+  if (v === 'transcript') { renderTranscript(main); return; }
+}
+
+function renderRoot(main) {
+  let html = viewToolbar(5, 'Programmes') + `<div class="prog-grid">`;
+  PROGRAMMES.forEach(p => {
+    if (p.active) {
+      html += `<div class="prog-card" onclick="goTo('prog-${p.id}'); navActivate(document.getElementById('nav-aiml'))">
+        <div class="prog-folder-icon">📁</div>
+        <div class="prog-name">${p.name}</div>
+        <div class="prog-code">${p.code}</div>
+        <div class="prog-meta">${p.courses} courses</div>
+      </div>`;
+    } else {
+      html += `<div class="prog-card dummy">
+        <div class="prog-folder-icon">📁</div>
+        <div class="prog-name">${p.name}</div>
+        <div class="prog-code">${p.code}</div>
+        <div class="prog-meta">Coming soon</div>
+      </div>`;
+    }
+  });
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function renderProg(main, progId) {
+  state.prog = progId;
+  state.course = null; state.folder = null; state.lesson = null; state.subview = null;
+  if (progId !== 'aiml') {
+    main.innerHTML = viewToolbar(0, 'Courses') + comingSoon();
+    return;
+  }
+  let html = viewToolbar(COURSES.length, 'Courses') + listHeader() + `<div class="file-list">`;
+  COURSES.forEach(c => {
+    const totalFiles = c.lessons.reduce((a, l) => a + l.output.length * 4, 0);
+    const folderName = `AIML_${c.code}_${c.name}`;
+    html += fileRow({
+      icon: '📁', name: folderName, nameClass: 'folder-name',
+      sub: c.label, badge: 'badge-folder', badgeText: 'folder',
+      size: `${totalFiles} files`,
+      onclick: `goTo('course', {prog:'${progId}', course:'${c.id}', folder:null, lesson:null, subview:null})`
+    });
+  });
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function renderCourse(main) {
+  state.folder = null; state.lesson = null; state.subview = null;
+  const c = COURSES.find(x => x.id === state.course);
+  if (!c) return;
+  const prefix = `AIML_${c.code}`;
+  let html = viewToolbar(2, 'Folders') + listHeader() + `<div class="file-list">`;
+  html += fileRow({
+    icon: '📁', name: `${prefix}_Final_Output`, nameClass: 'folder-name',
+    sub: 'MP4 output files', badge: 'badge-folder', badgeText: 'folder',
+    size: `${c.lessons.length} lessons`,
+    onclick: `goTo('folder', {folder:'Final_Output'})`
+  });
+  html += fileRow({
+    icon: '📁', name: `${prefix}_Final_Source`, nameClass: 'folder-name',
+    sub: 'ZIP + URL source files', badge: 'badge-folder', badgeText: 'folder',
+    size: `${c.lessons.length} lessons`,
+    onclick: `goTo('folder', {folder:'Final_Source'})`
+  });
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function renderFolder(main) {
+  state.lesson = null; state.subview = null;
+  const c = COURSES.find(x => x.id === state.course);
+  if (!c) return;
+  const isOutput = state.folder === 'Final_Output';
+  const prefix = `AIML_${c.code}`;
+  let html = viewToolbar(c.lessons.length, 'Lesson folders') + listHeader() + `<div class="file-list">`;
+  c.lessons.forEach(l => {
+    const count = isOutput ? l.output.length + 1 : l.output.length * 2;
+    const folderName = `${prefix}_${l.code}_${l.name}`;
+    html += fileRow({
+      icon: '📁', name: folderName, nameClass: 'folder-name',
+      sub: l.name.replace(/_/g,' '), badge: 'badge-folder', badgeText: 'folder',
+      size: `${count} items`,
+      onclick: `goTo('lesson', {lesson:'${l.id}'})`
+    });
+  });
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function renderLesson(main) {
+  state.subview = null;
+  const c = COURSES.find(x => x.id === state.course);
+  const l = c ? c.lessons.find(x => x.id === state.lesson) : null;
+  if (!l) return;
+  const isOutput = state.folder === 'Final_Output';
+  const crsCode = c.code;
+  const prefix = `AIML_${crsCode}`;
+
+  let html = '';
+  if (isOutput) {
+    const mp4s = l.output;
+    const transcriptFolder = `${prefix}_${l.code}_transcript`;
+    html = viewToolbar(mp4s.length + 1, 'Items') + listHeader() + `<div class="file-list">`;
+    html += fileRow({
+      icon: '📁', name: transcriptFolder, nameClass: 'folder-name',
+      sub: `${mp4s.length} VTT caption files`, badge: 'badge-folder', badgeText: 'folder',
+      size: `${mp4s.length} files`,
+      onclick: `goTo('transcript', {subview:'transcript'})`
+    });
+    mp4s.forEach(t => {
+      const fname = `${prefix}_${t.num}_${t.title}.mp4`;
+      html += fileRow({
+        icon: fileIcon('mp4'), name: fname, badge: 'badge-mp4', badgeText: '.mp4',
+        size: '—', copyable: true, fname
+      });
+    });
+    html += `</div>`;
+  } else {
+    const items = l.output;
+    html = viewToolbar(items.length * 2, 'Files') + listHeader() + `<div class="file-list">`;
+    html += `<div class="section-divider">ZIP — Source files</div>`;
+    items.forEach(t => {
+      const fname = `${prefix}_${t.num}_${t.title}_${t.tool}.zip`;
+      html += fileRow({
+        icon: fileIcon('zip', t.tool), name: fname,
+        badge: `badge-zip-${t.tool.toLowerCase()}`, badgeText: `${t.tool}.zip`,
+        size: '—', copyable: true, fname
+      });
+    });
+    html += `<div class="section-divider">URL — Clueso links</div>`;
+    items.forEach(t => {
+      const fname = `${prefix}_${t.num}_${t.title}.url`;
+      html += fileRow({
+        icon: fileIcon('url'), name: fname, badge: 'badge-url', badgeText: '.url',
+        size: '—', copyable: true, fname
+      });
+    });
+    html += `</div>`;
+  }
+  main.innerHTML = html;
+}
+
+function renderTranscript(main) {
+  state.subview = 'transcript';
+  const c = COURSES.find(x => x.id === state.course);
+  const l = c ? c.lessons.find(x => x.id === state.lesson) : null;
+  if (!l) return;
+  const prefix = `AIML_${c.code}`;
+  let html = viewToolbar(l.output.length, 'VTT files') + listHeader() + `<div class="file-list">`;
+  l.output.forEach(t => {
+    const fname = `${prefix}_${t.num}_${t.title}.en.vtt`;
+    html += fileRow({
+      icon: fileIcon('vtt'), name: fname, badge: 'badge-vtt', badgeText: '.en.vtt',
+      size: '—', copyable: true, fname
+    });
+  });
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+function fileIcon(ext, tool) {
+  if (ext === 'mp4') return '🎬';
+  if (ext === 'vtt') return '💬';
+  if (ext === 'url') return '🔗';
+  if (ext === 'zip') {
+    if (tool === 'PPT') return '📊';
+    if (tool === 'CAM') return '🎥';
+    if (tool === 'AE')  return '✨';
+  }
+  return '📄';
+}
+
+function viewToolbar(count, label) {
+  return `<div class="view-toolbar">
+    <span class="item-count">${count} ${label}</span>
+    <div class="view-toggle">
+      <button class="view-btn active">☰</button>
+      <button class="view-btn">⊞</button>
+    </div>
+  </div>`;
+}
+
+function listHeader() {
+  return `<div class="file-list-header">
+    <div></div>
+    <div>Name</div>
+    <div>Type</div>
+    <div>Modified</div>
+    <div>Size</div>
+  </div>`;
+}
+
+function fileRow({ icon, name, nameClass='', sub='', badge, badgeText, size, onclick, copyable, fname }) {
+  const clickAttr = onclick ? `onclick="${onclick}"` : '';
+  const rowClass = onclick ? 'file-row folder-row' : 'file-row';
+  const copyBtn = copyable ? `<button class="action-btn" onclick="event.stopPropagation(); copyFile('${fname}', this)">copy</button>` : '';
+  return `<div class="${rowClass}" ${clickAttr}>
+    <div class="file-icon">${icon}</div>
+    <div class="file-name-cell">
+      <span class="file-name-text ${nameClass}" title="${name}">${name}</span>
+      ${sub ? `<span class="file-sub">${sub}</span>` : ''}
+    </div>
+    <div class="file-type-cell"><span class="file-badge ${badge}">${badgeText}</span></div>
+    <div class="file-type-cell" style="font-size:12px;color:var(--muted)">—</div>
+    <div class="file-size">${size} ${copyBtn}</div>
+  </div>`;
+}
+
+function comingSoon() {
+  return `<div class="coming-soon">
+    <div class="coming-soon-icon">📁</div>
+    <div class="coming-soon-text">No content yet</div>
+    <div class="coming-soon-sub">This programme is not yet configured.</div>
+  </div>`;
+}
+
+function copyFile(name, btn) {
+  navigator.clipboard.writeText(name).then(() => {
+    btn.textContent = 'copied';
+    btn.classList.add('copied');
+    showToast('Copied: ' + name);
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+function copyAll() {
+  const names = [...document.querySelectorAll('.file-name-text:not(.folder-name)')].map(el => el.textContent.trim());
+  if (!names.length) { showToast('No files to copy at this level'); return; }
+  navigator.clipboard.writeText(names.join('\n')).then(() => showToast(`Copied ${names.length} filenames`));
+}
+
+function handleGlobalSearch(val) {
+  if (!val.trim()) return;
+  showToast(`Search: "${val}" — navigate into a folder to filter`);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// init
+render();
+updateBreadcrumb();
+</script>
+</body>
+</html>
