@@ -6,1581 +6,719 @@
 <title>Simplilearn — Blended Learning Folder Structure</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f5f4f0;
-  --surface: #ffffff;
-  --surface2: #faf9f6;
-  --border: #e2e0d8;
-  --border2: #ccc9be;
-  --text: #1c1a16;
-  --muted: #7a7668;
-  --accent: #e05c2a;
-  --accent-light: #fdf1ec;
-  --accent2: #2a6ee0;
-  --accent2-light: #ecf2fd;
-  --green: #1a7a3c;
-  --green-light: #ecf7f0;
-  --amber: #b45309;
-  --amber-light: #fef9ec;
-  --red: #c72f2f;
-  --red-light: #fef2f2;
-  --folder: #e8a020;
-  --mp4: #c72f2f;
-  --vtt: #6b21a8;
-  --url: #b45309;
-  --zip-cam: #0369a1;
-  --zip-ae: #c2410c;
-  --html-int: #15803d;
-  --zip-int: #7c3aed;
-  --announce-bg: #1c1a16;
-  --banner-bg: #fffdf7;
-  --banner-border: #e8a020;
-  --directive-bg: #fff5f5;
-  --directive-border: #c72f2f;
-  --info-bg: #f0f7ff;
-  --info-border: #2a6ee0;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* ── ANNOUNCEMENT TICKER ── */
-.announce-bar {
-  background: var(--announce-bg);
-  color: #fff;
-  padding: 0;
-  overflow: hidden;
-  position: sticky;
-  top: 0;
-  z-index: 300;
-}
-.announce-inner {
-  display: flex;
-  align-items: stretch;
-}
-.announce-label {
-  background: var(--accent);
-  color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.announce-items {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.announce-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 7px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 12px;
-}
-.announce-item:last-child { border-bottom: none; }
-.announce-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.announce-dot.red { background: #fc8181; }
-.announce-dot.amber { background: #fbbf24; }
-.announce-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  padding: 1px 6px;
-  border-radius: 2px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-}
-.tag-urgent { background: #c72f2f; color: #fff; }
-.tag-info { background: #2a6ee0; color: #fff; }
-.announce-text { color: rgba(255,255,255,0.85); }
-.announce-text strong { color: #fff; }
-.announce-date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.4);
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-/* ── TOPBAR ── */
-.topbar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 28px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  position: sticky;
-  top: 68px;
-  z-index: 200;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--text);
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.logo-mark {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-}
-.logo-text { font-size: 14px; }
-.logo-sub { font-size: 11px; color: var(--muted); font-weight: 400; }
-.topbar-search {
-  flex: 1; max-width: 380px;
-  position: relative;
-}
-.topbar-search input {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  padding: 7px 12px 7px 34px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.15s;
-}
-.topbar-search input:focus { border-color: var(--accent); background: #fff; }
-.topbar-search input::placeholder { color: var(--muted); }
-.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; pointer-events: none; }
-.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-.cmd-btn {
-  display: flex; align-items: center; gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  background: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: var(--muted);
-  transition: all 0.12s;
-}
-.cmd-btn:hover { background: var(--bg); color: var(--text); border-color: var(--border2); }
-.cmd-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-.cmd-btn.primary:hover { background: #c94e22; }
-.topbar-avatar {
-  width: 32px; height: 32px;
-  background: var(--accent);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 12px; font-weight: 600;
-  cursor: pointer;
-}
-
-/* ── BREADCRUMB ── */
-.breadcrumb {
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 28px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  flex-wrap: wrap;
-  min-height: 36px;
-}
-.bc-item {
-  color: var(--accent2);
-  cursor: pointer;
-  border-radius: 3px;
-  padding: 2px 5px;
-  transition: background 0.1s;
-  font-weight: 500;
-}
-.bc-item:hover { background: var(--accent2-light); }
-.bc-item.current { color: var(--text); cursor: default; font-weight: 600; }
-.bc-item.current:hover { background: none; }
-.bc-sep { color: var(--muted); }
-
-/* ── LAYOUT ── */
-.layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 156px); }
-
-/* ── LEFT NAV ── */
-.leftnav {
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  padding: 16px 0;
-  position: sticky;
-  top: 156px;
-  height: calc(100vh - 156px);
-  overflow-y: auto;
-}
-.leftnav::-webkit-scrollbar { width: 3px; }
-.leftnav::-webkit-scrollbar-thumb { background: var(--border); }
-.nav-section { margin-bottom: 4px; }
-.nav-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 10px 20px 5px;
-}
-.nav-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 7px 20px;
-  cursor: pointer;
-  font-size: 12.5px;
-  color: var(--muted);
-  border-left: 3px solid transparent;
-  transition: all 0.1s;
-}
-.nav-item:hover { background: var(--bg); color: var(--text); }
-.nav-item.active { background: var(--accent-light); color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
-.nav-item.disabled { opacity: 0.4; cursor: default; }
-.nav-item.disabled:hover { background: none; color: var(--muted); }
-.nav-icon { font-size: 14px; flex-shrink: 0; }
-.nav-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  margin-left: auto;
-  background: var(--bg);
-  color: var(--muted);
-}
-
-/* ── MAIN ── */
-.main { overflow-y: auto; }
-
-/* ── GUIDELINE BANNER ── */
-.guideline-banner {
-  margin: 20px 28px 0;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border2);
-}
-.banner-header {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 16px;
-  background: var(--text);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-}
-.banner-header-icon { font-size: 14px; }
-.banner-body { display: grid; grid-template-columns: 1fr 1fr; }
-.banner-section { padding: 14px 16px; }
-.banner-section:first-child { border-right: 1px solid var(--border); }
-.banner-section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  display: flex; align-items: center; gap: 6px;
-}
-.label-directive { color: var(--red); }
-.label-info { color: var(--accent2); }
-.banner-rule {
-  display: flex; gap: 8px; align-items: flex-start;
-  margin-bottom: 6px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.rule-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-.rule-dot.red { background: var(--red); }
-.rule-dot.blue { background: var(--accent2); }
-.rule-text { color: var(--text); }
-.rule-text strong { font-weight: 600; }
-.rule-text.directive { color: var(--red); font-weight: 500; }
-
-/* ── VIEW TOOLBAR ── */
-.view-toolbar {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 28px 8px;
-}
-.item-count {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-}
-.view-right { margin-left: auto; display: flex; gap: 6px; align-items: center; }
-.copy-all-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  padding: 4px 10px;
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  background: var(--surface);
-  cursor: pointer;
-  color: var(--muted);
-  transition: all 0.12s;
-}
-.copy-all-btn:hover { color: var(--text); border-color: var(--text); }
-
-/* ── FILE LIST ── */
-.file-list-wrap { padding: 0 28px 28px; }
-.list-header {
-  display: grid;
-  grid-template-columns: 28px 1fr 110px 110px 90px;
-  gap: 8px;
-  padding: 7px 14px;
-  border-bottom: 2px solid var(--border2);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.05em;
-}
-.file-row {
-  display: grid;
-  grid-template-columns: 28px 1fr 110px 110px 90px;
-  gap: 8px;
-  padding: 7px 14px;
-  border-bottom: 1px solid var(--border);
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.1s;
-  background: var(--surface);
-  border-radius: 0;
-}
-.file-row:first-child { border-top: none; }
-.file-row:hover { background: var(--bg); }
-.file-row.section-head {
-  background: var(--bg);
-  padding: 5px 14px;
-  cursor: default;
-  border-bottom: 1px solid var(--border2);
-}
-.file-row.section-head:hover { background: var(--bg); }
-.section-head-text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  grid-column: 1 / -1;
-  padding: 2px 0;
-}
-.file-icon { font-size: 16px; display: flex; align-items: center; justify-content: center; }
-.file-name-cell { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.file-name-text {
-  font-size: 12.5px;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: 'JetBrains Mono', monospace;
-}
-.file-name-text.folder { color: var(--accent2); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; }
-.file-name-text.toc { color: var(--green); }
-.file-sub { font-size: 11px; color: var(--muted); font-family: 'DM Sans', sans-serif; }
-.file-badge {
-  display: inline-flex; align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  padding: 2px 7px;
-  border-radius: 3px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  width: fit-content;
-}
-.b-folder  { background: #fff8e1; color: #92400e; }
-.b-mp4     { background: #fef2f2; color: var(--mp4); }
-.b-vtt     { background: #f5f3ff; color: var(--vtt); }
-.b-url     { background: #fffbeb; color: var(--url); }
-.b-cam     { background: #f0f9ff; color: var(--zip-cam); }
-.b-ae      { background: #fff7ed; color: var(--zip-ae); }
-.b-html    { background: #f0fdf4; color: var(--html-int); }
-.b-int-zip { background: #f5f3ff; color: var(--zip-int); }
-.b-xlsx    { background: #f0fdf4; color: var(--green); }
-.b-dummy   { background: var(--bg); color: var(--muted); }
-.file-modified { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-.file-action { display: flex; align-items: center; gap: 4px; }
-.copy-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  padding: 3px 8px;
-  border: 1px solid var(--border2);
-  border-radius: 3px;
-  background: #fff;
-  cursor: pointer;
-  color: var(--muted);
-  opacity: 0;
-  transition: all 0.1s;
-}
-.file-row:hover .copy-btn { opacity: 1; }
-.copy-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-.copy-btn.copied { color: var(--green); border-color: var(--green); opacity: 1; }
-
-/* ── PROG GRID ── */
-.prog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 14px;
-  padding: 20px 28px 28px;
-}
-.prog-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 18px;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex; flex-direction: column; gap: 10px;
-  position: relative;
-  overflow: hidden;
-}
-.prog-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 8px 8px 0 0;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-.prog-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(224,92,42,0.1); }
-.prog-card:hover::before { opacity: 1; }
-.prog-card.dummy { opacity: 0.45; cursor: default; }
-.prog-card.dummy:hover { border-color: var(--border); box-shadow: none; }
-.prog-card.dummy:hover::before { opacity: 0; }
-.prog-folder { font-size: 36px; }
-.prog-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
-.prog-code { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); }
-.prog-meta { font-size: 11px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
-.prog-tag {
-  background: var(--bg);
-  padding: 2px 7px;
-  border-radius: 3px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-}
-
-/* ── TOP ZONE SELECTOR ── */
-.zone-bar {
-  display: flex;
-  padding: 0 28px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  gap: 0;
-}
-.zone-tab {
-  padding: 14px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  color: var(--muted);
-  transition: all 0.15s;
-  display: flex; align-items: center; gap: 8px;
-}
-.zone-tab:hover { color: var(--text); }
-.zone-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-.zone-count {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  background: var(--bg);
-  padding: 1px 6px;
-  border-radius: 3px;
-  color: var(--muted);
-}
-
-/* ── COMING SOON ── */
-.coming-soon {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 80px 24px; gap: 12px;
-  color: var(--muted);
-}
-.cs-icon { font-size: 52px; opacity: 0.35; }
-.cs-title { font-size: 16px; font-weight: 600; color: var(--text); }
-.cs-sub { font-size: 13px; }
-
-/* ── TOAST ── */
-.toast {
-  position: fixed; bottom: 24px; right: 24px;
-  background: var(--text); color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  padding: 10px 16px;
-  border-radius: 6px;
-  opacity: 0; transform: translateY(8px);
-  transition: all 0.2s;
-  pointer-events: none; z-index: 999;
-  max-width: 400px;
-}
-.toast.show { opacity: 1; transform: translateY(0); }
-
-/* ── POPUP OVERLAY ── */
-.popup-overlay {
-  position: fixed; inset: 0;
-  background: rgba(28,26,22,0.7);
-  z-index: 500;
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(3px);
-}
-.popup-overlay.hidden { display: none; }
-.popup-box {
-  background: var(--surface);
-  border-radius: 12px;
-  width: 680px;
-  max-width: 96vw;
-  max-height: 88vh;
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
-}
-.popup-header {
-  background: var(--text);
-  color: #fff;
-  padding: 20px 24px;
-  display: flex; align-items: flex-start; gap: 14px;
-  flex-shrink: 0;
-}
-.popup-header-icon {
-  width: 40px; height: 40px;
-  background: var(--accent);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
-}
-.popup-title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
-.popup-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); }
-.popup-close {
-  margin-left: auto;
-  background: rgba(255,255,255,0.1);
-  border: none;
-  color: #fff;
-  width: 32px; height: 32px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.15s;
-}
-.popup-close:hover { background: rgba(255,255,255,0.2); }
-.popup-body {
-  overflow-y: auto;
-  padding: 24px;
-  flex: 1;
-}
-.popup-body::-webkit-scrollbar { width: 4px; }
-.popup-body::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
-.popup-section { margin-bottom: 24px; }
-.popup-section-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-.access-rule-box {
-  background: var(--red-light);
-  border: 1px solid var(--red);
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 14px;
-  font-size: 12.5px;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.access-rule-box .rule-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
-.access-allowed-box {
-  background: var(--green-light);
-  border: 1px solid var(--green);
-  border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 14px;
-  font-size: 12.5px;
-}
-.allowed-title { font-weight: 600; color: var(--green); margin-bottom: 8px; font-size: 12px; }
-.allowed-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 5px 0;
-  font-size: 12.5px;
-}
-.allowed-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-
-.step-list { display: flex; flex-direction: column; gap: 8px; }
-.step-item {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 10px 14px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-}
-.step-num {
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  background: var(--text);
-  color: #fff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.step-content { flex: 1; }
-.step-title { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
-.step-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-/* ── CHECKLIST ── */
-.checklist { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.check-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 9px 12px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.12s;
-  background: var(--surface);
-}
-.check-item:hover { border-color: var(--accent2); background: var(--accent2-light); }
-.check-item.checked { background: var(--green-light); border-color: var(--green); }
-.check-box {
-  width: 18px; height: 18px;
-  border: 2px solid var(--border2);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.12s;
-  margin-top: 1px;
-  font-size: 11px;
-  color: transparent;
-}
-.check-item.checked .check-box {
-  background: var(--green);
-  border-color: var(--green);
-  color: #fff;
-}
-.check-label { font-size: 12.5px; line-height: 1.5; }
-.check-item.checked .check-label { color: var(--green); }
-
-.checklist-fields {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-bottom: 16px;
-}
-.field-group { display: flex; flex-direction: column; gap: 4px; }
-.field-label { font-size: 11px; font-weight: 600; color: var(--muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; }
-.field-input {
-  padding: 7px 10px;
-  border: 1px solid var(--border2);
-  border-radius: 5px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.12s;
-}
-.field-input:focus { border-color: var(--accent2); background: #fff; }
-
-.popup-footer {
-  padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface2);
-  flex-shrink: 0;
-  flex-wrap: wrap;
-}
-.progress-bar-wrap { flex: 1; min-width: 120px; }
-.progress-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; }
-.progress-bar {
-  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
-}
-.progress-fill {
-  height: 100%; background: var(--green); border-radius: 2px;
-  transition: width 0.3s ease;
-  width: 0%;
-}
-.dl-btn {
-  display: flex; align-items: center; gap: 6px;
-  padding: 8px 14px;
-  border-radius: 5px;
-  border: 1px solid var(--border2);
-  background: var(--surface);
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: var(--text);
-  font-weight: 500;
-  transition: all 0.12s;
-  text-decoration: none;
-}
-.dl-btn:hover { background: var(--bg); border-color: var(--text); }
-.dl-btn.primary-dl { background: var(--text); color: #fff; border-color: var(--text); }
-.dl-btn.primary-dl:hover { background: #333; }
+:root{--bg:#f5f4f0;--surface:#fff;--surface2:#faf9f6;--border:#e2e0d8;--border2:#ccc9be;--text:#1c1a16;--muted:#7a7668;--accent:#e05c2a;--accent-light:#fdf1ec;--accent2:#2a6ee0;--accent2-light:#ecf2fd;--green:#1a7a3c;--green-light:#ecf7f0;--red:#c72f2f;--red-light:#fef2f2;--amber:#b45309;--mp4:#c72f2f;--vtt:#6b21a8;--url:#b45309;--zip-cam:#0369a1;--zip-ae:#c2410c;--html-int:#15803d;--zip-int:#7c3aed}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
+.announce-bar{background:#1c1a16;position:sticky;top:0;z-index:300}
+.announce-inner{display:flex;align-items:stretch}
+.announce-label{background:var(--accent);color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.12em;padding:0 14px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
+.announce-items{display:flex;flex-direction:column;flex:1}
+.announce-item{display:flex;align-items:center;gap:10px;padding:6px 18px;border-bottom:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(255,255,255,.85)}
+.announce-item:last-child{border-bottom:none}
+.announce-item strong{color:#fff}
+.announce-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.announce-dot.red{background:#fc8181}.announce-dot.amber{background:#fbbf24}
+.announce-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 6px;border-radius:2px;font-weight:600;letter-spacing:.08em;flex-shrink:0}
+.tag-urgent{background:#c72f2f;color:#fff}.tag-info{background:#2a6ee0;color:#fff}
+.announce-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);margin-left:auto;white-space:nowrap}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:16px;position:sticky;top:52px;z-index:200}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
+.logo-name{font-size:14px;font-weight:600}
+.logo-sub{font-size:11px;color:var(--muted);font-weight:400}
+.topbar-search{flex:1;max-width:360px;position:relative}
+.topbar-search input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:7px 12px 7px 32px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none}
+.topbar-search input::placeholder{color:var(--muted)}
+.s-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.cmd-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--border);background:none;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);transition:all .12s}
+.cmd-btn:hover{background:var(--bg);color:var(--text)}
+.avatar{width:32px;height:32px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600}
+.breadcrumb{background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 28px;display:flex;align-items:center;gap:5px;font-size:12px;flex-wrap:wrap;min-height:36px}
+.bc{color:var(--accent2);cursor:pointer;border-radius:3px;padding:2px 4px;font-weight:500;transition:background .1s}
+.bc:hover{background:var(--accent2-light)}
+.bc.cur{color:var(--text);cursor:default;font-weight:600}
+.bc.cur:hover{background:none}
+.bc-sep{color:var(--muted)}
+.layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 140px)}
+.leftnav{background:var(--surface);border-right:1px solid var(--border);padding:12px 0;position:sticky;top:140px;height:calc(100vh - 140px);overflow-y:auto}
+.leftnav::-webkit-scrollbar{width:3px}
+.leftnav::-webkit-scrollbar-thumb{background:var(--border)}
+.nl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:10px 20px 5px}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 20px;cursor:pointer;font-size:12.5px;color:var(--muted);border-left:3px solid transparent;transition:all .1s}
+.ni:hover{background:var(--bg);color:var(--text)}
+.ni.active{background:var(--accent-light);color:var(--accent);border-left-color:var(--accent);font-weight:600}
+.ni.dis{opacity:.4;cursor:default}
+.ni.dis:hover{background:none;color:var(--muted)}
+.nb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:auto;background:var(--bg);color:var(--muted)}
+.main{overflow-y:auto}
+.gbanner{margin:18px 28px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border2)}
+.bh{display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--text);color:#fff;font-size:12px;font-weight:600}
+.bb{display:grid;grid-template-columns:1fr 1fr}
+.bs{padding:12px 16px}
+.bs:first-child{border-right:1px solid var(--border)}
+.bsl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.bsl.dr{color:var(--red)}.bsl.in{color:var(--accent2)}
+.br{display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;font-size:11.5px;line-height:1.5}
+.rd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.rd.r{background:var(--red)}.rd.b{background:var(--accent2)}
+.rt{color:var(--text)}.rt.dr{color:var(--red);font-weight:500}
+.vt{display:flex;align-items:center;gap:10px;padding:10px 28px 6px}
+.ic{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.vr{margin-left:auto}
+.cab{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--border2);border-radius:4px;background:var(--surface);cursor:pointer;color:var(--muted);transition:all .12s}
+.cab:hover{color:var(--text);border-color:var(--text)}
+.flw{padding:0 28px 28px}
+.lh{display:grid;grid-template-columns:28px 1fr 110px 100px 90px;gap:8px;padding:7px 14px;border-bottom:2px solid var(--border2);font-size:11px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+.fr{display:grid;grid-template-columns:28px 1fr 110px 100px 90px;gap:8px;padding:7px 14px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background .1s;background:var(--surface)}
+.fr:hover{background:var(--bg)}
+.fr.nc{cursor:default}.fr.nc:hover{background:var(--surface)}
+.sd{background:var(--bg);padding:4px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border2)}
+.fi{font-size:15px;display:flex;align-items:center;justify-content:center}
+.fc{display:flex;flex-direction:column;gap:1px;min-width:0}
+.fn{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace}
+.fn.fo{color:var(--accent2);font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px}
+.fn.toc{color:var(--green)}
+.fs{font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif}
+.fb{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;font-weight:600;letter-spacing:.04em;width:fit-content}
+.b-fo{background:#fff8e1;color:#92400e}.b-mp4{background:#fef2f2;color:var(--mp4)}
+.b-vtt{background:#f5f3ff;color:var(--vtt)}.b-url{background:#fffbeb;color:var(--url)}
+.b-cam{background:#f0f9ff;color:var(--zip-cam)}.b-ae{background:#fff7ed;color:var(--zip-ae)}
+.b-html{background:#f0fdf4;color:var(--html-int)}.b-izip{background:#f5f3ff;color:var(--zip-int)}
+.b-xlsx{background:#f0fdf4;color:var(--green)}.b-dum{background:var(--bg);color:var(--muted)}
+.b-raw{background:#fef3c7;color:#92400e}
+.fm{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.fa{display:flex;align-items:center;gap:4px}
+.cb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:3px 7px;border:1px solid var(--border2);border-radius:3px;background:#fff;cursor:pointer;color:var(--muted);opacity:0;transition:all .1s}
+.fr:hover .cb{opacity:1}
+.cb:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
+.cb.copied{color:var(--green);border-color:var(--green);opacity:1}
+.vb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:3px 7px;border:1px solid var(--green);border-radius:3px;background:var(--green-light);cursor:pointer;color:var(--green);transition:all .1s}
+.vb:hover{background:var(--green);color:#fff}
+.zg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:20px 28px 28px;max-width:480px}
+.zc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:10px}
+.zc:hover{border-color:var(--accent2);box-shadow:0 4px 16px rgba(42,110,224,.1)}
+.zi{font-size:38px}.zn{font-size:15px;font-weight:600}.zd{font-size:12px;color:var(--muted);line-height:1.5}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:20px 28px 28px}
+.pc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:8px}
+.pc:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(224,92,42,.1)}
+.pc.dum{opacity:.45;cursor:default}.pc.dum:hover{border-color:var(--border);box-shadow:none}
+.pfi{font-size:34px}.pn{font-size:13px;font-weight:600;line-height:1.3}.pc0{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}.pm{font-size:11px;color:var(--muted)}
+.tv{padding:0 28px 28px}
+.ttb{display:flex;align-items:center;gap:10px;padding:12px 0 14px}
+.tttl{font-size:15px;font-weight:600;flex:1}
+.tdl{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);font-weight:500;transition:all .12s}
+.tdl:hover{background:var(--bg);border-color:var(--text)}
+.tbk{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);transition:all .12s}
+.tbk:hover{color:var(--text);border-color:var(--text)}
+.tt{width:100%;border-collapse:collapse;font-size:12px}
+.tt th{background:var(--text);color:#fff;padding:8px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;font-weight:600;white-space:nowrap}
+.tt td{padding:6px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.tt tr:hover td{background:var(--bg)}
+.tcr td{background:var(--accent-light);font-weight:600;color:var(--accent);border-bottom:2px solid var(--accent)}
+.tlr td:nth-child(2){font-weight:500;color:var(--text)}
+.ttc{color:var(--accent2);font-weight:500}
+.tsc{color:var(--muted);font-size:11px}
+.pop-ov{position:fixed;inset:0;background:rgba(28,26,22,.7);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.pop-ov.hid{display:none}
+.pop-box{background:var(--surface);border-radius:12px;width:680px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+.pop-hd{background:var(--text);color:#fff;padding:18px 22px;display:flex;align-items:flex-start;gap:12px;flex-shrink:0}
+.pop-hd-ic{width:40px;height:40px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.pop-title{font-size:16px;font-weight:700;margin-bottom:2px}
+.pop-sub{font-size:12px;color:rgba(255,255,255,.5)}
+.pop-cl{margin-left:auto;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.pop-cl:hover{background:rgba(255,255,255,.2)}
+.pop-bd{overflow-y:auto;padding:22px;flex:1}
+.pop-bd::-webkit-scrollbar{width:4px}
+.pop-bd::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.pop-sec{margin-bottom:22px}
+.pop-st{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.arb{background:var(--red-light);border:1px solid var(--red);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-size:12.5px;display:flex;gap:9px;align-items:flex-start}
+.aab{background:var(--green-light);border:1px solid var(--green);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-size:12.5px}
+.aat{font-weight:600;color:var(--green);margin-bottom:7px;font-size:12px}
+.aai{display:flex;align-items:flex-start;gap:7px;padding:4px 0;font-size:12.5px}
+.aad{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:5px}
+.aadesc{font-size:11.5px;color:var(--muted);margin-top:2px;padding-left:13px;line-height:1.5}
+.sl{display:flex;flex-direction:column;gap:7px}
+.si{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px}
+.sn{width:22px;height:22px;border-radius:50%;background:var(--text);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc{flex:1}.st{font-weight:600;font-size:13px;margin-bottom:1px}.sd2{font-size:12px;color:var(--muted);line-height:1.5}
+.cl{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.ci{display:flex;align-items:flex-start;gap:9px;padding:8px 11px;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:all .12s;background:var(--surface)}
+.ci:hover{border-color:var(--accent2);background:var(--accent2-light)}
+.ci.ck{background:var(--green-light);border-color:var(--green)}
+.cbx{width:18px;height:18px;border:2px solid var(--border2);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .12s;margin-top:1px;font-size:11px;color:transparent}
+.ci.ck .cbx{background:var(--green);border-color:var(--green);color:#fff}
+.clb{font-size:12.5px;line-height:1.5}
+.ci.ck .clb{color:var(--green)}
+.clf{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:3px}
+.fl{font-size:10px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase}
+.fi2{padding:7px 10px;border:1px solid var(--border2);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--bg);color:var(--text);outline:none;transition:border-color .12s}
+.fi2:focus{border-color:var(--accent2);background:#fff}
+.pop-ft{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:9px;background:var(--surface2);flex-shrink:0;flex-wrap:wrap}
+.prw{flex:1;min-width:100px}
+.prl{font-size:11px;color:var(--muted);margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.prb{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prf{height:100%;background:var(--green);border-radius:2px;transition:width .3s ease;width:0%}
+.dlb{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);font-weight:500;transition:all .12s}
+.dlb:hover{background:var(--bg);border-color:var(--text)}
+.dlb.p{background:var(--text);color:#fff;border-color:var(--text)}
+.dlb.p:hover{background:#333}
+.cs{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 24px;gap:10px;color:var(--muted)}
+.csi{font-size:48px;opacity:.3}.cst{font-size:16px;font-weight:600;color:var(--text)}.css{font-size:13px}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--text);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;padding:9px 14px;border-radius:6px;opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:999;max-width:380px}
+.toast.show{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
 
 <!-- POPUP -->
-<div class="popup-overlay" id="popup-overlay">
-  <div class="popup-box">
-    <div class="popup-header">
-      <div class="popup-header-icon">📋</div>
-      <div>
-        <div class="popup-title">Vendor OneDrive Onboarding</div>
-        <div class="popup-subtitle">Complete this checklist every time you onboard a new vendor</div>
-      </div>
-      <button class="popup-close" onclick="closePopup()">✕</button>
+<div class="pop-ov hid" id="pop">
+  <div class="pop-box">
+    <div class="pop-hd">
+      <div class="pop-hd-ic">📋</div>
+      <div><div class="pop-title">Vendor OneDrive Onboarding</div><div class="pop-sub">Complete this checklist every time you onboard a new vendor</div></div>
+      <button class="pop-cl" onclick="closePopup()">✕</button>
     </div>
-    <div class="popup-body">
-
-      <!-- ACCESS RULES -->
-      <div class="popup-section">
-        <div class="popup-section-title">Access rules — effective immediately</div>
-        <div class="access-rule-box">
-          <div class="rule-icon">🚫</div>
-          <div>
-            <strong>"Anyone with the link" option has been permanently disabled.</strong><br>
-            This option is no longer available in OneDrive. It cannot be used at any stage — not during POC, not during production, not for any reason.
-          </div>
-        </div>
-        <div class="access-allowed-box">
-          <div class="allowed-title">✅ Approved sharing options — vendors only</div>
-          <div class="allowed-item"><div class="allowed-dot"></div>Specific People — use for all active vendor assignments</div>
-          <div class="allowed-item"><div class="allowed-dot"></div>People with existing access — use when expanding access post-confirmation</div>
+    <div class="pop-bd">
+      <div class="pop-sec">
+        <div class="pop-st">Access rules — effective immediately</div>
+        <div class="arb"><div style="font-size:15px;flex-shrink:0">🚫</div><div><strong>"Anyone with the link" option has been permanently disabled.</strong><br>This option is no longer available in OneDrive. It cannot be used at any stage — not during POC, not during production, not for any reason.</div></div>
+        <div class="aab">
+          <div class="aat">✅ Approved sharing options — vendors only</div>
+          <div class="aai"><div class="aad"></div><div><div><strong>Specific People</strong> — use for all active vendor assignments</div><div class="aadesc">Share directly with named individuals using their email address. This is the only method to use when first onboarding a vendor. You must have the vendor's email ID before sharing. Access is restricted to only the people you name — no one else can access the folder.</div></div></div>
+          <div class="aai" style="margin-top:6px"><div class="aad"></div><div><div><strong>People with existing access</strong></div><div class="aadesc">Use this option when both the vendor and the internal team member are already part of the same OneDrive sharing session or discussion. This allows anyone who already has access to the folder to share it further within that group.</div></div></div>
         </div>
       </div>
-
-      <!-- STEPS -->
-      <div class="popup-section">
-        <div class="popup-section-title">Onboarding process — follow in order</div>
-        <div class="step-list">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <div class="step-title">Create the vendor folder</div>
-              <div class="step-desc">Create folder inside Vendors / [Vendor Name] following the default naming convention. The programme folders inside must match Internal naming exactly.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <div class="step-title">Collect all vendor email IDs</div>
-              <div class="step-desc">Before sharing anything, collect the full email list from the vendor. Do not share until you have at least one confirmed email.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <div class="step-title">Share using Specific People — minimum one team member before POC</div>
-              <div class="step-desc">Share with at least one or more vendor team members using Specific People option only. Set to view or edit as appropriate for the task.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div class="step-content">
-              <div class="step-title">Send onboarding email with activation steps</div>
-              <div class="step-desc">Send the standard activation email to the vendor with the folder link and 5-step activation process: (1) Check inbox/spam for activation email → (2) Click Open → (3) Click Send Code → (4) Copy verification code from second email → (5) Enter code and click Verify.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">5</div>
-            <div class="step-content">
-              <div class="step-title">Confirm vendor has completed activation</div>
-              <div class="step-desc">Do not share production files until the vendor confirms they can access the folder successfully. Get written confirmation.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">6</div>
-            <div class="step-content">
-              <div class="step-title">After POC confirmation — expand access if needed</div>
-              <div class="step-desc">Once POC is confirmed and agreement is in place, add additional vendor team members using Specific People or People with existing access. Never use open link access.</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">7</div>
-            <div class="step-content">
-              <div class="step-title">Brief the vendor on naming conventions</div>
-              <div class="step-desc">Share the file naming guidelines with the vendor. All files submitted must follow the AIML_CRS##_L.TT_Title naming convention. Reject any files that do not comply.</div>
-            </div>
-          </div>
+      <div class="pop-sec">
+        <div class="pop-st">Onboarding process — follow in order</div>
+        <div class="sl">
+          <div class="si"><div class="sn">1</div><div class="sc"><div class="st">Create the vendor folder</div><div class="sd2">Create folder inside Vendors / [Vendor Name] following the default naming convention. The programme folders inside must match Internal naming exactly.</div></div></div>
+          <div class="si"><div class="sn">2</div><div class="sc"><div class="st">Collect all vendor email IDs</div><div class="sd2">Before sharing anything, collect the full email list from the vendor. Do not share until you have at least one confirmed email.</div></div></div>
+          <div class="si"><div class="sn">3</div><div class="sc"><div class="st">Share using Specific People — minimum one team member before POC</div><div class="sd2">Share with at least one or more vendor team members using Specific People option only. Set to view or edit as appropriate for the task.</div></div></div>
+          <div class="si"><div class="sn">4</div><div class="sc"><div class="st">Send onboarding email with activation steps</div><div class="sd2">Send the standard activation email with folder link and 5 steps: (1) Check inbox/spam for activation email → (2) Click Open → (3) Click Send Code → (4) Copy verification code from second email → (5) Enter code and click Verify.</div></div></div>
+          <div class="si"><div class="sn">5</div><div class="sc"><div class="st">Confirm vendor has completed activation</div><div class="sd2">Do not share production files until the vendor confirms they can access the folder successfully. Get email confirmation.</div></div></div>
+          <div class="si"><div class="sn">6</div><div class="sc"><div class="st">After POC confirmation — expand access if needed</div><div class="sd2">Once POC is confirmed and agreement is in place, add additional vendor team members using Specific People or People with existing access. Never use open link access.</div></div></div>
+          <div class="si"><div class="sn">7</div><div class="sc"><div class="st">Brief the vendor on naming conventions</div><div class="sd2">All files submitted must follow the PRG_CRS##_L.TT_Title naming convention. Reject any files that do not comply.</div></div></div>
         </div>
       </div>
-
-      <!-- CHECKLIST -->
-      <div class="popup-section">
-        <div class="popup-section-title">Checklist — tick as you complete each step</div>
-        <div class="checklist-fields">
-          <div class="field-group">
-            <div class="field-label">Vendor name</div>
-            <input class="field-input" type="text" placeholder="e.g. ITOS" id="f-vendor">
-          </div>
-          <div class="field-group">
-            <div class="field-label">FM / Lead name</div>
-            <input class="field-input" type="text" placeholder="Your name" id="f-fm">
-          </div>
-          <div class="field-group">
-            <div class="field-label">Programme assigned</div>
-            <input class="field-input" type="text" placeholder="e.g. AIML" id="f-prog">
-          </div>
-          <div class="field-group">
-            <div class="field-label">Date</div>
-            <input class="field-input" type="date" id="f-date">
-          </div>
+      <div class="pop-sec">
+        <div class="pop-st">Checklist — tick as you complete each step</div>
+        <div class="clf">
+          <div class="fg"><div class="fl">Vendor name</div><input class="fi2" type="text" placeholder="e.g. ITOS" id="f-vendor"></div>
+          <div class="fg"><div class="fl">FM / Lead name</div><input class="fi2" type="text" placeholder="Your name" id="f-fm"></div>
+          <div class="fg"><div class="fl">Programme assigned</div><input class="fi2" type="text" placeholder="e.g. AIML" id="f-prog"></div>
+          <div class="fg"><div class="fl">Date</div><input class="fi2" type="date" id="f-date"></div>
         </div>
-
-        <div class="checklist" id="checklist">
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Vendor folder created with correct naming convention inside Vendors / [Vendor Name]</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">All vendor email IDs collected before sharing</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Folder shared with at least one vendor team member via Specific People option</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Onboarding email sent with activation steps and folder link</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Vendor confirmed successful folder access before production files shared</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Post-POC access expanded using Specific People or People with existing access only</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Vendor briefed on file naming conventions — non-compliant files will be rejected</div>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box">✓</div>
-            <div class="check-label">Confirmed: "Anyone with the link" option not used at any stage</div>
-          </div>
+        <div class="cl" id="checklist">
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Vendor folder created with correct naming convention</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">All vendor email IDs collected before sharing</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Folder shared with at least one vendor team member via Specific People</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Onboarding email sent with activation steps and folder link</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Email confirmation received from vendor of successful folder access</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Post-POC access expanded using Specific People or People with existing access only</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Vendor briefed on file naming conventions — non-compliant files will be rejected</div></div>
+          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Confirmed: "Anyone with the link" option not used at any stage</div></div>
         </div>
       </div>
-
     </div>
-    <div class="popup-footer">
-      <div class="progress-bar-wrap">
-        <div class="progress-label" id="progress-label">0 of 8 completed</div>
-        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-      </div>
-      <button class="dl-btn" onclick="downloadChecklist('xlsx')">⬇ Download Excel</button>
-      <button class="dl-btn primary-dl" onclick="downloadChecklist('pdf')">⬇ Download PDF</button>
+    <div class="pop-ft">
+      <div class="prw"><div class="prl" id="prl">0 of 8 completed</div><div class="prb"><div class="prf" id="prf"></div></div></div>
+      <button class="dlb" onclick="dlCheck('csv')">⬇ Download Excel</button>
+      <button class="dlb p" onclick="dlCheck('pdf')">⬇ Download PDF</button>
     </div>
   </div>
 </div>
 
-<!-- ANNOUNCEMENT BAR -->
+<!-- ANNOUNCE -->
 <div class="announce-bar">
   <div class="announce-inner">
-    <div class="announce-label">⚡ ANNOUNCEMENTS</div>
+    <div class="announce-label">⚡ NOTICE</div>
     <div class="announce-items">
-      <div class="announce-item">
-        <div class="announce-dot red"></div>
-        <span class="announce-tag tag-urgent">MIGRATION</span>
-        <span class="announce-text"><strong>Blended Learning folder moving to new OneDrive account.</strong> Migration starts 7th May — planned completion 15th May. All teams must pause uploads during migration window.</span>
-        <span class="announce-date">7–15 May 2026</span>
-      </div>
-      <div class="announce-item">
-        <div class="announce-dot amber"></div>
-        <span class="announce-tag tag-info">ACCESS</span>
-        <span class="announce-text"><strong>"Anyone with the link" option has been permanently disabled.</strong> Only Specific People and People with existing access are permitted going forward.</span>
-        <span class="announce-date">Effective now</span>
-      </div>
+      <div class="announce-item"><div class="announce-dot red"></div><span class="announce-tag tag-urgent">MIGRATION</span><span><strong>Blended Learning folder moving to new OneDrive account.</strong> Migration starts 7th May — planned completion 15th May. Pause all uploads during migration window.</span><span class="announce-date">7–15 May 2026</span></div>
+      <div class="announce-item"><div class="announce-dot amber"></div><span class="announce-tag tag-info">ACCESS</span><span><strong>"Anyone with the link" option permanently disabled.</strong> Only Specific People and People with existing access permitted going forward.</span><span class="announce-date">Effective now</span></div>
     </div>
   </div>
 </div>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="logo">
-    <div class="logo-mark">SL</div>
-    <div>
-      <div class="logo-text">Simplilearn</div>
-      <div class="logo-sub">Blended Learning — Folder Structure</div>
-    </div>
-  </div>
-  <div class="topbar-search">
-    <span class="search-icon">⌕</span>
-    <input type="text" placeholder="Search files, folders, courses…" id="search-input" oninput="handleSearch(this.value)">
-  </div>
-  <div class="topbar-right">
-    <button class="cmd-btn" onclick="copyAll()">⎘ Copy visible names</button>
-    <div class="topbar-avatar">AD</div>
-  </div>
+  <div class="logo"><div class="logo-mark">SL</div><div><div class="logo-name">Simplilearn</div><div class="logo-sub">Blended Learning — Folder Structure</div></div></div>
+  <div class="topbar-search"><span class="s-icon">⌕</span><input type="text" placeholder="Search…" id="s-in"></div>
+  <div class="topbar-right"><button class="cmd-btn" onclick="copyAll()">⎘ Copy names</button><div class="avatar">AD</div></div>
 </div>
+<div class="breadcrumb" id="bc"></div>
 
-<!-- BREADCRUMB -->
-<div class="breadcrumb" id="breadcrumb"></div>
-
-<!-- LAYOUT -->
 <div class="layout">
-  <aside class="leftnav" id="leftnav"></aside>
-  <main class="main" id="main-area"></main>
+  <aside class="leftnav" id="lnav"></aside>
+  <main class="main" id="main"></main>
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────
-const PROGRAMMES = [
-  { id:'aiml', code:'AIML', name:'AI / ML Learning Path', courses:2, active:true },
-  { id:'p02', code:'PRG02', name:'Programme Name 02', courses:0, active:false },
-  { id:'p03', code:'PRG03', name:'Programme Name 03', courses:0, active:false },
-  { id:'p04', code:'PRG04', name:'Programme Name 04', courses:0, active:false },
-  { id:'p05', code:'PRG05', name:'Programme Name 05', courses:0, active:false },
+const PROGS=[
+  {id:'aiml',code:'AIML',name:'AI_ML_Learning_Path',label:'AI / ML Learning Path',courses:9,active:true},
+  {id:'da',code:'DA',name:'Data_Analytics',label:'Data Analytics',courses:11,active:true},
+  {id:'aagai',code:'AAGAI',name:'Applied_Agentic_AI',label:'Applied Agentic AI',courses:8,active:true},
+  {id:'gail',code:'GAIL',name:'Generative_AI_Applications_for_Leaders',label:'Generative AI Applications for Leaders',courses:10,active:true},
+  {id:'p05',code:'PRG05',name:'Programme_Name_05',label:'Programme Name 05',courses:0,active:false},
 ];
-
-const VENDORS = [
-  { id:'itos',      name:'ITOS',      progs:['aiml','p03'] },
-  { id:'sots',      name:'SOTS',      progs:['aiml','p05'] },
-  { id:'apple_box', name:'Apple_Box', progs:['aiml','p02'] },
-  { id:'tudip',     name:'Tudip',     progs:['aiml','p04'] },
+const VENDORS=[
+  {id:'itos',name:'ITOS',progs:['aiml','aagai']},
+  {id:'sots',name:'SOTS',progs:['aiml','gail']},
+  {id:'apple_box',name:'Apple_Box',progs:['aiml','da']},
+  {id:'tudip',name:'Tudip',progs:['aiml','aagai']},
 ];
+const TOC={
+  aiml:{label:'AI / ML Learning Path',courses:[
+    {name:'Python Refresher with AI',lessons:[
+      {name:'Introduction to Python: Fundamentals and Setup',topics:[
+        {name:'Programming Foundations',subs:['Introduction to Artificial Intelligence','Evolution of Artificial Intelligence','Traditional AI Vs Generative AI']},
+        {name:'Exploring Python Development Environments',subs:['VS Code Setup','Jupyter Notebook','Google Colab']},
+        {name:'Introduction to Python',subs:['History of Python','Benefits of Python','Why Python for AI?']},
+        {name:'Python Basics: Syntax, Structure & Execution',subs:['Python Syntax','Identifiers','Indentation','I/O Operations']},
+        {name:'Python Variables and Data Types',subs:['Variables','Scalar Data','Aggregated Data','Data Assignment']},
+        {name:'Python Operators',subs:['Arithmetic Operators','Comparison Operators','Logical Operators','Miscellaneous Operators']},
+      ]},
+      {name:'Data Structures, Conditional Statements and Loops',topics:[
+        {name:'Lists',subs:['Creating Lists','Indexing and Slicing','List Methods: append(), extend(), pop()']},
+        {name:'Tuples',subs:['Creating Tuples','Tuple Packing and Unpacking']},
+        {name:'Dictionaries',subs:['Creating Dictionaries','Accessing Values','Nested Dictionaries']},
+        {name:'Sets',subs:['Creating Sets','Set Operations: union(), intersection()']},
+        {name:'Conditional Statements',subs:['If Statement','If-Else Statement','If-Elif-Else Statement','Nested-If']},
+        {name:'Loops',subs:['For Loop','While Loop','Nested Loops','Break/Continue/Else']},
+        {name:'Comprehensions',subs:['List Comprehensions','Dictionary Comprehensions','Set Comprehensions']},
+      ]},
+    ]},
+    {name:'Foundations of AI and Lifecycle',lessons:[
+      {name:'Foundations of AI & Agentic AI',topics:[
+        {name:'AI vs ML vs DL vs GenAI vs Agentic AI',subs:['What Is AI?','What Is ML?','What Is Deep Learning?','What Is GenAI?','What Is Agentic AI?']},
+        {name:'Rise of Transformers & LLMs',subs:['Attention Is All You Need','What Are Transformers?','LLMs as Prediction Engines']},
+        {name:'Introduction to Agentic AI',subs:['What Is Agentic AI?','Chain of Thought','ReAct','Reflection']},
+      ]},
+    ]},
+  ]},
+  da:{label:'Data Analytics',courses:[
+    {name:'Introduction to Data Analytics with AI',lessons:[
+      {name:'Foundations of Data Analytics',topics:[
+        {name:'Introduction to Data Analytics',subs:['What Is Data Analytics','Why Data Analytics Matters','Types of Analytics: Descriptive, Diagnostic, Predictive, Prescriptive','What a Data Analyst Actually Does','Building a Career in Data Analytics']},
+        {name:'KPI and Problem Framing',subs:['Business Question to Data Question','KPI Basics: Revenue, Conversion, Retention, Churn']},
+        {name:'Data Basics',subs:['Where Data Come From: CRM, ERP, POS, Websites','Types of Data: Structured, Semi-structured, Unstructured','Data Quality Basics: Missing Values, Duplicates, Wrong Formats']},
+        {name:'ETL Awareness for Analysts',subs:['What Is ETL?','Traditional vs AI-Enabled Analyst','Where AI Helps in Analytics Work','AI Risks and Validation: Hallucinations, Wrong KPIs']},
+      ]},
+    ]},
+    {name:'AI-Powered Business Analytics with Excel and Copilot',lessons:[
+      {name:'Excel Foundations',topics:[
+        {name:'Excel in Business Analytics',subs:['Role of Excel in Business Analytics','Why Excel Still Dominates Data Analytics','Analytics Tasks Excel Handles Effectively','Excel Capabilities for Business Reporting']},
+        {name:'Data Cleaning',subs:['Importing CSV and Structured Data','Sorting and Filtering','Removing Duplicates','Text to Columns','Text Cleaning Functions: TRIM, CLEAN, LEFT, MID, RIGHT','Handling Errors and Blanks: IFERROR']},
+        {name:'Core Functions',subs:['IF, AND, OR','XLOOKUP','VLOOKUP (legacy awareness)','SUMIFS and COUNTIFS','Basic Statistical Functions: AVERAGE, MEDIAN, RANK','Copilot for Formula Writing']},
+      ]},
+    ]},
+    {name:'Data Manipulation and Acquisition with SQL',lessons:[
+      {name:'SQL Foundations for Analysts',topics:[
+        {name:'SQL and Databases',subs:['What Is SQL Used For','What Is a Database','Tables, Rows, Columns','Keys for Analysts: Primary Key, Foreign Key','Relationship Types: One-to-One, One-to-Many, Many-to-Many','Reading a Schema']},
+        {name:'Core Querying',subs:['SELECT and WHERE','Operators and Conditions: AND, OR, IN, BETWEEN, LIKE','ORDER BY and LIMIT']},
+        {name:'Aggregation for KPIs',subs:['GROUP BY and Aggregates: SUM, COUNT, AVG','HAVING Clause','CASE WHEN for KPIs']},
+        {name:'AI for SQL',subs:['Generating SQL with AI','Validating AI SQL: Detecting Hallucinations, Wrong Joins','Debugging SQL with AI']},
+      ]},
+    ]},
+  ]},
+  aagai:{label:'Applied Agentic AI',courses:[
+    {name:'Foundations of Agentic AI and Lifecycle',lessons:[
+      {name:'Fundamentals of Artificial Intelligence and Agentic AI',topics:[
+        {name:'Overview of AI Evolution​',subs:['Introduction to Artificial Intelligence','Evolution of Artificial Intelligence','Traditional AI Vs Generative AI Vs Agentic AI']},
+        {name:'Introduction to Attention and Transformers​',subs:['Introduction to Attention Mechanism','Self-Attention Mechanism','Understanding Self-Attention Through an Analogy','Self-Attention Mechanism: Meaning in Context','How Attention Scores Are Computed','Introduction to Transformers','Components of a Transformer']},
+        {name:'Understanding NLP and the Rise of LLMs',subs:['Introduction to NLP','Types of NLP Models','Limitations of NLP','Markov Chain: Probabilistic Language Modelling','Introduction to N-grams','Language Models','Introduction to Large Language Models(LLM)','Examples of Pretrained LLMs: GPT-4o','Examples of Pretrained LLMs: DeepSeek-R1','Examples of Pretrained LLMs: LLaMA 3']},
+        {name:'Introduction to Agentic AI',subs:['Overview of Agentic AI','Need for Agentic AI','Real-World Applications of Agentic AI','Introduction to Agents','Capabilities of an AI Agent: Interactivity, Memory, Autonomy','Advanced Thinking Techniques: ReAct, Reflection, Chain-of-Thought','Types of Agents: Reactive, Proactive','Deployment Architectures: Single-Agent Systems, Multi-Agent Systems']},
+        {name:'Overview of GenAI Tech Stack',subs:['Introduction to GenAI Tech Stack','GenAI Tech Stack: Layers','Agentic AI Tech Stack: Layers​','GenAI vs. Agentic AI: Orchestration Layer']},
+      ]},
+      {name:'LangChain Framework',topics:[
+        {name:'LangChain',subs:['Background of LangChain','Introduction to LangChain','Decoding the Name','LangChain Key Concepts','How LangChain Works','LangChain Framework Architecture','LangChain Components: Model, Prompt, Memory, Chain','Building Applications with LangChain','Customizing Language Model']},
+      ]},
+      {name:'Prompting and Reasoning',topics:[
+        {name:'Prompting',subs:['Prompt Engineering','Prompt Elements','Types of Prompting Techniques','Zero Shot Prompting','Few Shot Prompting','Chain of Thought Prompting','Self Consistency Prompting','Tree of Thoughts Prompting','Major Applications of Prompt Engineering','LangChain Prompts']},
+      ]},
+      {name:'MCP',topics:[
+        {name:'Model Context Protocol',subs:['Why Tools Need Structured Context','Problems with Unstructured Memory','MCP vs API','What Is MCP and Why It Was Created','Anatomy of an MCP','Benefits of Protocolized Tool Access']},
+      ]},
+      {name:'RAG',topics:[
+        {name:'Retrieval Augmented Generation',subs:['Components of RAG','Traditional vs RAG Pipeline','Load Document','Creating Text Chunks','Building Knowledge Bases','Retriever','Prompt and LLM']},
+      ]},
+      {name:'AI Lifecycle',topics:[
+        {name:'ML Lifecycle',subs:['Problem Definition','Data Collection','Data Cleaning and Preprocessing','Exploratory Data Analysis','Feature Engineering and Selection','Model Selection','Model Training','Model Evaluation and Tuning','Deployment','Monitoring and Maintenance']},
+        {name:'LLM Lifecycle',subs:['Data Collection and Curation','Pretraining','Fine Tuning and Alignment','Evaluation and Benchmarking','Deployment and Inference','Continuous Monitoring and Improvement']},
+      ]},
+    ]},
+    {name:'Agentic AI for Tech Stack and Product Lifecycle',lessons:[
+      {name:'Foundations and Design of Agentic AI Systems',topics:[
+        {name:'Why the Stack Matters to Product Leaders',subs:['Importance of Stack for Product Leaders','Product Behavior: Stack Decisions Drive Outcomes','Stack Choices: Causes and Fixes','Stack Failures: Major Impact on User Trust']},
+        {name:'Understanding the Agentic AI Stack',subs:['The Four-Layer Stack: A Framework for Agentic Product Development','System-Level Thinking for AI Product Leaders','Real-World Analogy: Designing a Legal Reasoning Agent']},
+        {name:'Introduction to Monitoring and LLMOps',subs:['LLMOps: Monitoring and Observability for Agentic Systems','Model Behavior: Rollbacks and Drift Detection','Token-Level Debugging Tools for Granular Agent Analysis']},
+        {name:'Introduction to Model Layer',subs:['LLM Selection: Open vs. Closed, Size, and Cost','Prompt Engineering: Agent Communication and Behavior Control','Fine-tuning and Model Adaptation','Embedding Models: Foundation for Semantic Understanding','RAG for Context-Aware Responses','Multimodal Models for Rich Agent Interactions','Model Bias and Fairness in Agentic Systems']},
+      ]},
+    ]},
+  ]},
+  gail:{label:'Generative AI Applications for Leaders',courses:[
+    {name:'AI Literacy for Business Leaders',lessons:[
+      {name:'Overview of ML, DL, and AI',topics:[
+        {name:'Introduction to Artificial Intelligence (AI)',subs:['What Is an Artificial Intelligence?','Types of AI','Why Is an AI Powerful?','Artificial Intelligence: Google Ads Case Study']},
+        {name:'Introduction to Machine Learning (ML)',subs:['What Is Machine Learning?','Types of Machine Learning','Applications of ML in Business Operations','Advanced Applications of ML in Business','Machine Learning: Netflix Case Study']},
+        {name:'Introduction to Deep Learning (DL)',subs:['What Is Deep Learning?','What Are Neural Networks?','Types of Neural Networks','Neural Networks as the Foundation of NLP','Introduction to Natural Language Processing (NLP)','Applications of NLP in Business','Deep Learning: Amazon Alexa Case Study']},
+        {name:'Introduction to Digital Strategies for Business',subs:['What Are Digital Strategies?','Why Are Digital Strategies Critical for Businesses?','GenAI Tools in Action: Examples of Transformation','McKinsey\'s 7S Framework for Digital Transformation','Deloitte\'s Digital Maturity Model','Best Practices for CXOs in Leading Digital Transformation']},
+      ]},
+      {name:'Overview of GenAI and AI Project Implementation',topics:[
+        {name:'Introduction to Generative AI (GenAI)',subs:['What Is Generative AI?','Key Components of GenAI','Key Algorithms Powering GenAI','Transformer Algorithms','Generative Adversarial Networks (GAN)','Variational Autoencoders (VAE)','Diffusion Algorithms','GANs vs VAEs vs Diffusion Algorithms']},
+        {name:'Introduction to Prompt Engineering',subs:['What Is Prompt Engineering?','Importance of Prompt Engineering','Simple Prompting Techniques for Effective GenAI Use','Prompt Engineering: Best Practices','Demo: Generating a Product Launch Campaign Using ChatGPT']},
+        {name:'Introduction to the GenAI Open-Source Landscape',subs:['What Is GenAI Open-Source Landscape?','Demo: Exploring AI Capabilities with Hugging Face Spaces']},
+      ]},
+    ]},
+    {name:'Generative AI Technology Stack',lessons:[
+      {name:'Generative AI Infrastructure Essentials',topics:[
+        {name:'Generative AI Technology Stack',subs:['GenAI Tech Stack','GenAI Tech Stack Layers']},
+        {name:'Infrastructure Layer',subs:['On-Premise Infrastructure','On-Premise Infrastructure: Platforms','Cloud-Based Infrastructure','Cloud-Based Infrastructure: Platforms','On-Premise vs. Cloud-Based Infrastructure','Demo: Estimating Cloud Infrastructure Cost with GCP','Infrastructure Layer: Partnerships']},
+        {name:'Model Layer',subs:['Model Layer: Stages','Model Layer: Types','General AI Models: Tools','Specific AI Models: Tools','Hyperlocal AI Models: Tools','Demo: Analyzing Customer Reviews Using GenAI']},
+        {name:'Application Layer',subs:['Application Layer','Types of Application','Application Layer: Stages','Application Integration','Application Layer: Model Types']},
+        {name:'GenAI Monitoring and Management',subs:['Monitoring and Management','Large Language Model Operations','LLMOps Tools','Performance Monitoring','Performance Metrics','GenAI Security','Ethical Considerations']},
+        {name:'Rapid AI Development',subs:['Rapid AI Development','Low-Code Tools']},
+      ]},
+    ]},
+  ]},
+};
 
-const COURSES = [
-  { id:'crs01', code:'CRS01', name:'Python_Refresher_with_AI', label:'Python Refresher with AI', lessons: buildCRS01() },
-  { id:'crs02', code:'CRS02', name:'Foundations_of_AI_and_Lifecycle', label:'Foundations of AI and Lifecycle', lessons: buildCRS02() },
-];
+// Sample course detail for AIML CRS01 drill-down
+const CRSDET={
+  aiml_crs01:{code:'CRS01',name:'Python_Refresher_with_AI',prog:'aiml',lessons:[
+    {id:'l01',code:'Lesson_01',name:'Introduction_to_Python_Fundamentals_and_Setup',output:[
+      {num:'1.01',title:'Programming_Foundations',type:'lesson',tool:'PPT'},
+      {num:'1.02',title:'Exploring_Python_Development_Environment',type:'lesson',tool:'CAM'},
+      {num:'1.02D',title:'Demo_Installing_VS_Code',type:'demo',tool:'CAM'},
+      {num:'1.03',title:'Introduction_to_Python',type:'lesson',tool:'PPT'},
+      {num:'1.04',title:'Python_Basics_Syntax_Structure_and_Execution',type:'lesson',tool:'AE'},
+      {num:'1.05',title:'Python_Variables_and_Data_Types',type:'lesson',tool:'PPT'},
+      {num:'1.06',title:'Python_Operators',type:'lesson',tool:'PPT'},
+      {num:'1.07',title:'Guided_Practice',type:'guided'},
+      {num:'1.08',title:'Knowledge_Check',type:'interactive-html'},
+    ]},
+    {id:'l02',code:'Lesson_02',name:'Data_Structures_Conditional_Statements_and_Loops',output:[
+      {num:'2.01',title:'Lists',type:'lesson',tool:'PPT'},
+      {num:'2.02',title:'Tuples',type:'lesson',tool:'PPT'},
+      {num:'2.03',title:'Dictionaries',type:'lesson',tool:'PPT'},
+      {num:'2.04',title:'Sets',type:'lesson',tool:'PPT'},
+      {num:'2.05',title:'Conditional_Statements',type:'lesson',tool:'CAM'},
+      {num:'2.06',title:'Loops',type:'lesson',tool:'PPT'},
+      {num:'2.07',title:'Comprehensions',type:'lesson',tool:'PPT'},
+      {num:'2.08',title:'Demo_Understanding_Comprehensions_in_Python',type:'demo',tool:'CAM'},
+      {num:'2.09',title:'Guided_Practice',type:'guided'},
+      {num:'2.10',title:'Data_Structures_Interactive_Exercise',type:'interactive-html'},
+    ]},
+  ]},
+};
 
-function buildCRS01() {
-  return [
-    { id:'l01', code:'Lesson_01', name:'Introduction_to_Python_Fundamentals_and_Setup', output:[
-      { num:'1.01', title:'Programming_Foundations', type:'lesson', tool:'PPT' },
-      { num:'1.02', title:'Exploring_Python_Development_Environment', type:'lesson', tool:'CAM' },
-      { num:'1.02D', title:'Demo_Installing_VS_Code', type:'demo', tool:'CAM' },
-      { num:'1.03', title:'Introduction_to_Python', type:'lesson', tool:'PPT' },
-      { num:'1.04', title:'Python_Basics_Syntax_Structure_and_Execution', type:'lesson', tool:'AE' },
-      { num:'1.05', title:'Python_Variables_and_Data_Types', type:'lesson', tool:'PPT' },
-      { num:'1.06', title:'Python_Operators', type:'lesson', tool:'PPT' },
-      { num:'1.07', title:'Guided_Practice', type:'guided', tool:'CAM' },
-      { num:'1.08', title:'Knowledge_Check', type:'interactive-html' },
-      { num:'1.09', title:'Scenario_Based_Activity', type:'interactive-zip' },
-    ]},
-    { id:'l02', code:'Lesson_02', name:'Data_Structures_Conditional_Statements_and_Loops', output:[
-      { num:'2.01', title:'Lists', type:'lesson', tool:'PPT' },
-      { num:'2.02', title:'Tuples', type:'lesson', tool:'PPT' },
-      { num:'2.03', title:'Dictionaries', type:'lesson', tool:'PPT' },
-      { num:'2.04', title:'Sets', type:'lesson', tool:'PPT' },
-      { num:'2.05', title:'Conditional_Statements', type:'lesson', tool:'CAM' },
-      { num:'2.06', title:'Loops', type:'lesson', tool:'PPT' },
-      { num:'2.07', title:'Comprehensions', type:'lesson', tool:'PPT' },
-      { num:'2.08', title:'Demo_Understanding_Comprehensions_in_Python', type:'demo', tool:'CAM' },
-      { num:'2.09', title:'Guided_Practice', type:'guided', tool:'CAM' },
-      { num:'2.10', title:'Data_Structures_Interactive_Exercise', type:'interactive-html' },
-    ]},
-    { id:'l03', code:'Lesson_03', name:'Functions_OOPs_File_and_Error_Handling', output:[
-      { num:'3.01', title:'Python_Functions', type:'lesson', tool:'PPT' },
-      { num:'3.02', title:'Demo_Implementing_Generators_Lambda_and_Built_in_Functions', type:'demo', tool:'CAM' },
-      { num:'3.03', title:'Object_Oriented_Programming', type:'lesson', tool:'AE' },
-      { num:'3.04', title:'Demo_Implementing_Inheritance', type:'demo', tool:'CAM' },
-      { num:'3.05', title:'File_Handling_in_Python', type:'lesson', tool:'PPT' },
-      { num:'3.06', title:'Error_Handling_in_Python', type:'lesson', tool:'PPT' },
-      { num:'3.07', title:'Guided_Practice', type:'guided', tool:'CAM' },
-      { num:'3.08', title:'OOP_Concept_Builder', type:'interactive-zip' },
-    ]},
-    { id:'l04', code:'Lesson_04', name:'Practical_Use_of_AI_Code_Generation_Tools', output:[
-      { num:'4.01', title:'Introduction_to_AI_Powered_Code_Generation', type:'lesson', tool:'PPT' },
-      { num:'4.02', title:'Setting_Up_GitHub_Copilot_and_AI_Code_Tools', type:'lesson', tool:'CAM' },
-      { num:'4.03', title:'Writing_Effective_AI_Prompts', type:'lesson', tool:'PPT' },
-      { num:'4.04', title:'Reviewing_and_Refining_AI_Generated_Code', type:'lesson', tool:'PPT' },
-      { num:'4.05', title:'AI_for_Code_Optimization_and_Automation', type:'lesson', tool:'AE' },
-      { num:'4.06', title:'Debugging_AI_Suggested_Code', type:'lesson', tool:'CAM' },
-      { num:'4.07', title:'Ethical_and_Legal_Considerations', type:'lesson', tool:'PPT' },
-      { num:'4.08', title:'Guided_Practice', type:'guided', tool:'CAM' },
-      { num:'4.09', title:'AI_Tools_Comparison_Interactive', type:'interactive-html' },
-    ]},
-  ];
+let S={view:'root',zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null};
+
+function go(v,ex){S.view=v;if(ex)Object.assign(S,ex);render();bc();nav();}
+
+function nav(){
+  const n=document.getElementById('lnav');
+  let h=`<div class="nl" style="padding-top:16px">Navigation</div>
+  <div class="ni ${S.view==='root'?'active':''}" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">🏠 My files</div>`;
+  if(S.zone==='internal'){
+    h+=`<div class="nl">Internal</div>`;
+    PROGS.forEach(p=>{const a=S.prog===p.id;const d=!p.active;h+=`<div class="ni ${a?'active':''} ${d?'dis':''}" ${p.active?`onclick="go('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,sub:null,toc:null})"`:''}>📁 ${p.code}<span class="nb">${p.active?p.courses+'C':'—'}</span></div>`;});
+  }else if(S.zone==='vendors'){
+    h+=`<div class="nl">Vendors</div>`;
+    VENDORS.forEach(v=>{h+=`<div class="ni ${S.vendor===v.id?'active':''}" onclick="go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">🏢 ${v.name}</div>`;});
+  }
+  n.innerHTML=h;
 }
 
-function buildCRS02() {
-  return [
-    { id:'l01', code:'Lesson_01', name:'Foundations_of_AI_and_Agentic_AI', output:[
-      { num:'1.01', title:'Program_Overview', type:'lesson', tool:'PPT' },
-      { num:'1.02', title:'AI_vs_ML_vs_DL_vs_GenAI_vs_Agentic_AI', type:'lesson', tool:'AE' },
-      { num:'1.03', title:'Classical_ML_vs_Deep_Learning', type:'lesson', tool:'PPT' },
-      { num:'1.04', title:'Rise_of_Transformers_and_LLMs', type:'lesson', tool:'AE' },
-      { num:'1.05', title:'Introduction_to_Agentic_AI', type:'lesson', tool:'PPT' },
-      { num:'1.06', title:'Guided_Practice', type:'guided' },
-      { num:'1.07', title:'AI_Foundations_Knowledge_Check', type:'interactive-html' },
-    ]},
-    { id:'l02', code:'Lesson_02', name:'LangChain_Framework', output:[
-      { num:'2.01', title:'LangChain_Overview_and_Key_Concepts', type:'lesson', tool:'PPT' },
-      { num:'2.02', title:'LangChain_Components_Model_Prompt_Memory_Chain', type:'lesson', tool:'PPT' },
-      { num:'2.03', title:'LangChain_Architecture', type:'lesson', tool:'AE' },
-      { num:'2.04', title:'Demo_Building_Applications_with_LangChain', type:'demo', tool:'CAM' },
-      { num:'2.05', title:'Guided_Practice', type:'guided' },
-      { num:'2.06', title:'LangChain_Component_Explorer', type:'interactive-zip' },
-    ]},
-    { id:'l03', code:'Lesson_03', name:'Prompting_and_Reasoning', output:[
-      { num:'3.01', title:'Prompt_Engineering_Fundamentals', type:'lesson', tool:'PPT' },
-      { num:'3.02', title:'Zero_Shot_and_Few_Shot_Prompting', type:'lesson', tool:'PPT' },
-      { num:'3.03', title:'Chain_of_Thought_and_Advanced_Prompting', type:'lesson', tool:'AE' },
-      { num:'3.04', title:'LangChain_Prompts', type:'lesson', tool:'CAM' },
-      { num:'3.05', title:'Guided_Practice', type:'guided' },
-      { num:'3.06', title:'Prompting_Simulator', type:'interactive-html' },
-    ]},
-    { id:'l04', code:'Lesson_04', name:'MCP_Model_Context_Protocol', output:[
-      { num:'4.01', title:'What_is_MCP_and_Why_It_Was_Created', type:'lesson', tool:'PPT' },
-      { num:'4.02', title:'Anatomy_of_MCP_and_Benefits', type:'lesson', tool:'AE' },
-      { num:'4.03', title:'Guided_Practice', type:'guided' },
-    ]},
-    { id:'l05', code:'Lesson_05', name:'RAG_and_AI_Lifecycle', output:[
-      { num:'5.01', title:'RAG_Components_and_Pipeline', type:'lesson', tool:'AE' },
-      { num:'5.02', title:'Building_Knowledge_Bases_and_Retrieval', type:'lesson', tool:'PPT' },
-      { num:'5.03', title:'ML_Lifecycle', type:'lesson', tool:'PPT' },
-      { num:'5.04', title:'LLM_Lifecycle', type:'lesson', tool:'AE' },
-      { num:'5.05', title:'Guided_Practice', type:'guided' },
-      { num:'5.06', title:'RAG_Pipeline_Builder', type:'interactive-zip' },
-    ]},
-  ];
+function bc(){
+  const e=document.getElementById('bc');
+  let p=[`<span class="bc" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">My files</span>`];
+  if(S.zone){const zl=S.zone==='internal'?'🏢 Internal':'🤝 Vendors';p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('zone',{zone:'${S.zone}',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">${zl}</span>`);}
+  if(S.vendor){const v=VENDORS.find(x=>x.id===S.vendor);p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('vendor',{vendor:'${S.vendor}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">${v.name}</span>`);}
+  if(S.prog){const pr=PROGS.find(x=>x.id===S.prog);p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('prog',{prog:'${S.prog}',course:null,folder:null,lesson:null,sub:null,toc:null})">${pr.code}</span>`);}
+  if(S.course){const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];const pr=PROGS.find(x=>x.id===S.prog);const cn=cd?`${pr.code}_${cd.code}_${cd.name}`:`${pr.code}_${S.course}`;p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('course',{course:'${S.course}',folder:null,lesson:null,sub:null,toc:null})">${cn}</span>`);}
+  if(S.folder){const pr=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('folder',{folder:'${S.folder}',lesson:null,sub:null})">${pr.code}_${cd?cd.code:S.course}_${S.folder}</span>`);}
+  if(S.lesson){const pr=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;if(l)p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('lesson',{lesson:'${S.lesson}',sub:null})">${pr.code}_${cd.code}_${l.code}_${l.name}</span>`);}
+  if(S.sub)p.push(`<span class="bc-sep">›</span><span class="bc cur">transcript</span>`);
+  if(S.toc)p.push(`<span class="bc-sep">›</span><span class="bc cur">TOC</span>`);
+  e.innerHTML=p.join('');
 }
 
-// ── STATE ────────────────────────────────────────────────────────
-let S = { zone:'internal', view:'root', vendor:null, prog:null, course:null, folder:null, lesson:null, subview:null };
-
-// ── POPUP ────────────────────────────────────────────────────────
-function openPopup() { document.getElementById('popup-overlay').classList.remove('hidden'); }
-function closePopup() { document.getElementById('popup-overlay').classList.add('hidden'); }
-
-function toggleCheck(el) {
-  el.classList.toggle('checked');
-  updateProgress();
+function render(){
+  const m=document.getElementById('main');
+  const v=S.view;
+  if(v==='root'){rRoot(m);}
+  else if(v==='zone'){rZone(m);}
+  else if(v==='vendor'){rVendor(m);}
+  else if(v==='prog'){rProg(m);}
+  else if(v==='course'){rCourse(m);}
+  else if(v==='folder'){rFolder(m);}
+  else if(v==='lesson'){rLesson(m);}
+  else if(v==='transcript'){rTranscript(m);}
+  else if(v==='toc'){rTOC(m);}
 }
 
-function updateProgress() {
-  const items = document.querySelectorAll('.check-item');
-  const checked = document.querySelectorAll('.check-item.checked').length;
-  const total = items.length;
-  const pct = Math.round((checked/total)*100);
-  document.getElementById('progress-label').textContent = `${checked} of ${total} completed`;
-  document.getElementById('progress-fill').style.width = pct+'%';
+function bn(title,dirs,infos){
+  const da=Array.isArray(dirs)?dirs:[dirs];const ia=Array.isArray(infos)?infos:[infos];
+  return `<div class="gbanner"><div class="bh">📌 &nbsp;${title}</div><div class="bb">
+  <div class="bs"><div class="bsl dr">⚠ Rules — mandatory</div>${da.filter(Boolean).map(d=>`<div class="br"><div class="rd r"></div><div class="rt dr">${d}</div></div>`).join('')}</div>
+  <div class="bs"><div class="bsl in">ℹ About this level</div>${ia.filter(Boolean).map(i=>`<div class="br"><div class="rd b"></div><div class="rt">${i}</div></div>`).join('')}</div>
+  </div></div>`;
 }
 
-function downloadChecklist(type) {
-  const vendor = document.getElementById('f-vendor').value || 'Vendor';
-  const fm = document.getElementById('f-fm').value || 'FM';
-  const prog = document.getElementById('f-prog').value || 'Programme';
-  const date = document.getElementById('f-date').value || new Date().toISOString().split('T')[0];
-  const items = [...document.querySelectorAll('.check-item')].map((el,i) => ({
-    step: i+1,
-    label: el.querySelector('.check-label').textContent.trim(),
-    done: el.classList.contains('checked') ? 'YES' : 'NO'
-  }));
+function vt(count,label){return `<div class="vt"><span class="ic">${count} ${label}</span><div class="vr"><button class="cab" onclick="copyAll()">⎘ Copy all filenames</button></div></div>`;}
+function lh(){return `<div class="lh"><div></div><div>Name</div><div>Type</div><div>Modified</div><div>Action</div></div>`;}
 
-  if (type === 'xlsx') {
-    let csv = `Simplilearn Vendor Onboarding Checklist\n`;
-    csv += `Vendor,${vendor}\nFM / Lead,${fm}\nProgramme,${prog}\nDate,${date}\n\n`;
-    csv += `Step,Task,Completed\n`;
-    items.forEach(it => { csv += `${it.step},"${it.label}",${it.done}\n`; });
-    const blob = new Blob([csv], {type:'text/csv'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `Vendor_Onboarding_Checklist_${vendor}_${date}.csv`;
-    a.click();
-    showToast('Downloaded: CSV checklist');
-  } else {
-    const win = window.open('','_blank');
-    win.document.write(`<!DOCTYPE html><html><head><title>Vendor Onboarding Checklist</title>
-    <style>body{font-family:sans-serif;padding:40px;max-width:700px;margin:auto;color:#1c1a16}
-    h1{font-size:20px;margin-bottom:4px}h2{font-size:13px;color:#7a7668;font-weight:400;margin-bottom:24px}
-    table{width:100%;border-collapse:collapse;margin-top:16px}
-    th{background:#1c1a16;color:#fff;padding:8px 12px;text-align:left;font-size:12px}
-    td{padding:8px 12px;border-bottom:1px solid #e2e0d8;font-size:13px;vertical-align:top}
-    .yes{color:#1a7a3c;font-weight:600}.no{color:#c72f2f}
-    .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;padding:16px;background:#faf9f6;border:1px solid #e2e0d8;border-radius:6px}
-    .meta-item label{font-size:10px;font-weight:600;color:#7a7668;text-transform:uppercase;letter-spacing:.1em}
-    .meta-item p{font-size:14px;font-weight:600;margin-top:2px}
-    @media print{button{display:none}}
-    </style></head><body>
-    <button onclick="window.print()" style="margin-bottom:20px;padding:8px 16px;background:#1c1a16;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px">🖨 Print / Save as PDF</button>
-    <h1>Simplilearn — Vendor Onboarding Checklist</h1>
-    <h2>Blended Learning · OneDrive Folder Access</h2>
-    <div class="meta">
-      <div class="meta-item"><label>Vendor</label><p>${vendor}</p></div>
-      <div class="meta-item"><label>FM / Lead</label><p>${fm}</p></div>
-      <div class="meta-item"><label>Programme</label><p>${prog}</p></div>
-      <div class="meta-item"><label>Date</label><p>${date}</p></div>
+function fr({icon,name,nc='',sub='',badge,bt,size,oc,copyable,fname,dis,vbtn}){
+  const cls=`fr${dis?' nc':''}`;const ca=oc&&!dis?`onclick="${oc}"`:'';
+  const cpb=copyable?`<button class="cb" onclick="event.stopPropagation();cpf('${fname}',this)">copy</button>`:'';
+  const vb=vbtn||'';
+  return `<div class="${cls}" ${ca}><div class="fi">${icon}</div><div class="fc"><span class="fn ${nc}" title="${name}">${name}</span>${sub?`<span class="fs">${sub}</span>`:''}</div><div><span class="fb ${badge}">${bt}</span></div><div class="fm">—</div><div class="fa">${size} ${cpb}${vb}</div></div>`;
+}
+
+function rRoot(m){
+  const b=bn('My Files — Root Level',['Internal and Vendors are the two access zones. Never store files at root level.'],['Click Internal to access all 5 programmes.','Click Vendors to access vendor-specific folders (opens onboarding checklist).']);
+  m.innerHTML=b+`<div class="zg">
+    <div class="zc" onclick="go('zone',{zone:'internal',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})"><div class="zi">🏢</div><div class="zn">Internal</div><div class="zd">All 5 programmes — Simplilearn teams only</div></div>
+    <div class="zc" onclick="openVend()"><div class="zi">🤝</div><div class="zn">Vendors</div><div class="zd">ITOS, SOTS, Apple_Box, Tudip — assigned programmes only</div></div>
+  </div>`;
+}
+
+function openVend(){openPopup();go('zone',{zone:'vendors',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null});}
+
+function rZone(m){
+  if(S.zone==='internal'){
+    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format. Never create ad-hoc folders at this level.','Files must never be stored at programme root — always inside a course folder.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme contains courses following the PRG_CRS## naming convention.']);
+    let h=b+vt(PROGS.length,'Programmes')+`<div class="flw">${lh()}`;
+    PROGS.forEach(p=>{h+=fr(p.active?{icon:'📁',name:p.code,nc:'fo',sub:p.label,badge:'b-fo',bt:'folder',size:`${p.courses} courses`,oc:`go('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,sub:null,toc:null})`}:{icon:'📁',name:p.code,nc:'fo',sub:p.label+' — Coming soon',badge:'b-dum',bt:'inactive',size:'—',dis:true});});
+    m.innerHTML=h+'</div>';
+  }else{
+    const b=bn('Vendors — Top Level',['Each vendor has their own dedicated folder. Never share across vendor folders.','Access must be via Specific People only at all times.'],['Contains folders for: ITOS, SOTS, Apple_Box, Tudip.','Each vendor is assigned specific programmes only.','Use the onboarding checklist each time a new vendor team member is added.']);
+    let h=b+vt(VENDORS.length,'Vendors')+`<div class="flw">${lh()}`;
+    VENDORS.forEach(v=>{h+=fr({icon:'🏢',name:v.name,nc:'fo',sub:`${v.progs.length} programmes assigned`,badge:'b-fo',bt:'vendor',size:`${v.progs.length} progs`,oc:`go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})`});});
+    m.innerHTML=h+'</div>';
+  }
+}
+
+function rVendor(m){
+  const v=VENDORS.find(x=>x.id===S.vendor);
+  const b=bn(`Vendor — ${v.name}`,['Only assign programmes this vendor is contracted for.','All files submitted must follow the standard naming convention. Reject non-compliant files immediately.'],['Inside each programme folder, the structure is identical to Internal.','Use the onboarding checklist each time a new vendor team member is added.']);
+  let h=b+vt(v.progs.length,'Programmes')+`<div class="flw">${lh()}`;
+  v.progs.forEach(pid=>{const p=PROGS.find(x=>x.id===pid);h+=fr({icon:'📁',name:p.code,nc:'fo',sub:p.label,badge:'b-fo',bt:'folder',size:`${p.courses} courses`,oc:`go('prog',{prog:'${pid}',course:null,folder:null,lesson:null,sub:null,toc:null})`});});
+  m.innerHTML=h+'</div>';
+}
+
+function rProg(m){
+  S.course=null;S.folder=null;S.lesson=null;S.sub=null;S.toc=null;
+  const p=PROGS.find(x=>x.id===S.prog);
+  if(!p.active){m.innerHTML=bn('Programme','','.')+cs();return;}
+  const toc=TOC[S.prog];
+  const clist=toc?toc.courses:[];
+  const b=bn(`Course Level — ${p.code}`,['Course folder names must follow PRG_CRS##_Course_Name format exactly.',`Files must never be stored directly at course root — always inside a sub-folder.`,'TOC Excel must be updated every time a lesson or topic is added or removed.'],['Each course has: Final_Output, Final_Source, Course_Components, Raw_Footage folders and a TOC Excel.',`Programme: ${p.label}. ${p.courses} courses total.`,'Click TOC to view all lessons and topics with original special characters.']);
+  let h=b+vt(clist.length,'Courses')+`<div class="flw">${lh()}`;
+  clist.forEach((c,i)=>{
+    const cid=`crs${String(i+1).padStart(2,'0')}`;
+    const cn=c.name.replace(/[^a-zA-Z0-9]/g,'_').replace(/__+/g,'_');
+    h+=fr({icon:'📁',name:`${p.code}_CRS${String(i+1).padStart(2,'0')}_${cn}`,nc:'fo',sub:c.name,badge:'b-fo',bt:'course',size:'5 items',oc:`go('course',{course:'${cid}',folder:null,lesson:null,sub:null,toc:null})`});
+  });
+  m.innerHTML=h+'</div>';
+}
+
+function rCourse(m){
+  S.folder=null;S.lesson=null;S.sub=null;S.toc=null;
+  const p=PROGS.find(x=>x.id===S.prog);
+  const cnum=S.course.replace('crs','');
+  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const toc=TOC[S.prog];
+  const cidx=parseInt(cnum)-1;
+  const cdata=toc&&toc.courses[cidx]?toc.courses[cidx]:{name:'Course'};
+  const b=bn(`Course Contents — ${p.code}_CRS${cpad}`,['Final_Output and Final_Source must remain strictly separated. Never mix output and source files.','Course_Components subfolders must not be used for any other file types.','Raw_Footage must contain only raw recording files — never processed or edited content.','TOC Excel is the master reference. Keep it current at all times — update when any lesson or topic changes.'],['Final_Output: Lesson folders with MP4, Guided Practice HTML, and interactive files.','Final_Source: Lesson folders with CAM/AE source zips and Guided Practice URL links.','Course_Components: Assessments, Datasets, Demo_Documents, Guided_Practice_Documents.','Raw_Footage: All raw screen recordings before editing. TOC Excel: Full lesson and topic index.']);
+  const pr=`${p.code}_CRS${cpad}`;
+  const ck=`${S.prog}_${S.course}`;
+  const cd=CRSDET[ck];
+  const hasDetail=!!cd;
+  let h=b+vt(5,'Items')+`<div class="flw">${lh()}`;
+  h+=fr({icon:'📁',name:`${pr}_Final_Output`,nc:'fo',sub:'MP4 + Interactive output files',badge:'b-fo',bt:'folder',size:`${cd?cd.lessons.length:'—'} lessons`,oc:hasDetail?`go('folder',{folder:'Final_Output',lesson:null,sub:null})`:`go('folder',{folder:'Final_Output'})`});
+  h+=fr({icon:'📁',name:`${pr}_Final_Source`,nc:'fo',sub:'CAM/AE source zips + Clueso URLs',badge:'b-fo',bt:'folder',size:`${cd?cd.lessons.length:'—'} lessons`,oc:hasDetail?`go('folder',{folder:'Final_Source',lesson:null,sub:null})`:`go('folder',{folder:'Final_Source'})`});
+  h+=fr({icon:'📁',name:`${pr}_Course_Components`,nc:'fo',sub:'Assessments, Datasets, Demo Docs, Guided Practice Docs',badge:'b-fo',bt:'folder',size:'4 subfolders',oc:`go('folder',{folder:'Course_Components'})`});
+  h+=fr({icon:'🎬',name:`${pr}_Raw_Footage`,nc:'fo',sub:'Raw screen recordings and video captures — unedited originals',badge:'b-raw',bt:'raw',size:'—',oc:`go('folder',{folder:'Raw_Footage'})`});
+  h+=fr({icon:'📊',name:`${pr}_TOC.xlsx`,nc:'toc',sub:'Table of Contents — all lesson and topic names with original special characters preserved',badge:'b-xlsx',bt:'.xlsx',size:'—',copyable:true,fname:`${pr}_TOC.xlsx`,vbtn:`<button class="vb" onclick="event.stopPropagation();go('toc',{toc:'${S.prog}_${S.course}'})">view</button>`});
+  m.innerHTML=h+'</div>';
+}
+
+function rFolder(m){
+  S.lesson=null;S.sub=null;
+  const p=PROGS.find(x=>x.id===S.prog);
+  const cnum=S.course.replace('crs','');
+  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const pr=`${p.code}_CRS${cpad}`;
+  const ck=`${S.prog}_${S.course}`;
+  const cd=CRSDET[ck];
+
+  if(S.folder==='Course_Components'){
+    const b=bn(`Course Components — ${pr}`,['Store only the correct file type in each subfolder. Do not create additional subfolders or store miscellaneous files here.','All files must follow the standard PRG_CRS##_L.TT_Title naming convention.'],['Assessments: Quiz files, test papers, evaluation documents.','Datasets: Raw or processed data files used in course exercises.','Demo_Documents: Reference documents and scripts used in demo recordings.','Guided_Practice_Documents: All supporting materials for Guided Practice sessions.']);
+    let h=b+vt(4,'Subfolders')+`<div class="flw">${lh()}`;
+    ['Assessments','Datasets','Demo_Documents','Guided_Practice_Documents'].forEach(s=>{h+=fr({icon:'📁',name:`${pr}_${s}`,nc:'fo',sub:s.replace(/_/g,' '),badge:'b-fo',bt:'folder',size:'—',dis:true});});
+    m.innerHTML=h+'</div>';return;
+  }
+  if(S.folder==='Raw_Footage'){
+    const b=bn(`Raw Footage — ${pr}`,['Raw footage must be uploaded immediately after recording — before any editing begins.','Never store edited or processed files here. This folder is for source recordings only.','Use the naming convention PRG_CRS##_L.TT_Title_RAW.[ext] for all raw files.'],['Contains all raw screen recordings, camera footage, and audio captures for this course.','Files here are unedited originals — editors work from these to produce Final_Source.','Keep raw footage until the course is fully signed off and archived.']);
+    m.innerHTML=b+vt(0,'Files')+`<div class="flw">${lh()}</div>`;return;
+  }
+  if(!cd){m.innerHTML=bn(S.folder,[`Files must follow standard naming.`],[`This folder is not yet configured for drill-down.`])+cs();return;}
+
+  const isOut=S.folder==='Final_Output';
+  const b=isOut
+    ? bn(`Final Output — ${pr}`,['MP4 files must be named correctly before uploading. Renaming after upload creates a new version entry and wastes storage quota.','Guided Practice is always .html — never .mp4. Reject any MP4 named Guided_Practice.','Interactive files must have their own unique topic number — never reuse an MP4 filename.','The transcript subfolder is always lowercase "transcript" — no prefix, no suffix, no code.'],['Each lesson folder: transcript subfolder, MP4 lesson/demo files, HTML Guided Practice, and interactive files.','MP4: Lesson topics and demos. HTML: Guided Practice and interactive exercises. ZIP: Articulate-built interactives.','transcript: one .en.vtt caption file per MP4 — lowercase folder name, no exceptions.'])
+    : bn(`Final Source — ${pr}`,['Source files must be _CAM.zip or _AE.zip only. Embed ALL assets (PPT slides, images, fonts) inside the project before zipping. Do not store them as separate files.','Guided Practice source is a Clueso .url link only — no zip file for Guided Practice.','Interactive files in source are exact replicas of the output file — same filename, same extension.'],['Each lesson folder: CAM or AE source zips for all MP4s, .url for Guided Practice, and replica interactive files.','All assets must be inside the zip. Self-contained: open the zip and everything needed is there.','Do not rename files after uploading to OneDrive.']);
+
+  let h=b+vt(cd.lessons.length,'Lesson folders')+`<div class="flw">${lh()}`;
+  cd.lessons.forEach(l=>{h+=fr({icon:'📁',name:`${pr}_${l.code}_${l.name}`,nc:'fo',sub:l.name.replace(/_/g,' '),badge:'b-fo',bt:'folder',size:`${l.output.length} items`,oc:`go('lesson',{lesson:'${l.id}',sub:null})`});});
+  m.innerHTML=h+'</div>';
+}
+
+function rLesson(m){
+  S.sub=null;
+  const p=PROGS.find(x=>x.id===S.prog);
+  const cnum=S.course.replace('crs','');
+  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const pr=`${p.code}_CRS${cpad}`;
+  const cd=CRSDET[`${S.prog}_${S.course}`];
+  const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;
+  if(!l){m.innerHTML=cs();return;}
+  const isOut=S.folder==='Final_Output';
+  const mp4s=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
+  const guided=l.output.filter(t=>t.type==='guided');
+  const ihtml=l.output.filter(t=>t.type==='interactive-html');
+  const izip=l.output.filter(t=>t.type==='interactive-zip');
+
+  let h='';
+  if(isOut){
+    const b=bn(`Lesson Output — ${l.code}`,['File naming must be finalised before upload. Renaming after upload wastes version storage quota.','Guided Practice is always .html — reject any MP4 for Guided Practice topics.','Interactive files must have unique topic numbers — never the same number as an MP4.'],['transcript subfolder: one .en.vtt per MP4. Lowercase, no prefix, no exceptions.','MP4: Lesson topics and demos. HTML: Guided Practice. Interactive ZIP: Articulate-built content.','Copy button copies individual filename. Use "Copy all" in toolbar for all filenames.']);
+    h=b+vt(l.output.length+1,'Items')+`<div class="flw">${lh()}`;
+    h+=fr({icon:'📁',name:'transcript',nc:'fo',sub:`${mp4s.length} VTT caption files`,badge:'b-fo',bt:'folder',size:'—',oc:`go('transcript',{sub:'transcript'})`});
+    if(mp4s.length){h+=`<div class="sd">MP4 — Lesson &amp; Demo videos</div>`;mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.mp4`;h+=fr({icon:'🎬',name:fn,badge:'b-mp4',bt:'.mp4',size:'—',copyable:true,fname:fn});});}
+    if(guided.length){h+=`<div class="sd">HTML — Guided Practice</div>`;guided.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=fr({icon:'🟢',name:fn,badge:'b-html',bt:'.html',size:'—',copyable:true,fname:fn});});}
+    if(ihtml.length||izip.length){h+=`<div class="sd">Interactive files</div>`;ihtml.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=fr({icon:'⚡',name:fn,badge:'b-html',bt:'Interactive .html',size:'—',copyable:true,fname:fn});});izip.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.zip`;h+=fr({icon:'📦',name:fn,badge:'b-izip',bt:'Articulate .zip',size:'—',copyable:true,fname:fn});});}
+    h+='</div>';
+  }else{
+    const zipIt=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
+    const urlIt=l.output.filter(t=>t.type==='guided');
+    const intIt=l.output.filter(t=>t.type==='interactive-html'||t.type==='interactive-zip');
+    const b=bn(`Lesson Source — ${l.code}`,['Source zips must be _CAM.zip or _AE.zip only. Embed ALL PPT slides, images, and fonts inside the project before zipping. No loose asset files.','Guided Practice: .url file only. No zip file for Guided Practice.','Interactive files are exact replicas of the output — same filename, same extension, copied from Final_Output.'],['Self-contained zips: open the zip and everything needed is inside. One zip per topic.','URL files link to the Clueso-hosted Guided Practice. No source file needed.','Interactive replicas are copied from Final_Output — do not modify them.']);
+    h=b+vt(zipIt.length+urlIt.length+intIt.length,'Files')+`<div class="flw">${lh()}`;
+    if(zipIt.length){h+=`<div class="sd">Source ZIPs — Lesson &amp; Demo</div>`;zipIt.forEach(t=>{const tool=t.tool==='AE'?'AE':'CAM';const fn=`${pr}_${t.num}_${t.title}_${tool}.zip`;h+=fr({icon:tool==='AE'?'✨':'🎥',name:fn,badge:tool==='AE'?'b-ae':'b-cam',bt:`${tool}.zip`,size:'—',copyable:true,fname:fn});});}
+    if(urlIt.length){h+=`<div class="sd">Clueso URL — Guided Practice</div>`;urlIt.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.url`;h+=fr({icon:'🔗',name:fn,badge:'b-url',bt:'.url',size:'—',copyable:true,fname:fn});});}
+    if(intIt.length){h+=`<div class="sd">Interactive — replica files</div>`;intIt.forEach(t=>{const ext=t.type==='interactive-html'?'.html':'.zip';const fn=`${pr}_${t.num}_${t.title}${ext}`;h+=fr({icon:t.type==='interactive-html'?'⚡':'📦',name:fn,badge:t.type==='interactive-html'?'b-html':'b-izip',bt:t.type==='interactive-html'?'Interactive .html':'Articulate .zip',size:'—',copyable:true,fname:fn});});}
+    h+='</div>';
+  }
+  m.innerHTML=h;
+}
+
+function rTranscript(m){
+  S.sub='transcript';
+  const p=PROGS.find(x=>x.id===S.prog);
+  const cnum=S.course.replace('crs','');
+  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const pr=`${p.code}_CRS${cpad}`;
+  const cd=CRSDET[`${S.prog}_${S.course}`];
+  const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;
+  if(!l){m.innerHTML=cs();return;}
+  const mp4s=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
+  const b=bn('transcript folder',['This folder name is always lowercase "transcript" — no prefix, no code, no suffix. Do not rename it ever.','One .en.vtt file per MP4. The filename must match the MP4 exactly, replacing the extension with .en.vtt.','Caption files must be uploaded only after the final approved MP4 is in Final_Output.'],['Contains .en.vtt caption files for all MP4s in this lesson.','Format: PRG_CRS##_L.TT_Title.en.vtt — the .en. denotes English language.','Guided Practice and interactive files do not have caption files — no .vtt needed for them.']);
+  let h=b+vt(mp4s.length,'VTT files')+`<div class="flw">${lh()}`;
+  mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.en.vtt`;h+=fr({icon:'💬',name:fn,badge:'b-vtt',bt:'.en.vtt',size:'—',copyable:true,fname:fn});});
+  m.innerHTML=h+'</div>';
+}
+
+function rTOC(m){
+  const key=S.toc||`${S.prog}_${S.course}`;
+  const pid=key.split('_')[0];
+  const toc=TOC[pid];
+  const p=PROGS.find(x=>x.id===pid);
+  if(!toc){m.innerHTML=cs();return;}
+
+  function cR(c){return c.lessons.reduce((a,l)=>a+lR(l),0);}
+  function lR(l){return l.topics.reduce((a,t)=>a+Math.max(1,t.subs?t.subs.length:1),0);}
+
+  let rows='';
+  toc.courses.forEach((course,ci)=>{
+    let fC=true;
+    const cRc=cR(course);
+    course.lessons.forEach((lesson,li)=>{
+      let fL=true;
+      const lRc=lR(lesson);
+      lesson.topics.forEach((topic,ti)=>{
+        const subs=topic.subs&&topic.subs.length?topic.subs:[''];
+        const tRc=subs.length;
+        subs.forEach((sub,si)=>{
+          rows+=`<tr>`;
+          if(fC&&fL&&ti===0&&si===0) rows+=`<td class="tcr" rowspan="${cRc}">${course.name}</td>`;
+          if(fL&&ti===0&&si===0) rows+=`<td class="tlr" rowspan="${lRc}" style="font-size:11.5px">${lesson.name}</td>`;
+          if(si===0) rows+=`<td class="ttc" rowspan="${tRc}">${topic.name}</td>`;
+          rows+=`<td class="tsc">${sub}</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">—</td></tr>`;
+          if(fL&&ti===0&&si===0)fL=false;
+        });
+      });
+      if(fC)fC=false;
+    });
+  });
+
+  m.innerHTML=`<div class="tv">
+    <div class="ttb">
+      <button class="tbk" onclick="go('course',{toc:null})">← Back to course</button>
+      <div class="tttl">${p.code} — Table of Contents</div>
+      <button class="tdl" onclick="dlTOC('${pid}')">⬇ Download as Excel</button>
     </div>
-    <table><tr><th style="width:40px">#</th><th>Task</th><th style="width:80px">Status</th></tr>
-    ${items.map(it=>`<tr><td>${it.step}</td><td>${it.label}</td><td class="${it.done==='YES'?'yes':'no'}">${it.done==='YES'?'✓ Done':'Pending'}</td></tr>`).join('')}
-    </table></body></html>`);
-    win.document.close();
-    showToast('PDF checklist opened in new tab — use Print to save as PDF');
-  }
-}
-
-// ── NAV ──────────────────────────────────────────────────────────
-function goTo(view, extra) {
-  S.view = view;
-  if (extra) Object.assign(S, extra);
-  render();
-  buildBreadcrumb();
-  buildNav();
-}
-
-function setZone(zone) {
-  S.zone = zone;
-  S.view = 'root'; S.vendor = null; S.prog = null;
-  S.course = null; S.folder = null; S.lesson = null; S.subview = null;
-  openPopup();
-  render(); buildBreadcrumb(); buildNav();
-}
-
-function buildNav() {
-  const nav = document.getElementById('leftnav');
-  let html = `<div class="nav-section">
-    <div class="nav-label">Navigation</div>
-    <div class="nav-item ${S.view==='root'?'active':''}" onclick="goTo('root',{vendor:null,prog:null,course:null,folder:null,lesson:null,subview:null})"><span class="nav-icon">🏠</span> My files</div>
-  </div>`;
-
-  if (S.zone === 'internal') {
-    html += `<div class="nav-section"><div class="nav-label">Programmes</div>`;
-    PROGRAMMES.forEach(p => {
-      const isActive = S.prog === p.id;
-      const cls = p.active ? (isActive?'active':'') : 'disabled';
-      const click = p.active ? `onclick="goTo('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,subview:null})"` : '';
-      html += `<div class="nav-item ${cls}" ${click}><span class="nav-icon">📁</span>${p.code}<span class="nav-badge">${p.active?p.courses+'C':'—'}</span></div>`;
-    });
-    html += `</div>`;
-  } else {
-    html += `<div class="nav-section"><div class="nav-label">Vendors</div>`;
-    VENDORS.forEach(v => {
-      const isActive = S.vendor === v.id;
-      html += `<div class="nav-item ${isActive?'active':''}" onclick="goTo('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,subview:null})"><span class="nav-icon">🏢</span>${v.name}</div>`;
-    });
-    html += `</div>`;
-  }
-
-  html += `<div class="nav-section"><div class="nav-label">Courses</div>`;
-  COURSES.forEach(c => {
-    const isActive = S.course === c.id;
-    html += `<div class="nav-item ${isActive?'active':''}" onclick="goTo('course',{course:'${c.id}',folder:null,lesson:null,subview:null})"><span class="nav-icon">📂</span><span style="font-size:11px">${c.code}</span></div>`;
-  });
-  html += `</div>`;
-
-  nav.innerHTML = html;
-}
-
-function buildBreadcrumb() {
-  const bc = document.getElementById('breadcrumb');
-  const zoneLabel = S.zone === 'internal' ? '🏢 Internal' : '🤝 Vendors';
-  let parts = [`<span class="bc-item" onclick="goTo('root',{vendor:null,prog:null,course:null,folder:null,lesson:null,subview:null})">My files</span>`];
-  parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('root',{vendor:null,prog:null,course:null,folder:null,lesson:null,subview:null})">${zoneLabel}</span>`);
-
-  if (S.vendor) {
-    const v = VENDORS.find(x=>x.id===S.vendor);
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('vendor',{vendor:'${S.vendor}',prog:null,course:null,folder:null,lesson:null,subview:null})">${v.name}</span>`);
-  }
-  if (S.prog) {
-    const p = PROGRAMMES.find(x=>x.id===S.prog);
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('prog',{prog:'${S.prog}',course:null,folder:null,lesson:null,subview:null})">${p.code}</span>`);
-  }
-  if (S.course) {
-    const c = COURSES.find(x=>x.id===S.course);
-    const folderName = `${c.code}_${c.name}`.replace('AIML_','AIML_');
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('course',{course:'${S.course}',folder:null,lesson:null,subview:null})">AIML_${c.code}_${c.name}</span>`);
-  }
-  if (S.folder) {
-    const c = COURSES.find(x=>x.id===S.course);
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('folder',{folder:'${S.folder}',lesson:null,subview:null})">AIML_${c.code}_${S.folder}</span>`);
-  }
-  if (S.lesson) {
-    const c = COURSES.find(x=>x.id===S.course);
-    const l = c.lessons.find(x=>x.id===S.lesson);
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item" onclick="goTo('lesson',{lesson:'${S.lesson}',subview:null})">AIML_${c.code}_${l.code}_${l.name}</span>`);
-  }
-  if (S.subview) {
-    parts.push(`<span class="bc-sep">›</span><span class="bc-item current">transcript</span>`);
-  }
-
-  bc.innerHTML = parts.join('');
-}
-
-// ── RENDER ───────────────────────────────────────────────────────
-function render() {
-  const main = document.getElementById('main-area');
-  const v = S.view;
-  if (v==='root')       { renderRoot(main); return; }
-  if (v==='vendor')     { renderVendor(main); return; }
-  if (v==='prog')       { renderProg(main); return; }
-  if (v==='course')     { renderCourse(main); return; }
-  if (v==='folder')     { renderFolder(main); return; }
-  if (v==='lesson')     { renderLesson(main); return; }
-  if (v==='transcript') { renderTranscript(main); return; }
-}
-
-// ── BANNER BUILDER ───────────────────────────────────────────────
-function banner(title, directives, infos) {
-  const dHTML = directives.map(d=>`<div class="banner-rule"><div class="rule-dot red"></div><div class="rule-text directive">${d}</div></div>`).join('');
-  const iHTML = infos.map(i=>`<div class="banner-rule"><div class="rule-dot blue"></div><div class="rule-text">${i}</div></div>`).join('');
-  return `<div class="guideline-banner">
-    <div class="banner-header"><span class="banner-header-icon">📌</span>${title}</div>
-    <div class="banner-body">
-      <div class="banner-section">
-        <div class="banner-section-label label-directive">⚠ Rules — mandatory</div>
-        ${dHTML}
-      </div>
-      <div class="banner-section">
-        <div class="banner-section-label label-info">ℹ About this level</div>
-        ${iHTML}
-      </div>
-    </div>
+    <table class="tt"><thead><tr><th>Course</th><th>Lesson</th><th>Topic</th><th>Sub-topic</th><th>Duration</th></tr></thead><tbody>${rows}</tbody></table>
   </div>`;
 }
 
-// ── VIEWS ────────────────────────────────────────────────────────
-function renderRoot(main) {
-  const zone = S.zone;
-  const b = zone==='internal'
-    ? banner('Programme Level — Internal',
-        ['All programme folder names must follow the approved code format. Do not create ad-hoc or personal folders at this level.','Files must never be stored at programme root level — always inside a course folder.'],
-        ['This is the Internal zone. Contains all 5 programmes.','Active programmes: AIML. Remaining programmes are in setup.','Each programme contains courses following the AIML_CRS## naming convention.'])
-    : banner('Vendor Zone — Top Level',
-        ['Each vendor has their own dedicated folder. Never share across vendor folders.','Vendor folder names use the official company name only — no codes or suffixes.','Inside each vendor folder, all naming rules are identical to Internal.'],
-        ['This zone contains folders for: ITOS, SOTS, Apple_Box, Tudip.','Each vendor is assigned specific programmes only. They cannot see other programmes.','Vendor access is managed via Specific People sharing only.']);
+function dlTOC(pid){
+  const toc=TOC[pid];if(!toc){toast('No TOC data');return;}
+  let csv='Course,Lesson,Topic,Sub-topic,Duration\n';
+  toc.courses.forEach(c=>{c.lessons.forEach(l=>{l.topics.forEach(t=>{(t.subs&&t.subs.length?t.subs:['']).forEach(s=>{csv+=`"${c.name}","${l.name}","${t.name}","${s}","—"\n`;});});});});
+  const p=PROGS.find(x=>x.id===pid);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`${p.code}_TOC.csv`;a.click();
+  toast(`Downloaded: ${p.code}_TOC.csv`);
+}
 
-  let html = b + zoneTabs();
-  if (zone==='internal') {
-    html += viewToolbar(PROGRAMMES.length,'Programmes');
-    html += `<div class="file-list-wrap">${listHeader()}`;
-    PROGRAMMES.forEach(p => {
-      if (p.active) {
-        html += fileRow({icon:'📁',name:p.code,nameClass:'folder',sub:p.name,badge:'b-folder',badgeText:'folder',size:`${p.courses} courses`,onclick:`goTo('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,subview:null})`});
-      } else {
-        html += fileRow({icon:'📁',name:p.code,nameClass:'folder',sub:p.name+' — Coming soon',badge:'b-dummy',badgeText:'inactive',size:'—',disabled:true});
-      }
-    });
-    html += `</div>`;
-  } else {
-    html += viewToolbar(VENDORS.length,'Vendors');
-    html += `<div class="file-list-wrap">${listHeader()}`;
-    VENDORS.forEach(v => {
-      html += fileRow({icon:'🏢',name:v.name,nameClass:'folder',sub:`${v.progs.length} programmes assigned`,badge:'b-folder',badgeText:'vendor',size:`${v.progs.length} progs`,onclick:`goTo('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,subview:null})`});
-    });
-    html += `</div>`;
+function cs(){return `<div class="cs"><div class="csi">📁</div><div class="cst">Not yet configured</div><div class="css">This content will be available soon.</div></div>`;}
+
+function cpf(name,btn){navigator.clipboard.writeText(name).then(()=>{btn.textContent='copied';btn.classList.add('copied');toast('Copied: '+name);setTimeout(()=>{btn.textContent='copy';btn.classList.remove('copied');},1800);});}
+function copyAll(){const ns=[...document.querySelectorAll('.fn:not(.fo):not(.toc)')].map(e=>e.textContent.trim()).filter(Boolean);if(!ns.length){toast('No filenames at this level');return;}navigator.clipboard.writeText(ns.join('\n')).then(()=>toast(`Copied ${ns.length} filenames`));}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
+
+function openPopup(){document.getElementById('pop').classList.remove('hid');}
+function closePopup(){document.getElementById('pop').classList.add('hid');}
+function toggleCheck(el){el.classList.toggle('ck');const ck=document.querySelectorAll('.ci.ck').length;const tot=document.querySelectorAll('.ci').length;document.getElementById('prl').textContent=`${ck} of ${tot} completed`;document.getElementById('prf').style.width=Math.round(ck/tot*100)+'%';}
+
+function dlCheck(type){
+  const vendor=document.getElementById('f-vendor').value||'Vendor';
+  const fm=document.getElementById('f-fm').value||'FM';
+  const prog=document.getElementById('f-prog').value||'Programme';
+  const date=document.getElementById('f-date').value||new Date().toISOString().split('T')[0];
+  const items=[...document.querySelectorAll('.ci')].map((el,i)=>({step:i+1,label:el.querySelector('.clb').textContent.trim(),done:el.classList.contains('ck')?'YES':'NO'}));
+  if(type==='csv'){
+    let csv=`Simplilearn Vendor Onboarding Checklist\nVendor,${vendor}\nFM / Lead,${fm}\nProgramme,${prog}\nDate,${date}\n\nStep,Task,Completed\n`;
+    items.forEach(it=>{csv+=`${it.step},"${it.label}",${it.done}\n`;});
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`Vendor_Onboarding_${vendor}_${date}.csv`;a.click();toast('Downloaded checklist CSV');
+  }else{
+    const win=window.open('','_blank');
+    win.document.write(`<!DOCTYPE html><html><head><title>Vendor Onboarding Checklist</title><style>body{font-family:sans-serif;padding:36px;max-width:680px;margin:auto;color:#1c1a16}h1{font-size:18px;margin-bottom:3px}h2{font-size:12px;color:#7a7668;font-weight:400;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-top:14px}th{background:#1c1a16;color:#fff;padding:7px 11px;text-align:left;font-size:11px}td{padding:7px 11px;border-bottom:1px solid #e2e0d8;font-size:12px;vertical-align:top}.yes{color:#1a7a3c;font-weight:600}.no{color:#c72f2f}.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;padding:14px;background:#faf9f6;border:1px solid #e2e0d8;border-radius:6px}.meta-item label{font-size:9px;font-weight:600;color:#7a7668;text-transform:uppercase;letter-spacing:.1em;display:block}.meta-item p{font-size:13px;font-weight:600;margin-top:1px}@media print{button{display:none}}</style></head><body>
+    <button onclick="window.print()" style="margin-bottom:18px;padding:7px 14px;background:#1c1a16;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px">🖨 Print / Save as PDF</button>
+    <h1>Simplilearn — Vendor Onboarding Checklist</h1><h2>Blended Learning · OneDrive Folder Access</h2>
+    <div class="meta"><div class="meta-item"><label>Vendor</label><p>${vendor}</p></div><div class="meta-item"><label>FM / Lead</label><p>${fm}</p></div><div class="meta-item"><label>Programme</label><p>${prog}</p></div><div class="meta-item"><label>Date</label><p>${date}</p></div></div>
+    <table><tr><th style="width:36px">#</th><th>Task</th><th style="width:72px">Status</th></tr>${items.map(it=>`<tr><td>${it.step}</td><td>${it.label}</td><td class="${it.done==='YES'?'yes':'no'}">${it.done==='YES'?'✓ Done':'Pending'}</td></tr>`).join('')}</table>
+    </body></html>`);win.document.close();toast('PDF opened — use Print to save');
   }
-  main.innerHTML = html;
 }
 
-function renderVendor(main) {
-  const v = VENDORS.find(x=>x.id===S.vendor);
-  const b = banner(`Vendor Folder — ${v.name}`,
-    ['Only assign programmes this vendor is contracted for. Do not share unassigned programmes.','All files submitted by this vendor must follow the standard naming convention. Reject any non-compliant files immediately.','Access must be via Specific People only. Verify access level before sharing any production files.'],
-    [`Vendor: ${v.name}. Assigned ${v.progs.length} programmes.`,'Inside each programme folder, the structure is identical to Internal.','Use the onboarding checklist each time a new vendor team member is added.']);
-
-  let html = b + viewToolbar(v.progs.length,'Programmes') + `<div class="file-list-wrap">${listHeader()}`;
-  v.progs.forEach(pid => {
-    const p = PROGRAMMES.find(x=>x.id===pid);
-    html += fileRow({icon:'📁',name:p.code,nameClass:'folder',sub:p.name,badge:'b-folder',badgeText:'folder',size:p.active?`${p.courses} courses`:'Setup',onclick:`goTo('prog',{prog:'${pid}',course:null,folder:null,lesson:null,subview:null})`});
-  });
-  html += `</div>`;
-  main.innerHTML = html;
-}
-
-function renderProg(main) {
-  S.course=null; S.folder=null; S.lesson=null; S.subview=null;
-  if (S.prog!=='aiml') { main.innerHTML = banner('Programme','','') + comingSoon(); return; }
-  const b = banner('Course Level — AIML Programme',
-    ['Course folder names must follow AIML_CRS##_Course_Name format exactly. No abbreviations, no shortcuts.','Files must never be stored directly at course root — always inside Final_Output, Final_Source, or Course_Components.','The TOC Excel file must be updated every time a lesson or topic is added, renamed, or removed.'],
-    ['This programme contains 2 active courses (CRS01, CRS02).','Each course has: Final_Output, Final_Source, Course_Components folders and a TOC Excel file.','TOC Excel contains all lesson and topic names with original special characters preserved.']);
-
-  let html = b + viewToolbar(COURSES.length,'Courses') + `<div class="file-list-wrap">${listHeader()}`;
-  COURSES.forEach(c => {
-    html += fileRow({icon:'📁',name:`AIML_${c.code}_${c.name}`,nameClass:'folder',sub:c.label,badge:'b-folder',badgeText:'course',size:'4 items',onclick:`goTo('course',{course:'${c.id}',folder:null,lesson:null,subview:null})`});
-  });
-  html += `</div>`;
-  main.innerHTML = html;
-}
-
-function renderCourse(main) {
-  S.folder=null; S.lesson=null; S.subview=null;
-  const c = COURSES.find(x=>x.id===S.course);
-  const b = banner(`Course Contents — AIML_${c.code}`,
-    ['Final_Output and Final_Source must remain strictly separated. Never mix output and source files.','Course_Components subfolders (Assessments, Datasets, Demo_Documents, Guided_Practice_Documents) must not be used for any other file types.','The TOC Excel file is the master reference. Keep it current at all times.'],
-    ['Final_Output: Contains all lesson folders with MP4, HTML interactive, and ZIP interactive files.','Final_Source: Contains all lesson folders with CAM.zip or AE.zip source files and Guided Practice .url links.','Course_Components: Supporting assets by category. TOC Excel: Full lesson and topic index with original names.']);
-
-  let html = b + viewToolbar(4,'Items') + `<div class="file-list-wrap">${listHeader()}`;
-  html += fileRow({icon:'📁',name:`AIML_${c.code}_Final_Output`,nameClass:'folder',sub:'MP4 + Interactive output files',badge:'b-folder',badgeText:'folder',size:`${c.lessons.length} lessons`,onclick:`goTo('folder',{folder:'Final_Output',lesson:null,subview:null})`});
-  html += fileRow({icon:'📁',name:`AIML_${c.code}_Final_Source`,nameClass:'folder',sub:'CAM/AE source zips + Clueso URLs',badge:'b-folder',badgeText:'folder',size:`${c.lessons.length} lessons`,onclick:`goTo('folder',{folder:'Final_Source',lesson:null,subview:null})`});
-  html += fileRow({icon:'📁',name:`AIML_${c.code}_Course_Components`,nameClass:'folder',sub:'Assessments, Datasets, Demo Docs, Guided Practice Docs',badge:'b-folder',badgeText:'folder',size:'4 subfolders',onclick:`goTo('folder',{folder:'Course_Components',lesson:null,subview:null})`});
-  html += fileRow({icon:'📊',name:`AIML_${c.code}_TOC.xlsx`,nameClass:'toc',sub:'Table of Contents — all lesson and topic names',badge:'b-xlsx',badgeText:'.xlsx',size:'—',copyable:true,fname:`AIML_${c.code}_TOC.xlsx`});
-  html += `</div>`;
-  main.innerHTML = html;
-}
-
-function renderFolder(main) {
-  S.lesson=null; S.subview=null;
-  const c = COURSES.find(x=>x.id===S.course);
-
-  if (S.folder==='Course_Components') {
-    const b = banner(`Course Components — AIML_${c.code}`,
-      ['Store only the correct file type in each subfolder. Do not create additional subfolders or store miscellaneous files here.','All files in Course_Components must follow the standard AIML_CRS##_L.TT_Title naming convention.'],
-      ['Assessments: Quiz files, test papers, evaluation documents.','Datasets: Raw or processed data files used in course exercises.','Demo_Documents: Reference documents, scripts, and guides used in demo recordings.','Guided_Practice_Documents: All supporting materials for Guided Practice sessions.']);
-
-    let html = b + viewToolbar(4,'Subfolders') + `<div class="file-list-wrap">${listHeader()}`;
-    ['Assessments','Datasets','Demo_Documents','Guided_Practice_Documents'].forEach(sub => {
-      html += fileRow({icon:'📁',name:`AIML_${c.code}_${sub}`,nameClass:'folder',sub:sub.replace(/_/g,' '),badge:'b-folder',badgeText:'folder',size:'—',disabled:true});
-    });
-    html += `</div>`;
-    main.innerHTML = html;
-    return;
-  }
-
-  const isOutput = S.folder==='Final_Output';
-  const b = isOutput
-    ? banner(`Final Output — AIML_${c.code}`,
-        ['MP4 files must be named correctly before uploading. Renaming after upload creates a new version entry and wastes storage.','Guided Practice files are always .html — never .mp4. Interactive files must have unique topic numbers — never reuse an MP4 filename.','The transcript subfolder inside each lesson must remain lowercase with no prefix: transcript'],
-        ['Each lesson folder contains: MP4 output files, interactive .html or .zip files (where applicable), and a transcript subfolder.','MP4: All lesson topics and demos. HTML: Guided Practice and interactive exercises. ZIP: Articulate-built interactives.','transcript subfolder contains .en.vtt caption files — one per MP4.'])
-    : banner(`Final Source — AIML_${c.code}`,
-        ['Source files must be either _CAM.zip (Camtasia) or _AE.zip (After Effects) only. No other source formats are accepted.','All PPT slides, infographics, and illustrations used in production must be embedded inside the CAM or AE project folder before zipping. Do not store them as separate files.','Guided Practice source is a Clueso .url link only — no zip file. Interactive files are exact replicas of the output file.'],
-        ['Each lesson folder contains: CAM or AE source zips for all MP4 files, .url files for Guided Practice only, and replica HTML or ZIP files for interactives.','The zip file is self-contained — all assets embedded inside. One zip per topic.','URL files link to the Clueso-hosted version of the Guided Practice.']);
-
-  let html = b + viewToolbar(c.lessons.length,'Lesson folders') + `<div class="file-list-wrap">${listHeader()}`;
-  c.lessons.forEach(l => {
-    const outCount = l.output.length + 1;
-    const srcCount = l.output.filter(t=>t.type!=='interactive-html'&&t.type!=='interactive-zip').length;
-    const count = isOutput ? outCount : srcCount;
-    html += fileRow({icon:'📁',name:`AIML_${c.code}_${l.code}_${l.name}`,nameClass:'folder',sub:l.name.replace(/_/g,' '),badge:'b-folder',badgeText:'folder',size:`${count} items`,onclick:`goTo('lesson',{lesson:'${l.id}'})`});
-  });
-  html += `</div>`;
-  main.innerHTML = html;
-}
-
-function renderLesson(main) {
-  S.subview=null;
-  const c = COURSES.find(x=>x.id===S.course);
-  const l = c.lessons.find(x=>x.id===S.lesson);
-  const isOutput = S.folder==='Final_Output';
-  const pre = `AIML_${c.code}`;
-
-  let html='';
-  if (isOutput) {
-    const b = banner(`Lesson Output — ${l.code}`,
-      [`File naming: ${pre}_[L.TT]_[Title].[ext] — every character matters. Upload only when name is final.`,'Guided Practice is always .html — reject any MP4 for Guided Practice.','Interactive files must have their own unique topic number — never the same as an MP4.'],
-      ['This folder contains: transcript subfolder, MP4 lesson and demo files, HTML Guided Practice, and interactive files.','transcript subfolder: all .en.vtt caption files, lowercase, no prefix.','Interactive .html: standalone exercises. Interactive .zip: Articulate-built content.']);
-
-    html = b + viewToolbar(l.output.length+1,'Items') + `<div class="file-list-wrap">${listHeader()}`;
-    // transcript folder always first
-    html += fileRow({icon:'📁',name:'transcript',nameClass:'folder',sub:`${l.output.filter(t=>t.type!=='interactive-html'&&t.type!=='interactive-zip').length} VTT caption files`,badge:'b-folder',badgeText:'folder',size:'—',onclick:`goTo('transcript',{subview:'transcript'})`});
-
-    // mp4s
-    const mp4s = l.output.filter(t=>t.type==='lesson'||t.type==='demo');
-    if (mp4s.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">MP4 — Lesson &amp; Demo videos</div></div>`;
-      mp4s.forEach(t => {
-        const fname = `${pre}_${t.num}_${t.title}.mp4`;
-        html += fileRow({icon:'🎬',name:fname,badge:'b-mp4',badgeText:'.mp4',size:'—',copyable:true,fname});
-      });
-    }
-
-    // guided practice
-    const guided = l.output.filter(t=>t.type==='guided');
-    if (guided.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">HTML — Guided Practice</div></div>`;
-      guided.forEach(t => {
-        const fname = `${pre}_${t.num}_${t.title}.html`;
-        html += fileRow({icon:'🟢',name:fname,badge:'b-html',badgeText:'.html',size:'—',copyable:true,fname});
-      });
-    }
-
-    // interactives
-    const intHTML = l.output.filter(t=>t.type==='interactive-html');
-    const intZIP = l.output.filter(t=>t.type==='interactive-zip');
-    if (intHTML.length||intZIP.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">Interactive files</div></div>`;
-      intHTML.forEach(t => {
-        const fname = `${pre}_${t.num}_${t.title}.html`;
-        html += fileRow({icon:'⚡',name:fname,badge:'b-html',badgeText:'Interactive .html',size:'—',copyable:true,fname});
-      });
-      intZIP.forEach(t => {
-        const fname = `${pre}_${t.num}_${t.title}.zip`;
-        html += fileRow({icon:'📦',name:fname,badge:'b-int-zip',badgeText:'Articulate .zip',size:'—',copyable:true,fname});
-      });
-    }
-    html += `</div>`;
-
-  } else {
-    // FINAL SOURCE
-    const b = banner(`Lesson Source — ${l.code}`,
-      ['Source zips must be _CAM.zip or _AE.zip only. Embed ALL assets (PPT, images, fonts) inside the project before zipping.','Guided Practice: .url file only. No zip. No other source file.','Interactive files are exact replicas of the output file — same filename, same extension.'],
-      ['This folder contains: CAM or AE source zips for all MP4s, .url for Guided Practice, and replica interactive files.','Self-contained zips: open the zip and everything needed is inside.','Do not rename files after uploading to OneDrive.']);
-
-    const srcItems = l.output.filter(t=>t.type!=='interactive-html'&&t.type!=='interactive-zip');
-    const intItems = l.output.filter(t=>t.type==='interactive-html'||t.type==='interactive-zip');
-    const total = srcItems.length + intItems.length;
-
-    html = b + viewToolbar(total,'Files') + `<div class="file-list-wrap">${listHeader()}`;
-
-    // CAM/AE zips for mp4 types
-    const zipItems = srcItems.filter(t=>t.type==='lesson'||t.type==='demo');
-    if (zipItems.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">Source ZIPs — Lesson &amp; Demo</div></div>`;
-      zipItems.forEach(t => {
-        const tool = t.tool==='CAM'?'CAM':'AE';
-        const fname = `${pre}_${t.num}_${t.title}_${tool}.zip`;
-        const badge = tool==='CAM'?'b-cam':'b-ae';
-        const badgeText = tool==='CAM'?'CAM.zip':'AE.zip';
-        html += fileRow({icon:tool==='CAM'?'🎥':'✨',name:fname,badge,badgeText,size:'—',copyable:true,fname});
-      });
-    }
-
-    // URL for guided
-    const urlItems = srcItems.filter(t=>t.type==='guided');
-    if (urlItems.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">Clueso URL — Guided Practice</div></div>`;
-      urlItems.forEach(t => {
-        const fname = `${pre}_${t.num}_${t.title}.url`;
-        html += fileRow({icon:'🔗',name:fname,badge:'b-url',badgeText:'.url',size:'—',copyable:true,fname});
-      });
-    }
-
-    // Interactive replicas
-    if (intItems.length) {
-      html += `<div class="file-row section-head"><div class="section-head-text">Interactive — replica files</div></div>`;
-      intItems.forEach(t => {
-        const ext = t.type==='interactive-html'?'.html':'.zip';
-        const fname = `${pre}_${t.num}_${t.title}${ext}`;
-        const badge = t.type==='interactive-html'?'b-html':'b-int-zip';
-        const badgeText = t.type==='interactive-html'?'Interactive .html':'Articulate .zip';
-        html += fileRow({icon:t.type==='interactive-html'?'⚡':'📦',name:fname,badge,badgeText,size:'—',copyable:true,fname});
-      });
-    }
-    html += `</div>`;
-  }
-  main.innerHTML = html;
-}
-
-function renderTranscript(main) {
-  S.subview='transcript';
-  const c = COURSES.find(x=>x.id===S.course);
-  const l = c.lessons.find(x=>x.id===S.lesson);
-  const pre = `AIML_${c.code}`;
-  const vttItems = l.output.filter(t=>t.type==='lesson'||t.type==='demo');
-
-  const b = banner('transcript folder',
-    ['This folder name is always lowercase "transcript" — no prefix, no code, no suffix. Do not rename it.','One .en.vtt file per MP4 file. The filename must match the MP4 exactly, with .en.vtt extension.','Caption files must be uploaded after the final approved MP4. Do not upload draft captions.'],
-    ['Contains .en.vtt caption files for all MP4s in this lesson folder.','Format: AIML_CRS##_L.TT_Title.en.vtt — the .en. denotes English language.','Guided Practice and interactive files do not have caption files.']);
-
-  let html = b + viewToolbar(vttItems.length,'VTT caption files') + `<div class="file-list-wrap">${listHeader()}`;
-  vttItems.forEach(t => {
-    const fname = `${pre}_${t.num}_${t.title}.en.vtt`;
-    html += fileRow({icon:'💬',name:fname,badge:'b-vtt',badgeText:'.en.vtt',size:'—',copyable:true,fname});
-  });
-  html += `</div>`;
-  main.innerHTML = html;
-}
-
-// ── UI HELPERS ───────────────────────────────────────────────────
-function zoneTabs() {
-  return `<div class="zone-bar">
-    <div class="zone-tab ${S.zone==='internal'?'active':''}" onclick="setZone('internal')">🏢 Internal <span class="zone-count">5 programmes</span></div>
-    <div class="zone-tab ${S.zone==='vendors'?'active':''}" onclick="setZone('vendors')">🤝 Vendors <span class="zone-count">4 vendors</span></div>
-  </div>`;
-}
-
-function viewToolbar(count, label) {
-  return `<div class="view-toolbar"><span class="item-count">${count} ${label}</span><div class="view-right"><button class="copy-all-btn" onclick="copyAll()">⎘ Copy all filenames</button></div></div>`;
-}
-
-function listHeader() {
-  return `<div class="list-header"><div></div><div>Name</div><div>Type</div><div>Modified</div><div>Action</div></div>`;
-}
-
-function fileRow({icon,name,nameClass='',sub='',badge,badgeText,size,onclick,copyable,fname,disabled}) {
-  const rowCls = `file-row${disabled?' disabled-row':''}`;
-  const clickAttr = onclick&&!disabled ? `onclick="${onclick}"` : '';
-  const copyBtn = copyable ? `<button class="copy-btn" onclick="event.stopPropagation();copyFile('${fname}',this)">copy</button>` : '';
-  return `<div class="${rowCls}" ${clickAttr}>
-    <div class="file-icon">${icon}</div>
-    <div class="file-name-cell">
-      <span class="file-name-text ${nameClass}" title="${name}">${name}</span>
-      ${sub?`<span class="file-sub">${sub}</span>`:''}
-    </div>
-    <div><span class="file-badge ${badge}">${badgeText}</span></div>
-    <div class="file-modified">—</div>
-    <div class="file-action">${size} ${copyBtn}</div>
-  </div>`;
-}
-
-function comingSoon() {
-  return `<div class="coming-soon"><div class="cs-icon">📁</div><div class="cs-title">Not yet configured</div><div class="cs-sub">This programme will be available soon.</div></div>`;
-}
-
-function copyFile(name,btn) {
-  navigator.clipboard.writeText(name).then(()=>{
-    btn.textContent='copied'; btn.classList.add('copied');
-    showToast('Copied: '+name);
-    setTimeout(()=>{btn.textContent='copy';btn.classList.remove('copied');},1800);
-  });
-}
-
-function copyAll() {
-  const names=[...document.querySelectorAll('.file-name-text:not(.folder):not(.toc)')].map(el=>el.textContent.trim()).filter(Boolean);
-  if(!names.length){showToast('No filenames at this level');return;}
-  navigator.clipboard.writeText(names.join('\n')).then(()=>showToast(`Copied ${names.length} filenames`));
-}
-
-function handleSearch(val) {
-  if(!val.trim())return;
-  showToast(`Type a filename to search — navigate into a folder to filter`);
-}
-
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2400);
-}
-
-// ── INIT ─────────────────────────────────────────────────────────
-document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
-openPopup();
-render();
-buildBreadcrumb();
-buildNav();
+document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+render();bc();nav();
 </script>
 </body>
 </html>
