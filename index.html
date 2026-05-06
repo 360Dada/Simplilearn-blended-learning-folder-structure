@@ -551,13 +551,11 @@ function openVend(){openPop();go('zone',{zone:'vendors',vendor:null,prog:null,co
 
 function rZone(m){
   if(S.zone==='internal'){
-    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format.','Files must never be stored at programme root — always inside a course folder.','Project Tracker and Design Document must be kept current. Update immediately on any change.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme has a Project Tracker and Design Document (Excel or Google Sheet).']);
+    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format.','Files must never be stored at programme root — always inside a course folder.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme contains courses, a Project Tracker, and a Design Document.','Click any programme to open it and see its contents.']);
     let h=b+`<div class="file-area">${toolbar(PROGS.length,'Programmes')}${colH()}`;
     PROGS.forEach(p=>{
       if(p.active){
         h+=row({icon:'📁',name:p.code,nc:'link',sub:p.label,type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:`${p.courses} courses`,sharing:'Internal',activity:'—',oc:`go('prog',{prog:'${p.id}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});
-        h+=row({icon:'📊',name:`${p.code}_Project_Tracker.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Project_Tracker.xlsx`});
-        h+=row({icon:'📊',name:`${p.code}_Design_Document.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Design_Document.xlsx`});
       }else{
         h+=row({icon:'📁',name:p.code,sub:p.label+' — Coming soon',type:'inactive',typeClass:'tb-dum',sharing:'Internal',activity:'—',dis:true});
       }
@@ -585,13 +583,16 @@ function rProg(m){
   if(!p.active){m.innerHTML=bn('Programme','','.')+`<div class="file-area">`+cs()+'</div>';return;}
   const toc=TOC[S.prog];
   const clist=toc?toc.courses:[];
-  const b=bn(`Course Level — ${p.code}`,['Course folder names must follow PRG_CRS##_Course_Name format exactly.','Files must never be stored directly at course root.','TOC Excel must be updated every time a lesson or topic is added or removed.'],['Each course has: Final_Output, Final_Source, Course_Components, Raw_Footage, LVC folders and a TOC Excel.',`Programme: ${p.label}. ${p.courses} courses total.`]);
-  let h=b+`<div class="file-area">${toolbar(clist.length,'Courses')}${colH()}`;
+  const b=bn(`Programme — ${p.code}`,['Course folder names must follow PRG_CRS##_Course_Name format exactly.','Files must never be stored directly at course root.','Project Tracker and Design Document must be kept current. Update immediately on any change.','TOC Excel inside each course must be updated every time a lesson or topic is added or removed.'],['Each course has: Final_Output, Final_Source, Course_Components, Raw_Footage, LVC folders and a TOC Excel.',`Programme: ${p.label}. ${p.courses} courses total.`,'Project Tracker and Design Document available as Excel or Google Sheet.']);
+  let h=b+`<div class="file-area">${toolbar(clist.length+2,'Items')}${colH()}`;
   clist.forEach((c,i)=>{
     const cid=`crs${String(i+1).padStart(2,'0')}`;
     const cn=c.name.replace(/[^a-zA-Z0-9]/g,'_').replace(/__+/g,'_');
     h+=row({icon:'📁',name:`${p.code}_CRS${String(i+1).padStart(2,'0')}_${cn}`,nc:'link',sub:c.name,type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:'6 items',sharing:'Internal',activity:'—',oc:`go('course',{course:'${cid}',folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});
   });
+  h+=`<div class="sect-div">Programme files</div>`;
+  h+=row({icon:'📊',name:`${p.code}_Project_Tracker.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Project_Tracker.xlsx`});
+  h+=row({icon:'📊',name:`${p.code}_Design_Document.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Design_Document.xlsx`});
   m.innerHTML=h+'</div>';
 }
 
