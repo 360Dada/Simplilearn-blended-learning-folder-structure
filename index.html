@@ -275,11 +275,12 @@ body{background:var(--od-bg);color:var(--od-text);font-family:'Segoe UI',system-
           <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Post-POC access expanded using approved options only</div></div>
           <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Vendor briefed on file naming conventions</div></div>
           <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Confirmed: "Anyone with the link" not used at any stage</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Shared Blended_Learning_Guidelines .url link with vendor — GD, LD, and CE guidelines accessible</div></div>
         </div>
       </div>
     </div>
     <div class="pop-ft">
-      <div class="prw"><div class="prl" id="prl">0 of 8 completed</div><div class="prb"><div class="prf" id="prf"></div></div></div>
+      <div class="prw"><div class="prl" id="prl">0 of 9 completed</div><div class="prb"><div class="prf" id="prf"></div></div></div>
       <button class="dlb" onclick="dlChk('csv')">⬇ Download Excel</button>
       <button class="dlb p" onclick="dlChk('pdf')">⬇ Download PDF</button>
     </div>
@@ -471,7 +472,8 @@ function nav(){
   if(S.zone==='internal'){
     h+=`<div class="si-section"><div class="si-label">Internal</div>`;
     PROGS.forEach(p=>{h+=`<div class="si-item ${S.prog===p.id?'active':''} ${!p.active?'dim':''}" ${p.active?`onclick="go('prog',{prog:'${p.id}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})"`:''}>📁 ${p.code}<span class="si-badge">${p.active?p.courses+'C':'—'}</span></div>`;});
-    h+=`</div>`;
+    h+=`</div><div class="si-section"><div class="si-label">Reference</div>
+    <div class="si-item ${S.view==='guidelines'||S.view==='guideline-sub'?'active':''}" onclick="go('guidelines',{})">📋 BL Guidelines</div></div>`;
   }else if(S.zone==='vendors'){
     h+=`<div class="si-section"><div class="si-label">Vendors</div>`;
     VENDORS.forEach(v=>{h+=`<div class="si-item ${S.vendor===v.id?'active':''}" onclick="go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">🏢 ${v.name}</div>`;});
@@ -488,7 +490,9 @@ function bc(){
   if(S.prog){const p=PROGS.find(x=>x.id===S.prog);parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('prog',{prog:'${S.prog}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${p.code}</span>`);}
   if(S.course){const p=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('course',{course:'${S.course}',folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${cd?`${p.code}_${cd.code}_${cd.name}`:`${p.code}_${S.course}`}</span>`);}
   if(S.folder){const p=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('folder',{folder:'${S.folder}',subfolder:null,lesson:null,sub:null})">${p.code}_${cd?cd.code:S.course}_${S.folder}</span>`);}
-  if(S.subfolder){parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('subfolder',{subfolder:'${S.subfolder}',lesson:null,sub:null})">${S.subfolder}</span>`);}
+  if(S.subfolder&&S.view==='subfolder'){parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('subfolder',{subfolder:'${S.subfolder}',lesson:null,sub:null})">${S.subfolder}</span>`);}
+  if(S.view==='guidelines')parts.push(`<span class="bc-sep">›</span><span class="bc cur">Blended_Learning_Guidelines</span>`);
+  if(S.view==='guideline-sub')parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('guidelines',{})">Blended_Learning_Guidelines</span><span class="bc-sep">›</span><span class="bc cur">${S.subfolder||''}</span>`);
   if(S.lesson){const p=PROGS.find(x=>x.id===S.prog);const cd=CRSDET[`${S.prog}_${S.course}`];const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;if(l)parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('lesson',{lesson:'${S.lesson}',sub:null})">${p.code}_${cd.code}_${l.code}_${l.name}</span>`);}
   if(S.sub)parts.push(`<span class="bc-sep">›</span><span class="bc cur">transcript</span>`);
   if(S.toc)parts.push(`<span class="bc-sep">›</span><span class="bc cur">TOC</span>`);
@@ -505,7 +509,8 @@ function render(){
   else if(v==='prog')rProg(m);
   else if(v==='course')rCourse(m);
   else if(v==='folder')rFolder(m);
-  else if(v==='subfolder')rSubfolder(m);
+  else if(v==='guidelines')rGuidelines(m);
+  else if(v==='guideline-sub')rGuidelineSub(m);
   else if(v==='lesson')rLesson(m);
   else if(v==='transcript')rTranscript(m);
   else if(v==='toc')rTOC(m);
@@ -551,8 +556,8 @@ function openVend(){openPop();go('zone',{zone:'vendors',vendor:null,prog:null,co
 
 function rZone(m){
   if(S.zone==='internal'){
-    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format.','Files must never be stored at programme root — always inside a course folder.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme contains courses, a Project Tracker, and a Design Document.','Click any programme to open it and see its contents.']);
-    let h=b+`<div class="file-area">${toolbar(PROGS.length,'Programmes')}${colH()}`;
+    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format.','Files must never be stored at programme root — always inside a course folder.','Blended_Learning_Guidelines folder is shared with vendors via .url link — do not give direct folder access.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme contains courses, a Project Tracker, and a Design Document.','Blended_Learning_Guidelines contains GD, LD, and CE guidelines and checklists.']);
+    let h=b+`<div class="file-area">${toolbar(PROGS.length+1,'Items')}${colH()}`;
     PROGS.forEach(p=>{
       if(p.active){
         h+=row({icon:'📁',name:p.code,nc:'link',sub:p.label,type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:`${p.courses} courses`,sharing:'Internal',activity:'—',oc:`go('prog',{prog:'${p.id}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});
@@ -560,6 +565,8 @@ function rZone(m){
         h+=row({icon:'📁',name:p.code,sub:p.label+' — Coming soon',type:'inactive',typeClass:'tb-dum',sharing:'Internal',activity:'—',dis:true});
       }
     });
+    h+=`<div class="sect-div">Shared reference</div>`;
+    h+=row({icon:'📁',name:'Blended_Learning_Guidelines',nc:'link',sub:'GD Guidelines · LD Guidelines · CE Guidelines',type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:'3 subfolders',sharing:'Internal',activity:'—',oc:`go('guidelines',{})`});
     m.innerHTML=h+'</div>';
   }else{
     const b=bn('Vendors — Top Level',['Each vendor has their own dedicated folder. Never share across vendor folders.','Access must be via Specific People only at all times.'],['Contains folders for: ITOS, SOTS, Apple_Box, Tudip.','Each vendor is assigned specific programmes only.']);
@@ -783,7 +790,55 @@ function dlTOC(pid){
   a.download=`${PROGS.find(x=>x.id===pid).code}_TOC.csv`;a.click();toast('Downloaded TOC CSV');
 }
 
-function cs(){return `<div class="cs"><div class="csi">📁</div><div class="cst">Not yet configured</div><div class="css">This content will be available soon.</div></div>`;}
+function rGuidelines(m){
+  const b=bn('Blended Learning Guidelines',
+    ['Do not share this folder directly with vendors — share via .url link only.','Files inside must not be edited without approval from the relevant team lead.','When onboarding a vendor, add the Guidelines .url link to their folder and tick the checklist item.'],
+    ['GD_Guidelines: PowerPoint file + Excel or Google Sheet checklist.','LD_Guidelines: PowerPoint file + Word or PDF document + Excel or Google Sheet checklist.','CE_Guidelines: Word or PDF document + Excel or Google Sheet checklist.']);
+  let h=b+`<div class="file-area">${toolbar(3,'Subfolders')}${colH()}`;
+  h+=row({icon:'📁',name:'GD_Guidelines',nc:'link',sub:'Graphic Design guidelines — PowerPoint + Checklist',type:'folder',typeClass:'tb-fo',size:'2 files',sharing:'Internal',activity:'—',oc:`go('guideline-sub',{subfolder:'GD_Guidelines'})`});
+  h+=row({icon:'📁',name:'LD_Guidelines',nc:'link',sub:'Learning Design guidelines — PowerPoint + Document + Checklist',type:'folder',typeClass:'tb-fo',size:'3 files',sharing:'Internal',activity:'—',oc:`go('guideline-sub',{subfolder:'LD_Guidelines'})`});
+  h+=row({icon:'📁',name:'CE_Guidelines',nc:'link',sub:'Content Excellence guidelines — Document + Checklist',type:'folder',typeClass:'tb-fo',size:'2 files',sharing:'Internal',activity:'—',oc:`go('guideline-sub',{subfolder:'CE_Guidelines'})`});
+  m.innerHTML=h+'</div>';
+}
+
+function rGuidelineSub(m){
+  const sub=S.subfolder;
+  const configs={
+    'GD_Guidelines':{
+      title:'GD Guidelines — Graphic Design',
+      dirs:['Do not edit these files without approval from the GD team lead.','Vendors receive this via .url link only — do not share the folder directly.'],
+      infos:['PowerPoint file: GD standards, templates, visual guidelines.','Checklist: Excel or Google Sheet for tracking GD compliance per project.'],
+      files:[
+        {icon:'📑',name:'GD_Guidelines.pptx',sub:'Graphic Design standards and visual guidelines',type:'.pptx',typeClass:'tb-fo',copyable:true,fname:'GD_Guidelines.pptx'},
+        {icon:'📊',name:'GD_Checklist.xlsx',sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',copyable:true,fname:'GD_Checklist.xlsx'},
+      ]
+    },
+    'LD_Guidelines':{
+      title:'LD Guidelines — Learning Design',
+      dirs:['Do not edit these files without approval from the LD team lead.','Vendors receive this via .url link only — do not share the folder directly.'],
+      infos:['PowerPoint file: LD standards, instructional design principles.','Document: Word or PDF detailed LD reference guide.','Checklist: Excel or Google Sheet for tracking LD compliance per project.'],
+      files:[
+        {icon:'📑',name:'LD_Guidelines.pptx',sub:'Learning Design standards and instructional principles',type:'.pptx',typeClass:'tb-fo',copyable:true,fname:'LD_Guidelines.pptx'},
+        {icon:'📝',name:'LD_Guidelines.docx',sub:'Also available as PDF',type:'Word / PDF',typeClass:'tb-docx',copyable:true,fname:'LD_Guidelines.docx'},
+        {icon:'📊',name:'LD_Checklist.xlsx',sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',copyable:true,fname:'LD_Checklist.xlsx'},
+      ]
+    },
+    'CE_Guidelines':{
+      title:'CE Guidelines — Content Excellence',
+      dirs:['Do not edit these files without approval from the CE team lead.','Vendors receive this via .url link only — do not share the folder directly.'],
+      infos:['Document: Word or PDF detailed CE standards and quality reference guide.','Checklist: Excel or Google Sheet for tracking CE compliance per project.'],
+      files:[
+        {icon:'📝',name:'CE_Guidelines.docx',sub:'Also available as PDF',type:'Word / PDF',typeClass:'tb-docx',copyable:true,fname:'CE_Guidelines.docx'},
+        {icon:'📊',name:'CE_Checklist.xlsx',sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',copyable:true,fname:'CE_Checklist.xlsx'},
+      ]
+    },
+  };
+  const cfg=configs[sub]||{title:sub,dirs:[],infos:[],files:[]};
+  const b=bn(cfg.title,cfg.dirs,cfg.infos);
+  let h=b+`<div class="file-area">${toolbar(cfg.files.length,'Files')}${colH()}`;
+  cfg.files.forEach(f=>{h+=row({...f,modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—'});});
+  m.innerHTML=h+'</div>';
+}
 function cpf(name,btn){navigator.clipboard.writeText(name).then(()=>{btn.innerHTML='✓';btn.classList.add('copied');toast('Copied: '+name);setTimeout(()=>{btn.innerHTML='⎘';btn.classList.remove('copied');},1800);});}
 function copyAll(){const ns=[...document.querySelectorAll('.row-name:not(.link)')].map(e=>e.textContent.trim()).filter(Boolean);if(!ns.length){toast('No filenames at this level');return;}navigator.clipboard.writeText(ns.join('\n')).then(()=>toast(`Copied ${ns.length} filenames`));}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
