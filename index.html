@@ -3,171 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simplilearn — Blended Learning Folder Structure</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Simplilearn — Blended Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f4f0;--surface:#fff;--surface2:#faf9f6;--border:#e2e0d8;--border2:#ccc9be;--text:#1c1a16;--muted:#7a7668;--accent:#e05c2a;--accent-light:#fdf1ec;--accent2:#2a6ee0;--accent2-light:#ecf2fd;--green:#1a7a3c;--green-light:#ecf7f0;--red:#c72f2f;--red-light:#fef2f2;--amber:#b45309;--mp4:#c72f2f;--vtt:#6b21a8;--url:#b45309;--zip-cam:#0369a1;--zip-ae:#c2410c;--html-int:#15803d;--zip-int:#7c3aed}
+:root{
+  --od-bg:#faf9f8;--od-surface:#fff;--od-sidebar:#fff;--od-border:#edebe9;--od-border2:#d2d0ce;
+  --od-text:#323130;--od-muted:#605e5c;--od-accent:#0078d4;--od-accent-light:#eff6fc;
+  --od-hover:#f3f2f1;--od-active:#edebe9;--od-green:#107c10;--od-red:#a4262c;
+  --od-amber:#8a8886;--od-folder:#dcb67a;
+  --announce:#1b1a19;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
-.announce-bar{background:#1c1a16;position:sticky;top:0;z-index:300}
-.announce-inner{display:flex;align-items:stretch}
-.announce-label{background:var(--accent);color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.12em;padding:0 14px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
-.announce-items{display:flex;flex-direction:column;flex:1}
-.announce-item{display:flex;align-items:center;gap:10px;padding:6px 18px;border-bottom:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(255,255,255,.85)}
-.announce-item:last-child{border-bottom:none}
-.announce-item strong{color:#fff}
-.announce-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.announce-dot.red{background:#fc8181}.announce-dot.amber{background:#fbbf24}
-.announce-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 6px;border-radius:2px;font-weight:600;letter-spacing:.08em;flex-shrink:0}
-.tag-urgent{background:#c72f2f;color:#fff}.tag-info{background:#2a6ee0;color:#fff}
-.announce-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);margin-left:auto;white-space:nowrap}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:16px;position:sticky;top:52px;z-index:200}
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-mark{width:28px;height:28px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
-.logo-name{font-size:14px;font-weight:600}
-.logo-sub{font-size:11px;color:var(--muted);font-weight:400}
-.topbar-search{flex:1;max-width:360px;position:relative}
-.topbar-search input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:7px 12px 7px 32px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none}
-.topbar-search input::placeholder{color:var(--muted)}
-.s-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
-.topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.cmd-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--border);background:none;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);transition:all .12s}
-.cmd-btn:hover{background:var(--bg);color:var(--text)}
-.avatar{width:32px;height:32px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600}
-.breadcrumb{background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 28px;display:flex;align-items:center;gap:5px;font-size:12px;flex-wrap:wrap;min-height:36px}
-.bc{color:var(--accent2);cursor:pointer;border-radius:3px;padding:2px 4px;font-weight:500;transition:background .1s}
-.bc:hover{background:var(--accent2-light)}
-.bc.cur{color:var(--text);cursor:default;font-weight:600}
+body{background:var(--od-bg);color:var(--od-text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+
+/* ANNOUNCE */
+.ann{background:var(--announce);color:#fff;flex-shrink:0}
+.ann-inner{display:flex;align-items:stretch;min-height:32px}
+.ann-lbl{background:#d83b01;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:0 12px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
+.ann-rows{display:flex;flex-direction:column;flex:1}
+.ann-row{display:flex;align-items:center;gap:10px;padding:5px 16px;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(255,255,255,.88)}
+.ann-row:last-child{border-bottom:none}
+.ann-row strong{color:#fff}
+.ann-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ann-dot.r{background:#fc8181}.ann-dot.a{background:#fbbf24}
+.ann-tag{font-size:9px;padding:2px 7px;border-radius:2px;font-weight:700;letter-spacing:.06em;flex-shrink:0}
+.tag-m{background:#d83b01;color:#fff}.tag-a{background:#0078d4;color:#fff}
+.ann-date{font-size:10px;color:rgba(255,255,255,.35);margin-left:auto;white-space:nowrap}
+
+/* TOPBAR */
+.topbar{background:var(--od-surface);border-bottom:1px solid var(--od-border);height:48px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
+.od-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--od-accent);text-decoration:none;flex-shrink:0;padding-right:16px;border-right:1px solid var(--od-border2)}
+.od-logo-icon{font-size:18px}
+.od-search{flex:1;max-width:560px;position:relative}
+.od-search input{width:100%;background:#f3f2f1;border:1px solid transparent;border-radius:4px;padding:7px 12px 7px 34px;font-family:inherit;font-size:13px;color:var(--od-text);outline:none;transition:all .15s}
+.od-search input:focus{background:#fff;border-color:var(--od-accent);box-shadow:0 0 0 1px var(--od-accent)}
+.od-search input::placeholder{color:var(--od-muted)}
+.od-s-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--od-muted);font-size:14px;pointer-events:none}
+.od-topright{margin-left:auto;display:flex;align-items:center;gap:8px}
+.od-icon-btn{width:32px;height:32px;border:none;background:none;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--od-muted);font-size:16px;transition:background .12s}
+.od-icon-btn:hover{background:var(--od-hover)}
+.od-avatar{width:32px;height:32px;background:var(--od-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;cursor:pointer}
+
+/* CMD BAR */
+.cmdbar{background:var(--od-surface);border-bottom:1px solid var(--od-border);padding:6px 16px;display:flex;align-items:center;gap:4px;flex-shrink:0;position:relative}
+.cu-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--od-accent);color:#fff;border:none;border-radius:4px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;transition:background .12s;position:relative}
+.cu-btn:hover{background:#106ebe}
+.cu-btn .chevron{font-size:10px;margin-left:2px}
+.cu-dropdown{position:absolute;top:100%;left:0;background:var(--od-surface);border:1px solid var(--od-border2);border-radius:4px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:200;min-width:200px;padding:4px 0;display:none}
+.cu-dropdown.open{display:block}
+.cu-sep{height:1px;background:var(--od-border);margin:4px 8px}
+.cu-item{display:flex;align-items:center;gap:10px;padding:7px 14px;cursor:pointer;font-size:13px;color:var(--od-text);transition:background .1s;white-space:nowrap}
+.cu-item:hover{background:var(--od-hover)}
+.cu-item-icon{font-size:15px;width:18px;text-align:center;flex-shrink:0}
+.cu-section{padding:3px 14px;font-size:11px;color:var(--od-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+.od-cmd{display:flex;align-items:center;gap:5px;padding:6px 10px;background:none;border:none;border-radius:4px;cursor:pointer;font-family:inherit;font-size:13px;color:var(--od-text);transition:background .12s}
+.od-cmd:hover{background:var(--od-hover)}
+.od-cmd-sep{width:1px;height:20px;background:var(--od-border2);margin:0 4px}
+.sort-area{margin-left:auto;display:flex;align-items:center;gap:4px}
+
+/* BREADCRUMB */
+.breadcrumb{background:var(--od-surface);border-bottom:1px solid var(--od-border);padding:0 16px;height:36px;display:flex;align-items:center;gap:6px;font-size:13px;flex-wrap:nowrap;overflow:hidden;flex-shrink:0}
+.bc{color:var(--od-accent);cursor:pointer;padding:2px 4px;border-radius:3px;white-space:nowrap;transition:background .1s}
+.bc:hover{background:var(--od-accent-light)}
+.bc.cur{color:var(--od-text);cursor:default;font-weight:600}
 .bc.cur:hover{background:none}
-.bc-sep{color:var(--muted)}
-.layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 140px)}
-.leftnav{background:var(--surface);border-right:1px solid var(--border);padding:12px 0;position:sticky;top:140px;height:calc(100vh - 140px);overflow-y:auto}
-.leftnav::-webkit-scrollbar{width:3px}
-.leftnav::-webkit-scrollbar-thumb{background:var(--border)}
-.nl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;padding:10px 20px 5px}
-.ni{display:flex;align-items:center;gap:8px;padding:7px 20px;cursor:pointer;font-size:12.5px;color:var(--muted);border-left:3px solid transparent;transition:all .1s}
-.ni:hover{background:var(--bg);color:var(--text)}
-.ni.active{background:var(--accent-light);color:var(--accent);border-left-color:var(--accent);font-weight:600}
-.ni.dis{opacity:.4;cursor:default}
-.ni.dis:hover{background:none;color:var(--muted)}
-.nb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:auto;background:var(--bg);color:var(--muted)}
-.main{overflow-y:auto}
-.gbanner{margin:18px 28px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border2)}
-.bh{display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--text);color:#fff;font-size:12px;font-weight:600}
+.bc-sep{color:var(--od-muted);font-size:11px}
+
+/* LAYOUT */
+.app-body{display:flex;flex:1;min-height:0}
+.sidebar{width:220px;background:var(--od-sidebar);border-right:1px solid var(--od-border);padding:8px 0;overflow-y:auto;flex-shrink:0}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--od-border2);border-radius:2px}
+.si-section{margin-bottom:2px}
+.si-label{font-size:11px;font-weight:600;color:var(--od-muted);text-transform:uppercase;letter-spacing:.07em;padding:10px 16px 4px}
+.si-item{display:flex;align-items:center;gap:8px;padding:6px 16px;cursor:pointer;font-size:13px;color:var(--od-text);border-left:3px solid transparent;transition:all .1s;white-space:nowrap}
+.si-item:hover{background:var(--od-hover)}
+.si-item.active{background:var(--od-active);border-left-color:var(--od-accent);font-weight:600;color:var(--od-accent)}
+.si-item.dim{opacity:.45;cursor:default}
+.si-item.dim:hover{background:none}
+.si-badge{font-size:10px;color:var(--od-muted);margin-left:auto;background:var(--od-hover);padding:1px 5px;border-radius:3px}
+
+/* MAIN */
+.main-area{flex:1;overflow-y:auto;display:flex;flex-direction:column}
+
+/* BANNER */
+.gbanner{margin:14px 16px 0;border-radius:4px;overflow:hidden;border:1px solid var(--od-border2)}
+.bh{display:flex;align-items:center;gap:8px;padding:8px 14px;background:#323130;color:#fff;font-size:12px;font-weight:600}
 .bb{display:grid;grid-template-columns:1fr 1fr}
-.bs{padding:12px 16px}
-.bs:first-child{border-right:1px solid var(--border)}
-.bsl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
-.bsl.dr{color:var(--red)}.bsl.in{color:var(--accent2)}
-.br{display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;font-size:11.5px;line-height:1.5}
+.bs{padding:10px 14px}
+.bs:first-child{border-right:1px solid var(--od-border)}
+.bsl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.bsl.dr{color:#a4262c}.bsl.in{color:#0078d4}
+.br{display:flex;gap:6px;align-items:flex-start;margin-bottom:4px;font-size:11.5px;line-height:1.5}
 .rd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.rd.r{background:var(--red)}.rd.b{background:var(--accent2)}
-.rt{color:var(--text)}.rt.dr{color:var(--red);font-weight:500}
-.vt{display:flex;align-items:center;gap:10px;padding:10px 28px 6px}
-.ic{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
-.vr{margin-left:auto}
-.cab{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--border2);border-radius:4px;background:var(--surface);cursor:pointer;color:var(--muted);transition:all .12s}
-.cab:hover{color:var(--text);border-color:var(--text)}
-.flw{padding:0 28px 28px}
-.lh{display:grid;grid-template-columns:28px 1fr 110px 100px 90px;gap:8px;padding:7px 14px;border-bottom:2px solid var(--border2);font-size:11px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
-.fr{display:grid;grid-template-columns:28px 1fr 110px 100px 90px;gap:8px;padding:7px 14px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background .1s;background:var(--surface)}
-.fr:hover{background:var(--bg)}
-.fr.nc{cursor:default}.fr.nc:hover{background:var(--surface)}
-.sd{background:var(--bg);padding:4px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border2)}
-.fi{font-size:15px;display:flex;align-items:center;justify-content:center}
-.fc{display:flex;flex-direction:column;gap:1px;min-width:0}
-.fn{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace}
-.fn.fo{color:var(--accent2);font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px}
-.fn.toc{color:var(--green)}
-.fs{font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif}
-.fb{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;font-weight:600;letter-spacing:.04em;width:fit-content}
-.b-fo{background:#fff8e1;color:#92400e}.b-mp4{background:#fef2f2;color:var(--mp4)}
-.b-vtt{background:#f5f3ff;color:var(--vtt)}.b-url{background:#fffbeb;color:var(--url)}
-.b-cam{background:#f0f9ff;color:var(--zip-cam)}.b-ae{background:#fff7ed;color:var(--zip-ae)}
-.b-html{background:#f0fdf4;color:var(--html-int)}.b-izip{background:#f5f3ff;color:var(--zip-int)}
-.b-xlsx{background:#f0fdf4;color:var(--green)}.b-dum{background:var(--bg);color:var(--muted)}
-.b-raw{background:#fef3c7;color:#92400e}
-.fm{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
-.fa{display:flex;align-items:center;gap:4px}
-.cb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:3px 7px;border:1px solid var(--border2);border-radius:3px;background:#fff;cursor:pointer;color:var(--muted);opacity:0;transition:all .1s}
-.fr:hover .cb{opacity:1}
-.cb:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
-.cb.copied{color:var(--green);border-color:var(--green);opacity:1}
-.vb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:3px 7px;border:1px solid var(--green);border-radius:3px;background:var(--green-light);cursor:pointer;color:var(--green);transition:all .1s}
-.vb:hover{background:var(--green);color:#fff}
-.zg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:20px 28px 28px;max-width:480px}
-.zc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:10px}
-.zc:hover{border-color:var(--accent2);box-shadow:0 4px 16px rgba(42,110,224,.1)}
-.zi{font-size:38px}.zn{font-size:15px;font-weight:600}.zd{font-size:12px;color:var(--muted);line-height:1.5}
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:20px 28px 28px}
-.pc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:8px}
-.pc:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(224,92,42,.1)}
-.pc.dum{opacity:.45;cursor:default}.pc.dum:hover{border-color:var(--border);box-shadow:none}
-.pfi{font-size:34px}.pn{font-size:13px;font-weight:600;line-height:1.3}.pc0{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}.pm{font-size:11px;color:var(--muted)}
-.tv{padding:0 28px 28px}
-.ttb{display:flex;align-items:center;gap:10px;padding:12px 0 14px}
-.tttl{font-size:15px;font-weight:600;flex:1}
-.tdl{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);font-weight:500;transition:all .12s}
-.tdl:hover{background:var(--bg);border-color:var(--text)}
-.tbk{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);transition:all .12s}
-.tbk:hover{color:var(--text);border-color:var(--text)}
-.tt{width:100%;border-collapse:collapse;font-size:12px}
-.tt th{background:var(--text);color:#fff;padding:8px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;font-weight:600;white-space:nowrap}
-.tt td{padding:6px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
-.tt tr:hover td{background:var(--bg)}
-.tcr td{background:var(--accent-light);font-weight:600;color:var(--accent);border-bottom:2px solid var(--accent)}
-.tlr td:nth-child(2){font-weight:500;color:var(--text)}
-.ttc{color:var(--accent2);font-weight:500}
-.tsc{color:var(--muted);font-size:11px}
-.pop-ov{position:fixed;inset:0;background:rgba(28,26,22,.7);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.rd.r{background:#a4262c}.rd.b{background:#0078d4}
+.rt{color:var(--od-text)}.rt.dr{color:#a4262c;font-weight:600}
+
+/* FILE LIST */
+.file-area{padding:0 16px 24px;margin-top:12px}
+.list-toolbar{display:flex;align-items:center;gap:8px;padding:6px 0 8px;font-size:12px;color:var(--od-muted)}
+.list-toolbar .count{font-weight:600;color:var(--od-text)}
+.tb-right{margin-left:auto;display:flex;gap:4px}
+.tb-btn{padding:4px 8px;border:none;background:none;border-radius:3px;cursor:pointer;font-size:12px;color:var(--od-muted);transition:background .1s}
+.tb-btn:hover{background:var(--od-hover);color:var(--od-text)}
+.col-heads{display:grid;grid-template-columns:28px 1fr 120px 130px 100px 120px 1fr;gap:0;border-bottom:1px solid var(--od-border2);padding:0 8px}
+.ch{padding:8px 6px;font-size:12px;font-weight:600;color:var(--od-muted);cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none;white-space:nowrap}
+.ch:hover{color:var(--od-text)}
+.ch .sort-arrow{font-size:9px;opacity:.5}
+.file-row{display:grid;grid-template-columns:28px 1fr 120px 130px 100px 120px 1fr;gap:0;padding:0 8px;border-bottom:1px solid var(--od-border);align-items:center;cursor:pointer;transition:background .1s;min-height:40px;background:var(--od-surface)}
+.file-row:hover{background:var(--od-hover)}
+.file-row.nc{cursor:default}.file-row.nc:hover{background:var(--od-surface)}
+.file-row:hover .row-actions{opacity:1}
+.row-cb{display:flex;align-items:center;justify-content:center}
+.row-icon{font-size:18px}
+.row-name-cell{display:flex;flex-direction:column;padding:0 6px;min-width:0}
+.row-name{font-size:13px;color:var(--od-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-name.link{color:var(--od-accent)}
+.row-name a{color:inherit;text-decoration:none}
+.row-sub{font-size:11px;color:var(--od-muted)}
+.row-cell{padding:0 6px;font-size:12px;color:var(--od-muted);white-space:nowrap}
+.row-sharing{display:flex;align-items:center;gap:5px;padding:0 6px}
+.sharing-icon{font-size:12px;color:var(--od-muted)}
+.sharing-text{font-size:12px;color:var(--od-muted)}
+.row-activity{padding:0 6px;font-size:11.5px;color:var(--od-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-actions{display:flex;gap:2px;opacity:0;transition:opacity .1s;margin-left:auto}
+.ra-btn{width:28px;height:28px;border:none;background:none;border-radius:3px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--od-muted);transition:background .1s}
+.ra-btn:hover{background:var(--od-border2);color:var(--od-text)}
+.ra-btn.copied{color:var(--od-green)}
+.sect-div{padding:5px 8px;font-size:11px;font-weight:600;color:var(--od-muted);text-transform:uppercase;letter-spacing:.1em;background:#f8f7f6;border-bottom:1px solid var(--od-border2)}
+.type-badge{display:inline-flex;align-items:center;font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;white-space:nowrap}
+.tb-fo{background:#fff4ce;color:#7a6200}.tb-mp4{background:#fde7e9;color:#a4262c}
+.tb-vtt{background:#f0f0ff;color:#4b3988}.tb-url{background:#fff4ce;color:#7a5300}
+.tb-cam{background:#dff6dd;color:#107c10}.tb-ae{background:#fde7e9;color:#8b2c2c}
+.tb-html{background:#dff6dd;color:#107c10}.tb-izip{background:#f0f0ff;color:#4b3988}
+.tb-xlsx{background:#dff6dd;color:#107c10}.tb-docx{background:#e1efff;color:#004e8c}
+.tb-gsheet{background:#e6f7e6;color:#0d6e0d}.tb-raw{background:#fff4ce;color:#7a5300}
+.tb-lvc{background:#e1efff;color:#004e8c}.tb-dum{background:#f3f2f1;color:#605e5c}
+.tb-pdf{background:#fde7e9;color:#8b2c2c}
+
+/* ZONE GRID */
+.zone-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:16px;max-width:440px}
+.zone-card{background:var(--od-surface);border:1px solid var(--od-border);border-radius:4px;padding:20px;cursor:pointer;transition:all .12s;display:flex;flex-direction:column;gap:8px}
+.zone-card:hover{border-color:var(--od-accent);background:var(--od-accent-light)}
+.zc-icon{font-size:36px}.zc-name{font-size:14px;font-weight:600}.zc-desc{font-size:12px;color:var(--od-muted);line-height:1.4}
+
+/* PROG GRID */
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:0 0 16px}
+.pc{background:var(--od-surface);border:1px solid var(--od-border);border-radius:4px;padding:14px;cursor:pointer;transition:all .12s;display:flex;flex-direction:column;gap:6px}
+.pc:hover{border-color:var(--od-accent);background:var(--od-accent-light)}
+.pc.dum{opacity:.45;cursor:default}.pc.dum:hover{border-color:var(--od-border);background:var(--od-surface)}
+.pc-icon{font-size:30px}.pc-name{font-size:13px;font-weight:600}.pc-code{font-size:10px;color:var(--od-muted)}.pc-meta{font-size:11px;color:var(--od-muted)}
+
+/* TOC */
+.toc-wrap{padding:0 16px 24px}
+.toc-toolbar{display:flex;align-items:center;gap:8px;padding:12px 0 14px}
+.toc-title{font-size:15px;font-weight:600;flex:1}
+.toc-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:4px;border:1px solid var(--od-border2);background:var(--od-surface);cursor:pointer;font-family:inherit;font-size:12px;color:var(--od-text);transition:all .12s}
+.toc-btn:hover{background:var(--od-hover);border-color:var(--od-border2)}
+.toc-btn.back{color:var(--od-muted)}
+.toc-table{width:100%;border-collapse:collapse;font-size:12px}
+.toc-table th{background:#323130;color:#fff;padding:8px 10px;text-align:left;font-size:11px;letter-spacing:.04em;white-space:nowrap}
+.toc-table td{padding:6px 10px;border-bottom:1px solid var(--od-border);vertical-align:top;line-height:1.5}
+.toc-table tr:hover td{background:var(--od-hover)}
+.tcr td{background:#fff4ce;font-weight:600;color:#7a6200;border-bottom:2px solid #dcb67a}
+.ttc{color:var(--od-accent);font-weight:500}
+.tsc{color:var(--od-muted);font-size:11px}
+
+/* POPUP */
+.pop-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center}
 .pop-ov.hid{display:none}
-.pop-box{background:var(--surface);border-radius:12px;width:680px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)}
-.pop-hd{background:var(--text);color:#fff;padding:18px 22px;display:flex;align-items:flex-start;gap:12px;flex-shrink:0}
-.pop-hd-ic{width:40px;height:40px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.pop-title{font-size:16px;font-weight:700;margin-bottom:2px}
+.pop-box{background:var(--od-surface);border-radius:4px;width:680px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.pop-hd{background:#323130;color:#fff;padding:16px 20px;display:flex;align-items:flex-start;gap:12px;flex-shrink:0}
+.pop-hd-ic{width:36px;height:36px;background:#d83b01;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.pop-title{font-size:15px;font-weight:700;margin-bottom:2px}
 .pop-sub{font-size:12px;color:rgba(255,255,255,.5)}
-.pop-cl{margin-left:auto;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.pop-cl{margin-left:auto;background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pop-cl:hover{background:rgba(255,255,255,.2)}
-.pop-bd{overflow-y:auto;padding:22px;flex:1}
+.pop-bd{overflow-y:auto;padding:20px;flex:1}
 .pop-bd::-webkit-scrollbar{width:4px}
-.pop-bd::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-.pop-sec{margin-bottom:22px}
-.pop-st{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
-.arb{background:var(--red-light);border:1px solid var(--red);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-size:12.5px;display:flex;gap:9px;align-items:flex-start}
-.aab{background:var(--green-light);border:1px solid var(--green);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-size:12.5px}
-.aat{font-weight:600;color:var(--green);margin-bottom:7px;font-size:12px}
+.pop-bd::-webkit-scrollbar-thumb{background:var(--od-border2)}
+.pop-sec{margin-bottom:20px}
+.pop-st{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--od-muted);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--od-border)}
+.arb{background:#fde7e9;border:1px solid #a4262c;border-radius:4px;padding:10px 14px;margin-bottom:10px;font-size:12.5px;display:flex;gap:8px;align-items:flex-start}
+.aab{background:#dff6dd;border:1px solid #107c10;border-radius:4px;padding:10px 14px;margin-bottom:10px}
+.aat{font-weight:700;color:#107c10;margin-bottom:6px;font-size:12px}
 .aai{display:flex;align-items:flex-start;gap:7px;padding:4px 0;font-size:12.5px}
-.aad{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:5px}
-.aadesc{font-size:11.5px;color:var(--muted);margin-top:2px;padding-left:13px;line-height:1.5}
-.sl{display:flex;flex-direction:column;gap:7px}
-.si{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px}
-.sn{width:22px;height:22px;border-radius:50%;background:var(--text);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc{flex:1}.st{font-weight:600;font-size:13px;margin-bottom:1px}.sd2{font-size:12px;color:var(--muted);line-height:1.5}
-.cl{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
-.ci{display:flex;align-items:flex-start;gap:9px;padding:8px 11px;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:all .12s;background:var(--surface)}
-.ci:hover{border-color:var(--accent2);background:var(--accent2-light)}
-.ci.ck{background:var(--green-light);border-color:var(--green)}
-.cbx{width:18px;height:18px;border:2px solid var(--border2);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .12s;margin-top:1px;font-size:11px;color:transparent}
-.ci.ck .cbx{background:var(--green);border-color:var(--green);color:#fff}
+.aad{width:6px;height:6px;border-radius:50%;background:#107c10;flex-shrink:0;margin-top:5px}
+.aadesc{font-size:11.5px;color:var(--od-muted);padding-left:13px;line-height:1.5;margin-top:1px}
+.step-list{display:flex;flex-direction:column;gap:6px}
+.step-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:#f8f7f6;border:1px solid var(--od-border);border-radius:4px}
+.step-num{width:22px;height:22px;border-radius:50%;background:#323130;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-title{font-weight:600;font-size:13px;margin-bottom:1px}
+.step-desc{font-size:12px;color:var(--od-muted);line-height:1.5}
+.cl{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.ci{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;border:1px solid var(--od-border);border-radius:4px;cursor:pointer;background:var(--od-surface);transition:all .1s}
+.ci:hover{background:var(--od-hover)}
+.ci.ck{background:#dff6dd;border-color:#107c10}
+.cbx{width:16px;height:16px;border:2px solid var(--od-border2);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;color:transparent;transition:all .1s}
+.ci.ck .cbx{background:#107c10;border-color:#107c10;color:#fff}
 .clb{font-size:12.5px;line-height:1.5}
-.ci.ck .clb{color:var(--green)}
-.clf{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.ci.ck .clb{color:#107c10}
+.clf{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .fg{display:flex;flex-direction:column;gap:3px}
-.fl{font-size:10px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase}
-.fi2{padding:7px 10px;border:1px solid var(--border2);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--bg);color:var(--text);outline:none;transition:border-color .12s}
-.fi2:focus{border-color:var(--accent2);background:#fff}
-.pop-ft{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:9px;background:var(--surface2);flex-shrink:0;flex-wrap:wrap}
+.fl{font-size:10px;font-weight:700;color:var(--od-muted);text-transform:uppercase;letter-spacing:.06em}
+.fi2{padding:6px 9px;border:1px solid var(--od-border2);border-radius:4px;font-family:inherit;font-size:13px;color:var(--od-text);outline:none;transition:border-color .12s}
+.fi2:focus{border-color:var(--od-accent)}
+.pop-ft{padding:12px 20px;border-top:1px solid var(--od-border);display:flex;align-items:center;gap:8px;background:#f8f7f6;flex-shrink:0;flex-wrap:wrap}
 .prw{flex:1;min-width:100px}
-.prl{font-size:11px;color:var(--muted);margin-bottom:3px;font-family:'JetBrains Mono',monospace}
-.prb{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.prf{height:100%;background:var(--green);border-radius:2px;transition:width .3s ease;width:0%}
-.dlb{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);font-weight:500;transition:all .12s}
-.dlb:hover{background:var(--bg);border-color:var(--text)}
-.dlb.p{background:var(--text);color:#fff;border-color:var(--text)}
-.dlb.p:hover{background:#333}
-.cs{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 24px;gap:10px;color:var(--muted)}
-.csi{font-size:48px;opacity:.3}.cst{font-size:16px;font-weight:600;color:var(--text)}.css{font-size:13px}
-.toast{position:fixed;bottom:22px;right:22px;background:var(--text);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;padding:9px 14px;border-radius:6px;opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:999;max-width:380px}
+.prl{font-size:11px;color:var(--od-muted);margin-bottom:3px}
+.prb{height:3px;background:var(--od-border);border-radius:2px;overflow:hidden}
+.prf{height:100%;background:#107c10;border-radius:2px;transition:width .3s;width:0%}
+.dlb{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:4px;border:1px solid var(--od-border2);background:var(--od-surface);cursor:pointer;font-family:inherit;font-size:12px;color:var(--od-text);font-weight:600;transition:all .12s}
+.dlb:hover{background:var(--od-hover)}
+.dlb.p{background:#323130;color:#fff;border-color:#323130}
+.dlb.p:hover{background:#1b1a19}
+
+.cs{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;gap:10px;color:var(--od-muted)}
+.csi{font-size:48px;opacity:.3}.cst{font-size:15px;font-weight:600;color:var(--od-text)}.css{font-size:13px}
+
+.toast{position:fixed;bottom:20px;right:20px;background:#323130;color:#fff;font-size:12px;padding:8px 14px;border-radius:4px;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none;z-index:999}
 .toast.show{opacity:1;transform:translateY(0)}
 </style>
 </head>
@@ -180,89 +234,136 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
     <div class="pop-hd">
       <div class="pop-hd-ic">📋</div>
       <div><div class="pop-title">Vendor OneDrive Onboarding</div><div class="pop-sub">Complete this checklist every time you onboard a new vendor</div></div>
-      <button class="pop-cl" onclick="closePopup()">✕</button>
+      <button class="pop-cl" onclick="closePop()">✕</button>
     </div>
     <div class="pop-bd">
       <div class="pop-sec">
         <div class="pop-st">Access rules — effective immediately</div>
-        <div class="arb"><div style="font-size:15px;flex-shrink:0">🚫</div><div><strong>"Anyone with the link" option has been permanently disabled.</strong><br>This option is no longer available in OneDrive. It cannot be used at any stage — not during POC, not during production, not for any reason.</div></div>
+        <div class="arb"><span style="font-size:16px;flex-shrink:0">🚫</span><div><strong>"Anyone with the link" option has been permanently disabled.</strong><br>This option is no longer available in OneDrive. It cannot be used at any stage — not during POC, not during production, not for any reason.</div></div>
         <div class="aab">
           <div class="aat">✅ Approved sharing options — vendors only</div>
-          <div class="aai"><div class="aad"></div><div><div><strong>Specific People</strong> — use for all active vendor assignments</div><div class="aadesc">Share directly with named individuals using their email address. This is the only method to use when first onboarding a vendor. You must have the vendor's email ID before sharing. Access is restricted to only the people you name — no one else can access the folder.</div></div></div>
-          <div class="aai" style="margin-top:6px"><div class="aad"></div><div><div><strong>People with existing access</strong></div><div class="aadesc">Use this option when both the vendor and the internal team member are already part of the same OneDrive sharing session or discussion. This allows anyone who already has access to the folder to share it further within that group.</div></div></div>
+          <div class="aai"><div class="aad"></div><div><strong>Specific People</strong> — use for all active vendor assignments<div class="aadesc">Share directly with named individuals using their email address. This is the only method to use when first onboarding a vendor. You must have the vendor's email ID before sharing. Access is restricted to only the people you name.</div></div></div>
+          <div class="aai" style="margin-top:5px"><div class="aad"></div><div><strong>People with existing access</strong><div class="aadesc">Use this option when both the vendor and the internal team member are already part of the same OneDrive sharing session or discussion. This allows anyone who already has access to the folder to share it further within that group.</div></div></div>
         </div>
       </div>
       <div class="pop-sec">
         <div class="pop-st">Onboarding process — follow in order</div>
-        <div class="sl">
-          <div class="si"><div class="sn">1</div><div class="sc"><div class="st">Create the vendor folder</div><div class="sd2">Create folder inside Vendors / [Vendor Name] following the default naming convention. The programme folders inside must match Internal naming exactly.</div></div></div>
-          <div class="si"><div class="sn">2</div><div class="sc"><div class="st">Collect all vendor email IDs</div><div class="sd2">Before sharing anything, collect the full email list from the vendor. Do not share until you have at least one confirmed email.</div></div></div>
-          <div class="si"><div class="sn">3</div><div class="sc"><div class="st">Share using Specific People — minimum one team member before POC</div><div class="sd2">Share with at least one or more vendor team members using Specific People option only. Set to view or edit as appropriate for the task.</div></div></div>
-          <div class="si"><div class="sn">4</div><div class="sc"><div class="st">Send onboarding email with activation steps</div><div class="sd2">Send the standard activation email with folder link and 5 steps: (1) Check inbox/spam for activation email → (2) Click Open → (3) Click Send Code → (4) Copy verification code from second email → (5) Enter code and click Verify.</div></div></div>
-          <div class="si"><div class="sn">5</div><div class="sc"><div class="st">Confirm vendor has completed activation</div><div class="sd2">Do not share production files until the vendor confirms they can access the folder successfully. Get email confirmation.</div></div></div>
-          <div class="si"><div class="sn">6</div><div class="sc"><div class="st">After POC confirmation — expand access if needed</div><div class="sd2">Once POC is confirmed and agreement is in place, add additional vendor team members using Specific People or People with existing access. Never use open link access.</div></div></div>
-          <div class="si"><div class="sn">7</div><div class="sc"><div class="st">Brief the vendor on naming conventions</div><div class="sd2">All files submitted must follow the PRG_CRS##_L.TT_Title naming convention. Reject any files that do not comply.</div></div></div>
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Create the vendor folder</div><div class="step-desc">Create folder inside Vendors / [Vendor Name] following the default naming convention. Programme folders inside must match Internal naming exactly.</div></div></div>
+          <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Collect all vendor email IDs</div><div class="step-desc">Before sharing anything, collect the full email list from the vendor. Do not share until you have at least one confirmed email.</div></div></div>
+          <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Share using Specific People — minimum one team member before POC</div><div class="step-desc">Share with at least one or more vendor team members using Specific People only. Set to view or edit as appropriate for the task.</div></div></div>
+          <div class="step-item"><div class="step-num">4</div><div><div class="step-title">Send onboarding email with activation steps</div><div class="step-desc">(1) Check inbox/spam for activation email → (2) Click Open → (3) Click Send Code → (4) Copy verification code → (5) Enter code and click Verify.</div></div></div>
+          <div class="step-item"><div class="step-num">5</div><div><div class="step-title">Confirm vendor has completed activation</div><div class="step-desc">Do not share production files until the vendor confirms access. Get email confirmation.</div></div></div>
+          <div class="step-item"><div class="step-num">6</div><div><div class="step-title">After POC confirmation — expand access if needed</div><div class="step-desc">Once POC is confirmed, add additional members using Specific People or People with existing access. Never use open link access.</div></div></div>
+          <div class="step-item"><div class="step-num">7</div><div><div class="step-title">Brief vendor on naming conventions</div><div class="step-desc">All files submitted must follow PRG_CRS##_L.TT_Title naming convention. Reject any non-compliant files.</div></div></div>
         </div>
       </div>
       <div class="pop-sec">
-        <div class="pop-st">Checklist — tick as you complete each step</div>
+        <div class="pop-st">Checklist</div>
         <div class="clf">
-          <div class="fg"><div class="fl">Vendor name</div><input class="fi2" type="text" placeholder="e.g. ITOS" id="f-vendor"></div>
-          <div class="fg"><div class="fl">FM / Lead name</div><input class="fi2" type="text" placeholder="Your name" id="f-fm"></div>
-          <div class="fg"><div class="fl">Programme assigned</div><input class="fi2" type="text" placeholder="e.g. AIML" id="f-prog"></div>
-          <div class="fg"><div class="fl">Date</div><input class="fi2" type="date" id="f-date"></div>
+          <div class="fg"><div class="fl">Vendor name</div><input class="fi2" id="f-v" placeholder="e.g. ITOS" type="text"></div>
+          <div class="fg"><div class="fl">FM / Lead name</div><input class="fi2" id="f-f" placeholder="Your name" type="text"></div>
+          <div class="fg"><div class="fl">Programme</div><input class="fi2" id="f-p" placeholder="e.g. AIML" type="text"></div>
+          <div class="fg"><div class="fl">Date</div><input class="fi2" id="f-d" type="date"></div>
         </div>
-        <div class="cl" id="checklist">
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Vendor folder created with correct naming convention</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">All vendor email IDs collected before sharing</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Folder shared with at least one vendor team member via Specific People</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Onboarding email sent with activation steps and folder link</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Email confirmation received from vendor of successful folder access</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Post-POC access expanded using Specific People or People with existing access only</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Vendor briefed on file naming conventions — non-compliant files will be rejected</div></div>
-          <div class="ci" onclick="toggleCheck(this)"><div class="cbx">✓</div><div class="clb">Confirmed: "Anyone with the link" option not used at any stage</div></div>
+        <div class="cl" id="cl">
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Vendor folder created with correct naming convention</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">All vendor email IDs collected before sharing</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Folder shared with at least one vendor team member via Specific People</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Onboarding email sent with activation steps and folder link</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Email confirmation received from vendor of successful folder access</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Post-POC access expanded using approved options only</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Vendor briefed on file naming conventions</div></div>
+          <div class="ci" onclick="tck(this)"><div class="cbx">✓</div><div class="clb">Confirmed: "Anyone with the link" not used at any stage</div></div>
         </div>
       </div>
     </div>
     <div class="pop-ft">
       <div class="prw"><div class="prl" id="prl">0 of 8 completed</div><div class="prb"><div class="prf" id="prf"></div></div></div>
-      <button class="dlb" onclick="dlCheck('csv')">⬇ Download Excel</button>
-      <button class="dlb p" onclick="dlCheck('pdf')">⬇ Download PDF</button>
+      <button class="dlb" onclick="dlChk('csv')">⬇ Download Excel</button>
+      <button class="dlb p" onclick="dlChk('pdf')">⬇ Download PDF</button>
     </div>
   </div>
 </div>
 
 <!-- ANNOUNCE -->
-<div class="announce-bar">
-  <div class="announce-inner">
-    <div class="announce-label">⚡ NOTICE</div>
-    <div class="announce-items">
-      <div class="announce-item"><div class="announce-dot red"></div><span class="announce-tag tag-urgent">MIGRATION</span><span><strong>Blended Learning folder moving to new OneDrive account.</strong> Migration starts 7th May — planned completion 15th May. Pause all uploads during migration window.</span><span class="announce-date">7–15 May 2026</span></div>
-      <div class="announce-item"><div class="announce-dot amber"></div><span class="announce-tag tag-info">ACCESS</span><span><strong>"Anyone with the link" option permanently disabled.</strong> Only Specific People and People with existing access permitted going forward.</span><span class="announce-date">Effective now</span></div>
+<div class="ann">
+  <div class="ann-inner">
+    <div class="ann-lbl">⚡ NOTICE</div>
+    <div class="ann-rows">
+      <div class="ann-row"><div class="ann-dot r"></div><span class="ann-tag tag-m">MIGRATION</span><span><strong>Blended Learning folder moving to new OneDrive account.</strong> Migration starts 7th May — planned completion 15th May. Alok will contact you while doing this activity.</span><span class="ann-date">7–15 May 2026</span></div>
+      <div class="ann-row"><div class="ann-dot a"></div><span class="ann-tag tag-a">ACCESS</span><span><strong>"Anyone with the link" option permanently disabled.</strong> Only Specific People and People with existing access permitted going forward.</span><span class="ann-date">Effective now</span></div>
     </div>
   </div>
 </div>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="logo"><div class="logo-mark">SL</div><div><div class="logo-name">Simplilearn</div><div class="logo-sub">Blended Learning — Folder Structure</div></div></div>
-  <div class="topbar-search"><span class="s-icon">⌕</span><input type="text" placeholder="Search…" id="s-in"></div>
-  <div class="topbar-right"><button class="cmd-btn" onclick="copyAll()">⎘ Copy names</button><div class="avatar">AD</div></div>
+  <div class="od-logo"><span class="od-logo-icon">☁</span> OneDrive</div>
+  <div class="od-search"><span class="od-s-icon">🔍</span><input type="text" placeholder="Search everything" id="s-in"></div>
+  <div class="od-topright">
+    <div class="od-icon-btn" title="Settings">⚙</div>
+    <div class="od-icon-btn" title="Help">?</div>
+    <div class="od-icon-btn" title="Notifications">🔔</div>
+    <div class="od-avatar" title="Roop Kumar">RK</div>
+  </div>
 </div>
+
+<!-- CMD BAR -->
+<div class="cmdbar" id="cmdbar">
+  <div style="position:relative">
+    <button class="cu-btn" onclick="toggleCU()">＋ Create or upload <span class="chevron">▾</span></button>
+    <div class="cu-dropdown" id="cu-drop">
+      <div class="cu-section">Create new</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📁</span> Folder</div>
+      <div class="cu-sep"></div>
+      <div class="cu-section">Upload</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📄</span> Files upload</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📂</span> Folder upload</div>
+      <div class="cu-sep"></div>
+      <div class="cu-section">New file</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📝</span> Word document</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📊</span> Excel workbook</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📑</span> PowerPoint presentation</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📓</span> OneNote notebook</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📋</span> Forms survey</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">🗂</span> Visio drawing</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">🗒</span> Markdown document</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">📃</span> Text document</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">🎬</span> Clipchamp video</div>
+      <div class="cu-item" onclick="closeCU()"><span class="cu-item-icon">🔗</span> Link</div>
+    </div>
+  </div>
+  <div class="od-cmd-sep"></div>
+  <button class="od-cmd">⇄ Share</button>
+  <button class="od-cmd">🔗 Copy link</button>
+  <button class="od-cmd">📌 Add shortcut to My files</button>
+  <button class="od-cmd">⬇ Download</button>
+  <button class="od-cmd">🔄 Sync</button>
+  <div class="sort-area">
+    <button class="od-cmd">↕ Sort</button>
+    <button class="od-cmd">≡</button>
+    <button class="od-cmd">⊞</button>
+    <button class="od-cmd">ℹ Details</button>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
 <div class="breadcrumb" id="bc"></div>
 
-<div class="layout">
-  <aside class="leftnav" id="lnav"></aside>
-  <main class="main" id="main"></main>
+<div class="app-body">
+  <aside class="sidebar" id="lnav"></aside>
+  <main class="main-area" id="main"></main>
 </div>
 
 <script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
 const PROGS=[
-  {id:'aiml',code:'AIML',name:'AI_ML_Learning_Path',label:'AI / ML Learning Path',courses:9,active:true},
-  {id:'da',code:'DA',name:'Data_Analytics',label:'Data Analytics',courses:11,active:true},
-  {id:'aagai',code:'AAGAI',name:'Applied_Agentic_AI',label:'Applied Agentic AI',courses:8,active:true},
-  {id:'gail',code:'GAIL',name:'Generative_AI_Applications_for_Leaders',label:'Generative AI Applications for Leaders',courses:10,active:true},
-  {id:'p05',code:'PRG05',name:'Programme_Name_05',label:'Programme Name 05',courses:0,active:false},
+  {id:'aiml',code:'AIML',name:'AI_ML_Learning_Path',label:'AI / ML Learning Path',courses:9,active:true,trainers:['Brandon_Vaughn','Chester_Ismay','David_Pazmino']},
+  {id:'da',  code:'DA',  name:'Data_Analytics',label:'Data Analytics',courses:11,active:true,trainers:['Lisa','Ginger']},
+  {id:'aagai',code:'AAGAI',name:'Applied_Agentic_AI',label:'Applied Agentic AI',courses:8,active:true,trainers:['Gavin_Wang','Omesh']},
+  {id:'gail', code:'GAIL',name:'Generative_AI_Applications_for_Leaders',label:'Generative AI Applications for Leaders',courses:10,active:true,trainers:['Trainer_01','Trainer_02']},
+  {id:'p05',  code:'PRG05',name:'Programme_Name_05',label:'Programme Name 05',courses:0,active:false,trainers:[]},
 ];
 const VENDORS=[
   {id:'itos',name:'ITOS',progs:['aiml','aagai']},
@@ -275,52 +376,23 @@ const TOC={
     {name:'Python Refresher with AI',lessons:[
       {name:'Introduction to Python: Fundamentals and Setup',topics:[
         {name:'Programming Foundations',subs:['Introduction to Artificial Intelligence','Evolution of Artificial Intelligence','Traditional AI Vs Generative AI']},
-        {name:'Exploring Python Development Environments',subs:['VS Code Setup','Jupyter Notebook','Google Colab']},
-        {name:'Introduction to Python',subs:['History of Python','Benefits of Python','Why Python for AI?']},
         {name:'Python Basics: Syntax, Structure & Execution',subs:['Python Syntax','Identifiers','Indentation','I/O Operations']},
-        {name:'Python Variables and Data Types',subs:['Variables','Scalar Data','Aggregated Data','Data Assignment']},
-        {name:'Python Operators',subs:['Arithmetic Operators','Comparison Operators','Logical Operators','Miscellaneous Operators']},
-      ]},
-      {name:'Data Structures, Conditional Statements and Loops',topics:[
-        {name:'Lists',subs:['Creating Lists','Indexing and Slicing','List Methods: append(), extend(), pop()']},
-        {name:'Tuples',subs:['Creating Tuples','Tuple Packing and Unpacking']},
-        {name:'Dictionaries',subs:['Creating Dictionaries','Accessing Values','Nested Dictionaries']},
-        {name:'Sets',subs:['Creating Sets','Set Operations: union(), intersection()']},
-        {name:'Conditional Statements',subs:['If Statement','If-Else Statement','If-Elif-Else Statement','Nested-If']},
-        {name:'Loops',subs:['For Loop','While Loop','Nested Loops','Break/Continue/Else']},
-        {name:'Comprehensions',subs:['List Comprehensions','Dictionary Comprehensions','Set Comprehensions']},
+        {name:'Python Variables and Data Types',subs:['Variables','Scalar Data','Aggregated Data']},
+        {name:'Python Operators',subs:['Arithmetic Operators','Comparison Operators','Logical Operators']},
       ]},
     ]},
     {name:'Foundations of AI and Lifecycle',lessons:[
       {name:'Foundations of AI & Agentic AI',topics:[
-        {name:'AI vs ML vs DL vs GenAI vs Agentic AI',subs:['What Is AI?','What Is ML?','What Is Deep Learning?','What Is GenAI?','What Is Agentic AI?']},
-        {name:'Rise of Transformers & LLMs',subs:['Attention Is All You Need','What Are Transformers?','LLMs as Prediction Engines']},
-        {name:'Introduction to Agentic AI',subs:['What Is Agentic AI?','Chain of Thought','ReAct','Reflection']},
+        {name:'AI vs ML vs DL vs GenAI vs Agentic AI',subs:['What Is AI?','What Is ML?','What Is Deep Learning?']},
+        {name:'Rise of Transformers & LLMs',subs:['Attention Is All You Need','What Are Transformers?']},
       ]},
     ]},
   ]},
   da:{label:'Data Analytics',courses:[
     {name:'Introduction to Data Analytics with AI',lessons:[
       {name:'Foundations of Data Analytics',topics:[
-        {name:'Introduction to Data Analytics',subs:['What Is Data Analytics','Why Data Analytics Matters','Types of Analytics: Descriptive, Diagnostic, Predictive, Prescriptive','What a Data Analyst Actually Does','Building a Career in Data Analytics']},
+        {name:'Introduction to Data Analytics',subs:['What Is Data Analytics','Why Data Analytics Matters','Types of Analytics: Descriptive, Diagnostic, Predictive, Prescriptive']},
         {name:'KPI and Problem Framing',subs:['Business Question to Data Question','KPI Basics: Revenue, Conversion, Retention, Churn']},
-        {name:'Data Basics',subs:['Where Data Come From: CRM, ERP, POS, Websites','Types of Data: Structured, Semi-structured, Unstructured','Data Quality Basics: Missing Values, Duplicates, Wrong Formats']},
-        {name:'ETL Awareness for Analysts',subs:['What Is ETL?','Traditional vs AI-Enabled Analyst','Where AI Helps in Analytics Work','AI Risks and Validation: Hallucinations, Wrong KPIs']},
-      ]},
-    ]},
-    {name:'AI-Powered Business Analytics with Excel and Copilot',lessons:[
-      {name:'Excel Foundations',topics:[
-        {name:'Excel in Business Analytics',subs:['Role of Excel in Business Analytics','Why Excel Still Dominates Data Analytics','Analytics Tasks Excel Handles Effectively','Excel Capabilities for Business Reporting']},
-        {name:'Data Cleaning',subs:['Importing CSV and Structured Data','Sorting and Filtering','Removing Duplicates','Text to Columns','Text Cleaning Functions: TRIM, CLEAN, LEFT, MID, RIGHT','Handling Errors and Blanks: IFERROR']},
-        {name:'Core Functions',subs:['IF, AND, OR','XLOOKUP','VLOOKUP (legacy awareness)','SUMIFS and COUNTIFS','Basic Statistical Functions: AVERAGE, MEDIAN, RANK','Copilot for Formula Writing']},
-      ]},
-    ]},
-    {name:'Data Manipulation and Acquisition with SQL',lessons:[
-      {name:'SQL Foundations for Analysts',topics:[
-        {name:'SQL and Databases',subs:['What Is SQL Used For','What Is a Database','Tables, Rows, Columns','Keys for Analysts: Primary Key, Foreign Key','Relationship Types: One-to-One, One-to-Many, Many-to-Many','Reading a Schema']},
-        {name:'Core Querying',subs:['SELECT and WHERE','Operators and Conditions: AND, OR, IN, BETWEEN, LIKE','ORDER BY and LIMIT']},
-        {name:'Aggregation for KPIs',subs:['GROUP BY and Aggregates: SUM, COUNT, AVG','HAVING Clause','CASE WHEN for KPIs']},
-        {name:'AI for SQL',subs:['Generating SQL with AI','Validating AI SQL: Detecting Hallucinations, Wrong Joins','Debugging SQL with AI']},
       ]},
     ]},
   ]},
@@ -328,65 +400,19 @@ const TOC={
     {name:'Foundations of Agentic AI and Lifecycle',lessons:[
       {name:'Fundamentals of Artificial Intelligence and Agentic AI',topics:[
         {name:'Overview of AI Evolution​',subs:['Introduction to Artificial Intelligence','Evolution of Artificial Intelligence','Traditional AI Vs Generative AI Vs Agentic AI']},
-        {name:'Introduction to Attention and Transformers​',subs:['Introduction to Attention Mechanism','Self-Attention Mechanism','Understanding Self-Attention Through an Analogy','Self-Attention Mechanism: Meaning in Context','How Attention Scores Are Computed','Introduction to Transformers','Components of a Transformer']},
-        {name:'Understanding NLP and the Rise of LLMs',subs:['Introduction to NLP','Types of NLP Models','Limitations of NLP','Markov Chain: Probabilistic Language Modelling','Introduction to N-grams','Language Models','Introduction to Large Language Models(LLM)','Examples of Pretrained LLMs: GPT-4o','Examples of Pretrained LLMs: DeepSeek-R1','Examples of Pretrained LLMs: LLaMA 3']},
-        {name:'Introduction to Agentic AI',subs:['Overview of Agentic AI','Need for Agentic AI','Real-World Applications of Agentic AI','Introduction to Agents','Capabilities of an AI Agent: Interactivity, Memory, Autonomy','Advanced Thinking Techniques: ReAct, Reflection, Chain-of-Thought','Types of Agents: Reactive, Proactive','Deployment Architectures: Single-Agent Systems, Multi-Agent Systems']},
-        {name:'Overview of GenAI Tech Stack',subs:['Introduction to GenAI Tech Stack','GenAI Tech Stack: Layers','Agentic AI Tech Stack: Layers​','GenAI vs. Agentic AI: Orchestration Layer']},
-      ]},
-      {name:'LangChain Framework',topics:[
-        {name:'LangChain',subs:['Background of LangChain','Introduction to LangChain','Decoding the Name','LangChain Key Concepts','How LangChain Works','LangChain Framework Architecture','LangChain Components: Model, Prompt, Memory, Chain','Building Applications with LangChain','Customizing Language Model']},
-      ]},
-      {name:'Prompting and Reasoning',topics:[
-        {name:'Prompting',subs:['Prompt Engineering','Prompt Elements','Types of Prompting Techniques','Zero Shot Prompting','Few Shot Prompting','Chain of Thought Prompting','Self Consistency Prompting','Tree of Thoughts Prompting','Major Applications of Prompt Engineering','LangChain Prompts']},
-      ]},
-      {name:'MCP',topics:[
-        {name:'Model Context Protocol',subs:['Why Tools Need Structured Context','Problems with Unstructured Memory','MCP vs API','What Is MCP and Why It Was Created','Anatomy of an MCP','Benefits of Protocolized Tool Access']},
-      ]},
-      {name:'RAG',topics:[
-        {name:'Retrieval Augmented Generation',subs:['Components of RAG','Traditional vs RAG Pipeline','Load Document','Creating Text Chunks','Building Knowledge Bases','Retriever','Prompt and LLM']},
-      ]},
-      {name:'AI Lifecycle',topics:[
-        {name:'ML Lifecycle',subs:['Problem Definition','Data Collection','Data Cleaning and Preprocessing','Exploratory Data Analysis','Feature Engineering and Selection','Model Selection','Model Training','Model Evaluation and Tuning','Deployment','Monitoring and Maintenance']},
-        {name:'LLM Lifecycle',subs:['Data Collection and Curation','Pretraining','Fine Tuning and Alignment','Evaluation and Benchmarking','Deployment and Inference','Continuous Monitoring and Improvement']},
-      ]},
-    ]},
-    {name:'Agentic AI for Tech Stack and Product Lifecycle',lessons:[
-      {name:'Foundations and Design of Agentic AI Systems',topics:[
-        {name:'Why the Stack Matters to Product Leaders',subs:['Importance of Stack for Product Leaders','Product Behavior: Stack Decisions Drive Outcomes','Stack Choices: Causes and Fixes','Stack Failures: Major Impact on User Trust']},
-        {name:'Understanding the Agentic AI Stack',subs:['The Four-Layer Stack: A Framework for Agentic Product Development','System-Level Thinking for AI Product Leaders','Real-World Analogy: Designing a Legal Reasoning Agent']},
-        {name:'Introduction to Monitoring and LLMOps',subs:['LLMOps: Monitoring and Observability for Agentic Systems','Model Behavior: Rollbacks and Drift Detection','Token-Level Debugging Tools for Granular Agent Analysis']},
-        {name:'Introduction to Model Layer',subs:['LLM Selection: Open vs. Closed, Size, and Cost','Prompt Engineering: Agent Communication and Behavior Control','Fine-tuning and Model Adaptation','Embedding Models: Foundation for Semantic Understanding','RAG for Context-Aware Responses','Multimodal Models for Rich Agent Interactions','Model Bias and Fairness in Agentic Systems']},
+        {name:'Introduction to Agentic AI',subs:['Overview of Agentic AI','Need for Agentic AI','Real-World Applications of Agentic AI','Introduction to Agents']},
       ]},
     ]},
   ]},
   gail:{label:'Generative AI Applications for Leaders',courses:[
     {name:'AI Literacy for Business Leaders',lessons:[
       {name:'Overview of ML, DL, and AI',topics:[
-        {name:'Introduction to Artificial Intelligence (AI)',subs:['What Is an Artificial Intelligence?','Types of AI','Why Is an AI Powerful?','Artificial Intelligence: Google Ads Case Study']},
-        {name:'Introduction to Machine Learning (ML)',subs:['What Is Machine Learning?','Types of Machine Learning','Applications of ML in Business Operations','Advanced Applications of ML in Business','Machine Learning: Netflix Case Study']},
-        {name:'Introduction to Deep Learning (DL)',subs:['What Is Deep Learning?','What Are Neural Networks?','Types of Neural Networks','Neural Networks as the Foundation of NLP','Introduction to Natural Language Processing (NLP)','Applications of NLP in Business','Deep Learning: Amazon Alexa Case Study']},
-        {name:'Introduction to Digital Strategies for Business',subs:['What Are Digital Strategies?','Why Are Digital Strategies Critical for Businesses?','GenAI Tools in Action: Examples of Transformation','McKinsey\'s 7S Framework for Digital Transformation','Deloitte\'s Digital Maturity Model','Best Practices for CXOs in Leading Digital Transformation']},
-      ]},
-      {name:'Overview of GenAI and AI Project Implementation',topics:[
-        {name:'Introduction to Generative AI (GenAI)',subs:['What Is Generative AI?','Key Components of GenAI','Key Algorithms Powering GenAI','Transformer Algorithms','Generative Adversarial Networks (GAN)','Variational Autoencoders (VAE)','Diffusion Algorithms','GANs vs VAEs vs Diffusion Algorithms']},
-        {name:'Introduction to Prompt Engineering',subs:['What Is Prompt Engineering?','Importance of Prompt Engineering','Simple Prompting Techniques for Effective GenAI Use','Prompt Engineering: Best Practices','Demo: Generating a Product Launch Campaign Using ChatGPT']},
-        {name:'Introduction to the GenAI Open-Source Landscape',subs:['What Is GenAI Open-Source Landscape?','Demo: Exploring AI Capabilities with Hugging Face Spaces']},
-      ]},
-    ]},
-    {name:'Generative AI Technology Stack',lessons:[
-      {name:'Generative AI Infrastructure Essentials',topics:[
-        {name:'Generative AI Technology Stack',subs:['GenAI Tech Stack','GenAI Tech Stack Layers']},
-        {name:'Infrastructure Layer',subs:['On-Premise Infrastructure','On-Premise Infrastructure: Platforms','Cloud-Based Infrastructure','Cloud-Based Infrastructure: Platforms','On-Premise vs. Cloud-Based Infrastructure','Demo: Estimating Cloud Infrastructure Cost with GCP','Infrastructure Layer: Partnerships']},
-        {name:'Model Layer',subs:['Model Layer: Stages','Model Layer: Types','General AI Models: Tools','Specific AI Models: Tools','Hyperlocal AI Models: Tools','Demo: Analyzing Customer Reviews Using GenAI']},
-        {name:'Application Layer',subs:['Application Layer','Types of Application','Application Layer: Stages','Application Integration','Application Layer: Model Types']},
-        {name:'GenAI Monitoring and Management',subs:['Monitoring and Management','Large Language Model Operations','LLMOps Tools','Performance Monitoring','Performance Metrics','GenAI Security','Ethical Considerations']},
-        {name:'Rapid AI Development',subs:['Rapid AI Development','Low-Code Tools']},
+        {name:'Introduction to Artificial Intelligence (AI)',subs:['What Is an Artificial Intelligence?','Types of AI','Why Is an AI Powerful?']},
+        {name:'Introduction to Machine Learning (ML)',subs:['What Is Machine Learning?','Types of Machine Learning','Applications of ML in Business Operations']},
       ]},
     ]},
   ]},
 };
-
-// Sample course detail for AIML CRS01 drill-down
 const CRSDET={
   aiml_crs01:{code:'CRS01',name:'Python_Refresher_with_AI',prog:'aiml',lessons:[
     {id:'l01',code:'Lesson_01',name:'Introduction_to_Python_Fundamentals_and_Setup',output:[
@@ -399,6 +425,7 @@ const CRSDET={
       {num:'1.06',title:'Python_Operators',type:'lesson',tool:'PPT'},
       {num:'1.07',title:'Guided_Practice',type:'guided'},
       {num:'1.08',title:'Knowledge_Check',type:'interactive-html'},
+      {num:'1.09',title:'Scenario_Based_Activity',type:'interactive-zip'},
     ]},
     {id:'l02',code:'Lesson_02',name:'Data_Structures_Conditional_Statements_and_Loops',output:[
       {num:'2.01',title:'Lists',type:'lesson',tool:'PPT'},
@@ -408,211 +435,293 @@ const CRSDET={
       {num:'2.05',title:'Conditional_Statements',type:'lesson',tool:'CAM'},
       {num:'2.06',title:'Loops',type:'lesson',tool:'PPT'},
       {num:'2.07',title:'Comprehensions',type:'lesson',tool:'PPT'},
-      {num:'2.08',title:'Demo_Understanding_Comprehensions_in_Python',type:'demo',tool:'CAM'},
+      {num:'2.08',title:'Demo_Understanding_Comprehensions',type:'demo',tool:'CAM'},
       {num:'2.09',title:'Guided_Practice',type:'guided'},
-      {num:'2.10',title:'Data_Structures_Interactive_Exercise',type:'interactive-html'},
+      {num:'2.10',title:'Data_Structures_Quiz',type:'interactive-html'},
     ]},
   ]},
 };
 
-let S={view:'root',zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null};
+let S={view:'root',zone:null,vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null};
 
+// ── POPUP ─────────────────────────────────────────────────────────────────────
+function openPop(){document.getElementById('pop').classList.remove('hid');}
+function closePop(){document.getElementById('pop').classList.add('hid');}
+function tck(el){el.classList.toggle('ck');const c=document.querySelectorAll('.ci.ck').length,t=document.querySelectorAll('.ci').length;document.getElementById('prl').textContent=`${c} of ${t} completed`;document.getElementById('prf').style.width=Math.round(c/t*100)+'%';}
+function dlChk(type){
+  const v=document.getElementById('f-v').value||'Vendor',f=document.getElementById('f-f').value||'FM',p=document.getElementById('f-p').value||'PRG',d=document.getElementById('f-d').value||new Date().toISOString().split('T')[0];
+  const items=[...document.querySelectorAll('.ci')].map((el,i)=>({step:i+1,label:el.querySelector('.clb').textContent.trim(),done:el.classList.contains('ck')?'YES':'NO'}));
+  if(type==='csv'){let csv=`Simplilearn Vendor Onboarding Checklist\nVendor,${v}\nFM/Lead,${f}\nProgramme,${p}\nDate,${d}\n\nStep,Task,Completed\n`;items.forEach(i=>{csv+=`${i.step},"${i.label}",${i.done}\n`;});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`Onboarding_${v}_${d}.csv`;a.click();toast('Downloaded checklist CSV');}
+  else{const w=window.open('','_blank');w.document.write(`<!DOCTYPE html><html><head><title>Vendor Onboarding Checklist</title><style>body{font-family:sans-serif;padding:32px;max-width:660px;margin:auto}h1{font-size:17px}h2{font-size:12px;color:#666;font-weight:400;margin-bottom:18px}table{width:100%;border-collapse:collapse}th{background:#323130;color:#fff;padding:7px 10px;text-align:left;font-size:11px}td{padding:7px 10px;border-bottom:1px solid #edebe9;font-size:12px}.yes{color:#107c10;font-weight:700}.no{color:#a4262c}.meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:18px;padding:12px;background:#f8f7f6;border:1px solid #edebe9}.meta label{font-size:9px;font-weight:700;color:#666;text-transform:uppercase;display:block}.meta p{font-size:13px;font-weight:700;margin-top:1px}@media print{button{display:none}}</style></head><body><button onclick="window.print()" style="margin-bottom:16px;padding:6px 14px;background:#323130;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px">🖨 Print / Save PDF</button><h1>Simplilearn — Vendor Onboarding Checklist</h1><h2>Blended Learning · OneDrive Folder Access</h2><div class="meta"><div class="meta"><label>Vendor</label><p>${v}</p></div><div><label>FM/Lead</label><p>${f}</p></div><div><label>Programme</label><p>${p}</p></div><div><label>Date</label><p>${d}</p></div></div><table><tr><th>#</th><th>Task</th><th>Status</th></tr>${items.map(i=>`<tr><td>${i.step}</td><td>${i.label}</td><td class="${i.done==='YES'?'yes':'no'}">${i.done==='YES'?'✓ Done':'Pending'}</td></tr>`).join('')}</table></body></html>`);w.document.close();toast('PDF opened — use Print to save');}
+}
+
+// ── CREATE/UPLOAD DROPDOWN ────────────────────────────────────────────────────
+function toggleCU(){document.getElementById('cu-drop').classList.toggle('open');}
+function closeCU(){document.getElementById('cu-drop').classList.remove('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.cu-btn')&&!e.target.closest('.cu-dropdown'))closeCU();});
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
 function go(v,ex){S.view=v;if(ex)Object.assign(S,ex);render();bc();nav();}
 
 function nav(){
   const n=document.getElementById('lnav');
-  let h=`<div class="nl" style="padding-top:16px">Navigation</div>
-  <div class="ni ${S.view==='root'?'active':''}" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">🏠 My files</div>`;
+  let h=`<div class="si-section"><div class="si-label">Navigation</div>
+  <div class="si-item ${S.view==='root'?'active':''}" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">🏠 My files</div>
+  <div class="si-item">🕐 Recent</div><div class="si-item">⭐ Starred</div><div class="si-item">👥 Shared</div><div class="si-item">🗑 Recycle bin</div></div>`;
   if(S.zone==='internal'){
-    h+=`<div class="nl">Internal</div>`;
-    PROGS.forEach(p=>{const a=S.prog===p.id;const d=!p.active;h+=`<div class="ni ${a?'active':''} ${d?'dis':''}" ${p.active?`onclick="go('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,sub:null,toc:null})"`:''}>📁 ${p.code}<span class="nb">${p.active?p.courses+'C':'—'}</span></div>`;});
+    h+=`<div class="si-section"><div class="si-label">Internal</div>`;
+    PROGS.forEach(p=>{h+=`<div class="si-item ${S.prog===p.id?'active':''} ${!p.active?'dim':''}" ${p.active?`onclick="go('prog',{prog:'${p.id}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})"`:''}>📁 ${p.code}<span class="si-badge">${p.active?p.courses+'C':'—'}</span></div>`;});
+    h+=`</div>`;
   }else if(S.zone==='vendors'){
-    h+=`<div class="nl">Vendors</div>`;
-    VENDORS.forEach(v=>{h+=`<div class="ni ${S.vendor===v.id?'active':''}" onclick="go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">🏢 ${v.name}</div>`;});
+    h+=`<div class="si-section"><div class="si-label">Vendors</div>`;
+    VENDORS.forEach(v=>{h+=`<div class="si-item ${S.vendor===v.id?'active':''}" onclick="go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">🏢 ${v.name}</div>`;});
+    h+=`</div>`;
   }
   n.innerHTML=h;
 }
 
 function bc(){
   const e=document.getElementById('bc');
-  let p=[`<span class="bc" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">My files</span>`];
-  if(S.zone){const zl=S.zone==='internal'?'🏢 Internal':'🤝 Vendors';p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('zone',{zone:'${S.zone}',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">${zl}</span>`);}
-  if(S.vendor){const v=VENDORS.find(x=>x.id===S.vendor);p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('vendor',{vendor:'${S.vendor}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})">${v.name}</span>`);}
-  if(S.prog){const pr=PROGS.find(x=>x.id===S.prog);p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('prog',{prog:'${S.prog}',course:null,folder:null,lesson:null,sub:null,toc:null})">${pr.code}</span>`);}
-  if(S.course){const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];const pr=PROGS.find(x=>x.id===S.prog);const cn=cd?`${pr.code}_${cd.code}_${cd.name}`:`${pr.code}_${S.course}`;p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('course',{course:'${S.course}',folder:null,lesson:null,sub:null,toc:null})">${cn}</span>`);}
-  if(S.folder){const pr=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('folder',{folder:'${S.folder}',lesson:null,sub:null})">${pr.code}_${cd?cd.code:S.course}_${S.folder}</span>`);}
-  if(S.lesson){const pr=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;if(l)p.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('lesson',{lesson:'${S.lesson}',sub:null})">${pr.code}_${cd.code}_${l.code}_${l.name}</span>`);}
-  if(S.sub)p.push(`<span class="bc-sep">›</span><span class="bc cur">transcript</span>`);
-  if(S.toc)p.push(`<span class="bc-sep">›</span><span class="bc cur">TOC</span>`);
-  e.innerHTML=p.join('');
+  const parts=[`<span class="bc" onclick="go('root',{zone:null,vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">My files</span>`];
+  if(S.zone){parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('zone',{zone:'${S.zone}',vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${S.zone==='internal'?'🏢 Internal':'🤝 Vendors'}</span>`);}
+  if(S.vendor){const v=VENDORS.find(x=>x.id===S.vendor);parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('vendor',{vendor:'${S.vendor}',prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${v.name}</span>`);}
+  if(S.prog){const p=PROGS.find(x=>x.id===S.prog);parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('prog',{prog:'${S.prog}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${p.code}</span>`);}
+  if(S.course){const p=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('course',{course:'${S.course}',folder:null,subfolder:null,lesson:null,sub:null,toc:null})">${cd?`${p.code}_${cd.code}_${cd.name}`:`${p.code}_${S.course}`}</span>`);}
+  if(S.folder){const p=PROGS.find(x=>x.id===S.prog);const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('folder',{folder:'${S.folder}',subfolder:null,lesson:null,sub:null})">${p.code}_${cd?cd.code:S.course}_${S.folder}</span>`);}
+  if(S.subfolder){parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('subfolder',{subfolder:'${S.subfolder}',lesson:null,sub:null})">${S.subfolder}</span>`);}
+  if(S.lesson){const p=PROGS.find(x=>x.id===S.prog);const cd=CRSDET[`${S.prog}_${S.course}`];const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;if(l)parts.push(`<span class="bc-sep">›</span><span class="bc" onclick="go('lesson',{lesson:'${S.lesson}',sub:null})">${p.code}_${cd.code}_${l.code}_${l.name}</span>`);}
+  if(S.sub)parts.push(`<span class="bc-sep">›</span><span class="bc cur">transcript</span>`);
+  if(S.toc)parts.push(`<span class="bc-sep">›</span><span class="bc cur">TOC</span>`);
+  e.innerHTML=parts.join('');
 }
 
+// ── RENDER ────────────────────────────────────────────────────────────────────
 function render(){
   const m=document.getElementById('main');
   const v=S.view;
-  if(v==='root'){rRoot(m);}
-  else if(v==='zone'){rZone(m);}
-  else if(v==='vendor'){rVendor(m);}
-  else if(v==='prog'){rProg(m);}
-  else if(v==='course'){rCourse(m);}
-  else if(v==='folder'){rFolder(m);}
-  else if(v==='lesson'){rLesson(m);}
-  else if(v==='transcript'){rTranscript(m);}
-  else if(v==='toc'){rTOC(m);}
+  if(v==='root')rRoot(m);
+  else if(v==='zone')rZone(m);
+  else if(v==='vendor')rVendor(m);
+  else if(v==='prog')rProg(m);
+  else if(v==='course')rCourse(m);
+  else if(v==='folder')rFolder(m);
+  else if(v==='subfolder')rSubfolder(m);
+  else if(v==='lesson')rLesson(m);
+  else if(v==='transcript')rTranscript(m);
+  else if(v==='toc')rTOC(m);
 }
 
+// ── BANNER ────────────────────────────────────────────────────────────────────
 function bn(title,dirs,infos){
-  const da=Array.isArray(dirs)?dirs:[dirs];const ia=Array.isArray(infos)?infos:[infos];
+  const da=Array.isArray(dirs)?dirs:[dirs],ia=Array.isArray(infos)?infos:[infos];
   return `<div class="gbanner"><div class="bh">📌 &nbsp;${title}</div><div class="bb">
   <div class="bs"><div class="bsl dr">⚠ Rules — mandatory</div>${da.filter(Boolean).map(d=>`<div class="br"><div class="rd r"></div><div class="rt dr">${d}</div></div>`).join('')}</div>
   <div class="bs"><div class="bsl in">ℹ About this level</div>${ia.filter(Boolean).map(i=>`<div class="br"><div class="rd b"></div><div class="rt">${i}</div></div>`).join('')}</div>
   </div></div>`;
 }
 
-function vt(count,label){return `<div class="vt"><span class="ic">${count} ${label}</span><div class="vr"><button class="cab" onclick="copyAll()">⎘ Copy all filenames</button></div></div>`;}
-function lh(){return `<div class="lh"><div></div><div>Name</div><div>Type</div><div>Modified</div><div>Action</div></div>`;}
-
-function fr({icon,name,nc='',sub='',badge,bt,size,oc,copyable,fname,dis,vbtn}){
-  const cls=`fr${dis?' nc':''}`;const ca=oc&&!dis?`onclick="${oc}"`:'';
-  const cpb=copyable?`<button class="cb" onclick="event.stopPropagation();cpf('${fname}',this)">copy</button>`:'';
-  const vb=vbtn||'';
-  return `<div class="${cls}" ${ca}><div class="fi">${icon}</div><div class="fc"><span class="fn ${nc}" title="${name}">${name}</span>${sub?`<span class="fs">${sub}</span>`:''}</div><div><span class="fb ${badge}">${bt}</span></div><div class="fm">—</div><div class="fa">${size} ${cpb}${vb}</div></div>`;
-}
-
-function rRoot(m){
-  const b=bn('My Files — Root Level',['Internal and Vendors are the two access zones. Never store files at root level.'],['Click Internal to access all 5 programmes.','Click Vendors to access vendor-specific folders (opens onboarding checklist).']);
-  m.innerHTML=b+`<div class="zg">
-    <div class="zc" onclick="go('zone',{zone:'internal',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})"><div class="zi">🏢</div><div class="zn">Internal</div><div class="zd">All 5 programmes — Simplilearn teams only</div></div>
-    <div class="zc" onclick="openVend()"><div class="zi">🤝</div><div class="zn">Vendors</div><div class="zd">ITOS, SOTS, Apple_Box, Tudip — assigned programmes only</div></div>
+// ── ROW BUILDER ───────────────────────────────────────────────────────────────
+function row({icon,name,nc='',sub='',type,typeClass,modified='—',modBy='—',size='—',sharing='Internal',activity='—',oc,copyable,fname,dis,vbtn}){
+  const cls=`file-row${dis?' nc':''}`;const ca=oc&&!dis?`onclick="${oc}"`:'';
+  const cpb=copyable?`<button class="ra-btn" title="Copy name" onclick="event.stopPropagation();cpf('${fname}',this)">⎘</button>`:'';
+  const vb=vbtn?`<button class="ra-btn" style="font-size:11px;width:auto;padding:0 6px;" onclick="event.stopPropagation();${vbtn}">View TOC</button>`:'';
+  return `<div class="${cls}" ${ca}>
+    <div class="row-cb"><span style="font-size:15px">${icon}</span></div>
+    <div class="row-name-cell"><span class="row-name ${nc}" title="${name}">${name}</span>${sub?`<span class="row-sub">${sub}</span>`:''}</div>
+    <div class="row-cell">${modified}</div>
+    <div class="row-cell">${modBy}</div>
+    <div class="row-cell"><span class="type-badge ${typeClass}">${type}</span></div>
+    <div class="row-sharing"><span class="sharing-icon">👥</span><span class="sharing-text">${sharing}</span></div>
+    <div class="row-activity">${activity} <div class="row-actions">${cpb}${vb}<button class="ra-btn" title="More">…</button></div></div>
   </div>`;
 }
 
-function openVend(){openPopup();go('zone',{zone:'vendors',vendor:null,prog:null,course:null,folder:null,lesson:null,sub:null,toc:null});}
+function colH(){return `<div class="col-heads"><div></div><div class="ch">Name <span class="sort-arrow">↑</span></div><div class="ch">Modified</div><div class="ch">Modified By</div><div class="ch">File size</div><div class="ch">Sharing</div><div class="ch">Activity</div></div>`;}
+function toolbar(count,label){return `<div class="list-toolbar"><span>Showing <span class="count">${count} ${label}</span></span><div class="tb-right"><button class="tb-btn" onclick="copyAll()">⎘ Copy all filenames</button></div></div>`;}
+
+// ── VIEWS ─────────────────────────────────────────────────────────────────────
+function rRoot(m){
+  const b=bn('My Files — Root Level',['Internal and Vendors are the two access zones. Never store files at root level.'],['Click Internal to access all 5 programmes.','Click Vendors to access vendor folders (opens onboarding checklist).']);
+  m.innerHTML=b+`<div class="file-area"><div class="zone-grid">
+    <div class="zone-card" onclick="go('zone',{zone:'internal',vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})"><div class="zc-icon">🏢</div><div class="zc-name">Internal</div><div class="zc-desc">All 5 programmes — Simplilearn teams only</div></div>
+    <div class="zone-card" onclick="openVend()"><div class="zc-icon">🤝</div><div class="zc-name">Vendors</div><div class="zc-desc">ITOS, SOTS, Apple_Box, Tudip — assigned programmes only</div></div>
+  </div></div>`;
+}
+function openVend(){openPop();go('zone',{zone:'vendors',vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null});}
 
 function rZone(m){
   if(S.zone==='internal'){
-    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format. Never create ad-hoc folders at this level.','Files must never be stored at programme root — always inside a course folder.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme contains courses following the PRG_CRS## naming convention.']);
-    let h=b+vt(PROGS.length,'Programmes')+`<div class="flw">${lh()}`;
-    PROGS.forEach(p=>{h+=fr(p.active?{icon:'📁',name:p.code,nc:'fo',sub:p.label,badge:'b-fo',bt:'folder',size:`${p.courses} courses`,oc:`go('prog',{prog:'${p.id}',course:null,folder:null,lesson:null,sub:null,toc:null})`}:{icon:'📁',name:p.code,nc:'fo',sub:p.label+' — Coming soon',badge:'b-dum',bt:'inactive',size:'—',dis:true});});
+    const b=bn('Internal — Programme Level',['All programme folder names must follow the approved code format.','Files must never be stored at programme root — always inside a course folder.','Project Tracker and Design Document must be kept current. Update immediately on any change.'],['Contains 5 programmes. Active: AIML, DA, AAGAI, GAIL.','Each programme has a Project Tracker and Design Document (Excel or Google Sheet).']);
+    let h=b+`<div class="file-area">${toolbar(PROGS.length,'Programmes')}${colH()}`;
+    PROGS.forEach(p=>{
+      if(p.active){
+        h+=row({icon:'📁',name:p.code,nc:'link',sub:p.label,type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:`${p.courses} courses`,sharing:'Internal',activity:'—',oc:`go('prog',{prog:'${p.id}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});
+        h+=row({icon:'📊',name:`${p.code}_Project_Tracker.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Project_Tracker.xlsx`});
+        h+=row({icon:'📊',name:`${p.code}_Design_Document.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${p.code}_Design_Document.xlsx`});
+      }else{
+        h+=row({icon:'📁',name:p.code,sub:p.label+' — Coming soon',type:'inactive',typeClass:'tb-dum',sharing:'Internal',activity:'—',dis:true});
+      }
+    });
     m.innerHTML=h+'</div>';
   }else{
-    const b=bn('Vendors — Top Level',['Each vendor has their own dedicated folder. Never share across vendor folders.','Access must be via Specific People only at all times.'],['Contains folders for: ITOS, SOTS, Apple_Box, Tudip.','Each vendor is assigned specific programmes only.','Use the onboarding checklist each time a new vendor team member is added.']);
-    let h=b+vt(VENDORS.length,'Vendors')+`<div class="flw">${lh()}`;
-    VENDORS.forEach(v=>{h+=fr({icon:'🏢',name:v.name,nc:'fo',sub:`${v.progs.length} programmes assigned`,badge:'b-fo',bt:'vendor',size:`${v.progs.length} progs`,oc:`go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,lesson:null,sub:null,toc:null})`});});
+    const b=bn('Vendors — Top Level',['Each vendor has their own dedicated folder. Never share across vendor folders.','Access must be via Specific People only at all times.'],['Contains folders for: ITOS, SOTS, Apple_Box, Tudip.','Each vendor is assigned specific programmes only.']);
+    let h=b+`<div class="file-area">${toolbar(VENDORS.length,'Vendors')}${colH()}`;
+    VENDORS.forEach(v=>{h+=row({icon:'🏢',name:v.name,nc:'link',sub:`${v.progs.length} programmes assigned`,type:'vendor',typeClass:'tb-fo',size:`${v.progs.length} progs`,sharing:'Specific people',activity:'—',oc:`go('vendor',{vendor:'${v.id}',prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});});
     m.innerHTML=h+'</div>';
   }
 }
 
 function rVendor(m){
   const v=VENDORS.find(x=>x.id===S.vendor);
-  const b=bn(`Vendor — ${v.name}`,['Only assign programmes this vendor is contracted for.','All files submitted must follow the standard naming convention. Reject non-compliant files immediately.'],['Inside each programme folder, the structure is identical to Internal.','Use the onboarding checklist each time a new vendor team member is added.']);
-  let h=b+vt(v.progs.length,'Programmes')+`<div class="flw">${lh()}`;
-  v.progs.forEach(pid=>{const p=PROGS.find(x=>x.id===pid);h+=fr({icon:'📁',name:p.code,nc:'fo',sub:p.label,badge:'b-fo',bt:'folder',size:`${p.courses} courses`,oc:`go('prog',{prog:'${pid}',course:null,folder:null,lesson:null,sub:null,toc:null})`});});
+  const b=bn(`Vendor — ${v.name}`,['Only assign programmes this vendor is contracted for.','All files must follow naming convention. Reject non-compliant files immediately.'],['Inside each programme folder, structure is identical to Internal.','Use the onboarding checklist each time a new vendor team member is added.']);
+  let h=b+`<div class="file-area">${toolbar(v.progs.length,'Programmes')}${colH()}`;
+  v.progs.forEach(pid=>{const p=PROGS.find(x=>x.id===pid);h+=row({icon:'📁',name:p.code,nc:'link',sub:p.label,type:'folder',typeClass:'tb-fo',size:`${p.courses} courses`,sharing:'Specific people',activity:'—',oc:`go('prog',{prog:'${pid}',course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});});
   m.innerHTML=h+'</div>';
 }
 
 function rProg(m){
-  S.course=null;S.folder=null;S.lesson=null;S.sub=null;S.toc=null;
+  S.course=null;S.folder=null;S.subfolder=null;S.lesson=null;S.sub=null;S.toc=null;
   const p=PROGS.find(x=>x.id===S.prog);
-  if(!p.active){m.innerHTML=bn('Programme','','.')+cs();return;}
+  if(!p.active){m.innerHTML=bn('Programme','','.')+`<div class="file-area">`+cs()+'</div>';return;}
   const toc=TOC[S.prog];
   const clist=toc?toc.courses:[];
-  const b=bn(`Course Level — ${p.code}`,['Course folder names must follow PRG_CRS##_Course_Name format exactly.',`Files must never be stored directly at course root — always inside a sub-folder.`,'TOC Excel must be updated every time a lesson or topic is added or removed.'],['Each course has: Final_Output, Final_Source, Course_Components, Raw_Footage folders and a TOC Excel.',`Programme: ${p.label}. ${p.courses} courses total.`,'Click TOC to view all lessons and topics with original special characters.']);
-  let h=b+vt(clist.length,'Courses')+`<div class="flw">${lh()}`;
+  const b=bn(`Course Level — ${p.code}`,['Course folder names must follow PRG_CRS##_Course_Name format exactly.','Files must never be stored directly at course root.','TOC Excel must be updated every time a lesson or topic is added or removed.'],['Each course has: Final_Output, Final_Source, Course_Components, Raw_Footage, LVC folders and a TOC Excel.',`Programme: ${p.label}. ${p.courses} courses total.`]);
+  let h=b+`<div class="file-area">${toolbar(clist.length,'Courses')}${colH()}`;
   clist.forEach((c,i)=>{
     const cid=`crs${String(i+1).padStart(2,'0')}`;
     const cn=c.name.replace(/[^a-zA-Z0-9]/g,'_').replace(/__+/g,'_');
-    h+=fr({icon:'📁',name:`${p.code}_CRS${String(i+1).padStart(2,'0')}_${cn}`,nc:'fo',sub:c.name,badge:'b-fo',bt:'course',size:'5 items',oc:`go('course',{course:'${cid}',folder:null,lesson:null,sub:null,toc:null})`});
+    h+=row({icon:'📁',name:`${p.code}_CRS${String(i+1).padStart(2,'0')}_${cn}`,nc:'link',sub:c.name,type:'folder',typeClass:'tb-fo',modified:'—',modBy:'—',size:'6 items',sharing:'Internal',activity:'—',oc:`go('course',{course:'${cid}',folder:null,subfolder:null,lesson:null,sub:null,toc:null})`});
   });
   m.innerHTML=h+'</div>';
 }
 
 function rCourse(m){
-  S.folder=null;S.lesson=null;S.sub=null;S.toc=null;
+  S.folder=null;S.subfolder=null;S.lesson=null;S.sub=null;S.toc=null;
   const p=PROGS.find(x=>x.id===S.prog);
-  const cnum=S.course.replace('crs','');
-  const cpad=String(parseInt(cnum)).padStart(2,'0');
-  const toc=TOC[S.prog];
-  const cidx=parseInt(cnum)-1;
-  const cdata=toc&&toc.courses[cidx]?toc.courses[cidx]:{name:'Course'};
-  const b=bn(`Course Contents — ${p.code}_CRS${cpad}`,['Final_Output and Final_Source must remain strictly separated. Never mix output and source files.','Course_Components subfolders must not be used for any other file types.','Raw_Footage must contain only raw recording files — never processed or edited content.','TOC Excel is the master reference. Keep it current at all times — update when any lesson or topic changes.'],['Final_Output: Lesson folders with MP4, Guided Practice HTML, and interactive files.','Final_Source: Lesson folders with CAM/AE source zips and Guided Practice URL links.','Course_Components: Assessments, Datasets, Demo_Documents, Guided_Practice_Documents.','Raw_Footage: All raw screen recordings before editing. TOC Excel: Full lesson and topic index.']);
+  const cnum=S.course.replace('crs',''),cpad=String(parseInt(cnum)).padStart(2,'0');
   const pr=`${p.code}_CRS${cpad}`;
-  const ck=`${S.prog}_${S.course}`;
-  const cd=CRSDET[ck];
-  const hasDetail=!!cd;
-  let h=b+vt(5,'Items')+`<div class="flw">${lh()}`;
-  h+=fr({icon:'📁',name:`${pr}_Final_Output`,nc:'fo',sub:'MP4 + Interactive output files',badge:'b-fo',bt:'folder',size:`${cd?cd.lessons.length:'—'} lessons`,oc:hasDetail?`go('folder',{folder:'Final_Output',lesson:null,sub:null})`:`go('folder',{folder:'Final_Output'})`});
-  h+=fr({icon:'📁',name:`${pr}_Final_Source`,nc:'fo',sub:'CAM/AE source zips + Clueso URLs',badge:'b-fo',bt:'folder',size:`${cd?cd.lessons.length:'—'} lessons`,oc:hasDetail?`go('folder',{folder:'Final_Source',lesson:null,sub:null})`:`go('folder',{folder:'Final_Source'})`});
-  h+=fr({icon:'📁',name:`${pr}_Course_Components`,nc:'fo',sub:'Assessments, Datasets, Demo Docs, Guided Practice Docs',badge:'b-fo',bt:'folder',size:'4 subfolders',oc:`go('folder',{folder:'Course_Components'})`});
-  h+=fr({icon:'🎬',name:`${pr}_Raw_Footage`,nc:'fo',sub:'Raw screen recordings and video captures — unedited originals',badge:'b-raw',bt:'raw',size:'—',oc:`go('folder',{folder:'Raw_Footage'})`});
-  h+=fr({icon:'📊',name:`${pr}_TOC.xlsx`,nc:'toc',sub:'Table of Contents — all lesson and topic names with original special characters preserved',badge:'b-xlsx',bt:'.xlsx',size:'—',copyable:true,fname:`${pr}_TOC.xlsx`,vbtn:`<button class="vb" onclick="event.stopPropagation();go('toc',{toc:'${S.prog}_${S.course}'})">view</button>`});
+  const ck=`${S.prog}_${S.course}`;const cd=CRSDET[ck];
+  const toc=TOC[S.prog];const cidx=parseInt(cnum)-1;
+  const cdata=toc&&toc.courses[cidx]?toc.courses[cidx]:{name:'Course'};
+  const b=bn(`Course Contents — ${pr}`,['Final_Output, Final_Source, Course_Components, Raw_Footage, and LVC must remain strictly separated.','Never mix content types across folders.','TOC Excel and LVC Day_Wise_Agenda must be kept current at all times.'],['Final_Output: MP4 + interactive output. Final_Source: CAM/AE zips + URLs + interactive sources.','Course_Components: Assessments, Datasets, Demo Docs, Guided Practice Docs.','Raw_Footage: Raw recordings by trainer. LVC: Live Virtual Class materials and trainer documents.']);
+  let h=b+`<div class="file-area">${toolbar(6,'Items')}${colH()}`;
+  h+=row({icon:'📁',name:`${pr}_Final_Output`,nc:'link',sub:'MP4 + Interactive output files',type:'folder',typeClass:'tb-fo',size:`${cd?cd.lessons.length:'—'} lessons`,sharing:'Internal',activity:'—',oc:cd?`go('folder',{folder:'Final_Output',subfolder:null,lesson:null,sub:null})`:`go('folder',{folder:'Final_Output'})`});
+  h+=row({icon:'📁',name:`${pr}_Final_Source`,nc:'link',sub:'CAM/AE source zips + Clueso URLs + interactive sources',type:'folder',typeClass:'tb-fo',size:`${cd?cd.lessons.length:'—'} lessons`,sharing:'Internal',activity:'—',oc:cd?`go('folder',{folder:'Final_Source',subfolder:null,lesson:null,sub:null})`:`go('folder',{folder:'Final_Source'})`});
+  h+=row({icon:'📁',name:`${pr}_Course_Components`,nc:'link',sub:'Assessments, Datasets, Demo Documents, Guided Practice Documents',type:'folder',typeClass:'tb-fo',size:'4 subfolders',sharing:'Internal',activity:'—',oc:`go('folder',{folder:'Course_Components'})`});
+  h+=row({icon:'🎬',name:`${pr}_Raw_Footage`,nc:'link',sub:'Raw screen recordings by trainer — unedited originals',type:'raw',typeClass:'tb-raw',size:'—',sharing:'Internal',activity:'—',oc:`go('folder',{folder:'Raw_Footage'})`});
+  h+=row({icon:'📁',name:`${pr}_LVC`,nc:'link',sub:'Live Virtual Class — Day Wise Agenda and Trainer Documents',type:'folder',typeClass:'tb-lvc',size:'—',sharing:'Internal',activity:'—',oc:`go('folder',{folder:'LVC'})`});
+  h+=row({icon:'📊',name:`${pr}_TOC.xlsx`,sub:'Table of Contents — all lesson and topic names with original special characters',type:'.xlsx',typeClass:'tb-xlsx',modified:'May 2026',modBy:'Roop Kumar',size:'—',sharing:'Internal',activity:'Updated recently',copyable:true,fname:`${pr}_TOC.xlsx`,vbtn:`go('toc',{toc:'${S.prog}_${S.course}'})`});
   m.innerHTML=h+'</div>';
 }
 
 function rFolder(m){
-  S.lesson=null;S.sub=null;
+  S.subfolder=null;S.lesson=null;S.sub=null;
   const p=PROGS.find(x=>x.id===S.prog);
-  const cnum=S.course.replace('crs','');
-  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const cnum=S.course.replace('crs',''),cpad=String(parseInt(cnum)).padStart(2,'0');
   const pr=`${p.code}_CRS${cpad}`;
-  const ck=`${S.prog}_${S.course}`;
-  const cd=CRSDET[ck];
+  const cd=CRSDET[`${S.prog}_${S.course}`];
 
   if(S.folder==='Course_Components'){
-    const b=bn(`Course Components — ${pr}`,['Store only the correct file type in each subfolder. Do not create additional subfolders or store miscellaneous files here.','All files must follow the standard PRG_CRS##_L.TT_Title naming convention.'],['Assessments: Quiz files, test papers, evaluation documents.','Datasets: Raw or processed data files used in course exercises.','Demo_Documents: Reference documents and scripts used in demo recordings.','Guided_Practice_Documents: All supporting materials for Guided Practice sessions.']);
-    let h=b+vt(4,'Subfolders')+`<div class="flw">${lh()}`;
-    ['Assessments','Datasets','Demo_Documents','Guided_Practice_Documents'].forEach(s=>{h+=fr({icon:'📁',name:`${pr}_${s}`,nc:'fo',sub:s.replace(/_/g,' '),badge:'b-fo',bt:'folder',size:'—',dis:true});});
+    const b=bn(`Course Components — ${pr}`,['Store only the correct file type in each subfolder.','All files must follow PRG_CRS##_L.TT_Title naming convention.'],['Assessments, Datasets, Demo_Documents, Guided_Practice_Documents.']);
+    let h=b+`<div class="file-area">${toolbar(4,'Subfolders')}${colH()}`;
+    ['Assessments','Datasets','Demo_Documents','Guided_Practice_Documents'].forEach(s=>{h+=row({icon:'📁',name:`${pr}_${s}`,nc:'link',sub:s.replace(/_/g,' '),type:'folder',typeClass:'tb-fo',size:'—',sharing:'Internal',activity:'—',dis:true});});
     m.innerHTML=h+'</div>';return;
   }
+
   if(S.folder==='Raw_Footage'){
-    const b=bn(`Raw Footage — ${pr}`,['Raw footage must be uploaded immediately after recording — before any editing begins.','Never store edited or processed files here. This folder is for source recordings only.','Use the naming convention PRG_CRS##_L.TT_Title_RAW.[ext] for all raw files.'],['Contains all raw screen recordings, camera footage, and audio captures for this course.','Files here are unedited originals — editors work from these to produce Final_Source.','Keep raw footage until the course is fully signed off and archived.']);
-    m.innerHTML=b+vt(0,'Files')+`<div class="flw">${lh()}</div>`;return;
+    const trainers=p.trainers&&p.trainers.length?p.trainers:['Trainer_01','Trainer_02'];
+    const b=bn(`Raw Footage — ${pr}`,['Raw footage must be uploaded immediately after recording — before any editing.','Never store edited files here. Trainer folders separate recordings by trainer.','Naming: PRG_CRS##_L.TT_Title_RAW.[ext]'],['Each trainer has their own subfolder. Recordings stay here until the course is signed off.','Raw footage is the unedited original that editors work from to produce Final_Source.']);
+    let h=b+`<div class="file-area">${toolbar(trainers.length,'Trainer folders')}${colH()}`;
+    trainers.forEach(t=>{h+=row({icon:'📁',name:t,nc:'link',sub:`Raw recordings — ${t.replace(/_/g,' ')}`,type:'folder',typeClass:'tb-fo',size:'—',sharing:'Internal',activity:'—',dis:true});});
+    m.innerHTML=h+'</div>';return;
   }
-  if(!cd){m.innerHTML=bn(S.folder,[`Files must follow standard naming.`],[`This folder is not yet configured for drill-down.`])+cs();return;}
+
+  if(S.folder==='LVC'){
+    const b=bn(`LVC — ${pr}`,['Day Wise Agenda must be updated before every LVC session.','All trainer documents must be uploaded before the LVC begins.'],['Contains Day_Wise_Agenda and a Trainer_Documents folder.','Trainer_Documents contains Lab Guides, LVC Slides, Demo Documents, LEP/GP, CEP, Capstone.']);
+    let h=b+`<div class="file-area">${toolbar(2,'Items')}${colH()}`;
+    h+=row({icon:'📊',name:`${pr}_Day_Wise_Agenda.xlsx`,sub:'Also available as Google Sheet',type:'Excel / Google Sheet',typeClass:'tb-xlsx',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:`${pr}_Day_Wise_Agenda.xlsx`});
+    h+=row({icon:'📁',name:`${pr}_Trainer_Documents`,nc:'link',sub:'Lab Guides, LVC Slides, Demo Documents, LEP/GP, CEP, Capstone',type:'folder',typeClass:'tb-fo',size:'6 subfolders',sharing:'Internal',activity:'—',oc:`go('subfolder',{subfolder:'Trainer_Documents',lesson:null,sub:null})`});
+    m.innerHTML=h+'</div>';return;
+  }
+
+  if(!cd){m.innerHTML=bn(S.folder,[`Files must follow standard naming.`],[`This folder is not yet configured for drill-down.`])+`<div class="file-area">`+cs()+'</div>';return;}
 
   const isOut=S.folder==='Final_Output';
   const b=isOut
-    ? bn(`Final Output — ${pr}`,['MP4 files must be named correctly before uploading. Renaming after upload creates a new version entry and wastes storage quota.','Guided Practice is always .html — never .mp4. Reject any MP4 named Guided_Practice.','Interactive files must have their own unique topic number — never reuse an MP4 filename.','The transcript subfolder is always lowercase "transcript" — no prefix, no suffix, no code.'],['Each lesson folder: transcript subfolder, MP4 lesson/demo files, HTML Guided Practice, and interactive files.','MP4: Lesson topics and demos. HTML: Guided Practice and interactive exercises. ZIP: Articulate-built interactives.','transcript: one .en.vtt caption file per MP4 — lowercase folder name, no exceptions.'])
-    : bn(`Final Source — ${pr}`,['Source files must be _CAM.zip or _AE.zip only. Embed ALL assets (PPT slides, images, fonts) inside the project before zipping. Do not store them as separate files.','Guided Practice source is a Clueso .url link only — no zip file for Guided Practice.','Interactive files in source are exact replicas of the output file — same filename, same extension.'],['Each lesson folder: CAM or AE source zips for all MP4s, .url for Guided Practice, and replica interactive files.','All assets must be inside the zip. Self-contained: open the zip and everything needed is there.','Do not rename files after uploading to OneDrive.']);
-
-  let h=b+vt(cd.lessons.length,'Lesson folders')+`<div class="flw">${lh()}`;
-  cd.lessons.forEach(l=>{h+=fr({icon:'📁',name:`${pr}_${l.code}_${l.name}`,nc:'fo',sub:l.name.replace(/_/g,' '),badge:'b-fo',bt:'folder',size:`${l.output.length} items`,oc:`go('lesson',{lesson:'${l.id}',sub:null})`});});
+    ? bn(`Final Output — ${pr}`,['MP4 files must be named correctly before uploading. Renaming after upload wastes version quota.','Guided Practice is always .html — never .mp4.','Interactive files must have their own unique topic number — never reuse an MP4 filename.','transcript subfolder is always lowercase "transcript" — no prefix, no suffix.'],['Each lesson folder: transcript subfolder, MP4 lesson/demo files, HTML Guided Practice, interactive .html and .zip files.','Interactive .html and Articulate .zip files are independent — one does not require the other.'])
+    : bn(`Final Source — ${pr}`,['Source files must be _CAM.zip or _AE.zip only. Embed ALL PPT slides, images, fonts inside the project before zipping.','Guided Practice source is a Clueso .url link only — no zip.','HTML interactive source: .docx Word document or .html file.','Articulate interactive source: .zip file.'],['Each lesson folder: CAM/AE zips, .url for Guided Practice, Word/.html for HTML interactive source, .zip for Articulate source.','Self-contained zips: all assets embedded. Do not rename files after uploading.']);
+  let h=b+`<div class="file-area">${toolbar(cd.lessons.length,'Lesson folders')}${colH()}`;
+  cd.lessons.forEach(l=>{h+=row({icon:'📁',name:`${pr}_${l.code}_${l.name}`,nc:'link',sub:l.name.replace(/_/g,' '),type:'folder',typeClass:'tb-fo',size:`${l.output.length} items`,sharing:'Internal',activity:'—',oc:`go('lesson',{lesson:'${l.id}',sub:null})`});});
   m.innerHTML=h+'</div>';
+}
+
+function rSubfolder(m){
+  const p=PROGS.find(x=>x.id===S.prog);
+  const cnum=S.course.replace('crs',''),cpad=String(parseInt(cnum)).padStart(2,'0');
+  const pr=`${p.code}_CRS${cpad}`;
+  if(S.subfolder==='Trainer_Documents'){
+    const b=bn(`Trainer Documents — ${pr}`,['All trainer documents must be uploaded before the LVC session begins.','Demo Documents must be organised in PDF and Word_Documents subfolders.'],['Lab Guides, LVC Slides, Demo Documents (PDF + Word), LEP/GP, CEP, Capstone.']);
+    const subs=['Lab_Guides','LVC_Slides','Demo_Documents','LEP_GP','CEP','Capstone'];
+    let h=b+`<div class="file-area">${toolbar(subs.length,'Subfolders')}${colH()}`;
+    subs.forEach(s=>{
+      const hasSub=s==='Demo_Documents';
+      h+=row({icon:'📁',name:`${pr}_${s}`,nc:hasSub?'link':'',sub:s==='Demo_Documents'?'PDF and Word_Documents subfolders':s.replace(/_/g,' '),type:'folder',typeClass:'tb-fo',size:hasSub?'2 subfolders':'—',sharing:'Internal',activity:'—',dis:!hasSub,oc:hasSub?`go('subfolder',{subfolder:'Demo_Documents'})`:undefined});
+    });
+    m.innerHTML=h+'</div>';return;
+  }
+  if(S.subfolder==='Demo_Documents'){
+    const b=bn(`Demo Documents — ${pr}`,['Store PDFs in PDF subfolder and Word documents in Word_Documents subfolder only.'],['PDF: Exported demo reference guides. Word_Documents: Editable demo scripts and instructions.']);
+    let h=b+`<div class="file-area">${toolbar(2,'Subfolders')}${colH()}`;
+    h+=row({icon:'📁',name:'PDF',nc:'link',sub:'PDF demo reference documents',type:'folder',typeClass:'tb-fo',size:'—',sharing:'Internal',activity:'—',dis:true});
+    h+=row({icon:'📁',name:'Word_Documents',nc:'link',sub:'Editable demo scripts and instructions',type:'folder',typeClass:'tb-fo',size:'—',sharing:'Internal',activity:'—',dis:true});
+    m.innerHTML=h+'</div>';return;
+  }
+  m.innerHTML=bn(S.subfolder,[],[`Subfolder: ${S.subfolder}`])+`<div class="file-area">`+cs()+'</div>';
 }
 
 function rLesson(m){
   S.sub=null;
   const p=PROGS.find(x=>x.id===S.prog);
-  const cnum=S.course.replace('crs','');
-  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const cnum=S.course.replace('crs',''),cpad=String(parseInt(cnum)).padStart(2,'0');
   const pr=`${p.code}_CRS${cpad}`;
   const cd=CRSDET[`${S.prog}_${S.course}`];
   const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;
-  if(!l){m.innerHTML=cs();return;}
+  if(!l){m.innerHTML=`<div class="file-area">`+cs()+'</div>';return;}
   const isOut=S.folder==='Final_Output';
   const mp4s=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
   const guided=l.output.filter(t=>t.type==='guided');
   const ihtml=l.output.filter(t=>t.type==='interactive-html');
   const izip=l.output.filter(t=>t.type==='interactive-zip');
-
   let h='';
   if(isOut){
-    const b=bn(`Lesson Output — ${l.code}`,['File naming must be finalised before upload. Renaming after upload wastes version storage quota.','Guided Practice is always .html — reject any MP4 for Guided Practice topics.','Interactive files must have unique topic numbers — never the same number as an MP4.'],['transcript subfolder: one .en.vtt per MP4. Lowercase, no prefix, no exceptions.','MP4: Lesson topics and demos. HTML: Guided Practice. Interactive ZIP: Articulate-built content.','Copy button copies individual filename. Use "Copy all" in toolbar for all filenames.']);
-    h=b+vt(l.output.length+1,'Items')+`<div class="flw">${lh()}`;
-    h+=fr({icon:'📁',name:'transcript',nc:'fo',sub:`${mp4s.length} VTT caption files`,badge:'b-fo',bt:'folder',size:'—',oc:`go('transcript',{sub:'transcript'})`});
-    if(mp4s.length){h+=`<div class="sd">MP4 — Lesson &amp; Demo videos</div>`;mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.mp4`;h+=fr({icon:'🎬',name:fn,badge:'b-mp4',bt:'.mp4',size:'—',copyable:true,fname:fn});});}
-    if(guided.length){h+=`<div class="sd">HTML — Guided Practice</div>`;guided.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=fr({icon:'🟢',name:fn,badge:'b-html',bt:'.html',size:'—',copyable:true,fname:fn});});}
-    if(ihtml.length||izip.length){h+=`<div class="sd">Interactive files</div>`;ihtml.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=fr({icon:'⚡',name:fn,badge:'b-html',bt:'Interactive .html',size:'—',copyable:true,fname:fn});});izip.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.zip`;h+=fr({icon:'📦',name:fn,badge:'b-izip',bt:'Articulate .zip',size:'—',copyable:true,fname:fn});});}
+    const b=bn(`Lesson Output — ${l.code}`,['Name files correctly before upload. Renaming after upload wastes version quota.','Guided Practice is always .html.','Interactive .html and Articulate .zip are independent — each has its own unique topic number.'],['transcript: one .en.vtt per MP4. Interactive HTML and Articulate ZIP can appear independently.']);
+    h=b+`<div class="file-area">${toolbar(l.output.length+1,'Items')}${colH()}`;
+    h+=row({icon:'📁',name:'transcript',nc:'link',sub:`${mp4s.length} VTT caption files`,type:'folder',typeClass:'tb-fo',size:'—',sharing:'Internal',activity:'—',oc:`go('transcript',{sub:'transcript'})`});
+    if(mp4s.length){h+=`<div class="sect-div">MP4 — Lesson &amp; Demo</div>`;mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.mp4`;h+=row({icon:'🎬',name:fn,type:'.mp4',typeClass:'tb-mp4',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});}
+    if(guided.length){h+=`<div class="sect-div">HTML — Guided Practice</div>`;guided.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=row({icon:'🟢',name:fn,type:'.html',typeClass:'tb-html',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});}
+    if(ihtml.length||izip.length){h+=`<div class="sect-div">Interactive files</div>`;ihtml.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.html`;h+=row({icon:'⚡',name:fn,type:'Interactive .html',typeClass:'tb-html',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});izip.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.zip`;h+=row({icon:'📦',name:fn,type:'Articulate .zip',typeClass:'tb-izip',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});}
     h+='</div>';
   }else{
     const zipIt=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
     const urlIt=l.output.filter(t=>t.type==='guided');
     const intIt=l.output.filter(t=>t.type==='interactive-html'||t.type==='interactive-zip');
-    const b=bn(`Lesson Source — ${l.code}`,['Source zips must be _CAM.zip or _AE.zip only. Embed ALL PPT slides, images, and fonts inside the project before zipping. No loose asset files.','Guided Practice: .url file only. No zip file for Guided Practice.','Interactive files are exact replicas of the output — same filename, same extension, copied from Final_Output.'],['Self-contained zips: open the zip and everything needed is inside. One zip per topic.','URL files link to the Clueso-hosted Guided Practice. No source file needed.','Interactive replicas are copied from Final_Output — do not modify them.']);
-    h=b+vt(zipIt.length+urlIt.length+intIt.length,'Files')+`<div class="flw">${lh()}`;
-    if(zipIt.length){h+=`<div class="sd">Source ZIPs — Lesson &amp; Demo</div>`;zipIt.forEach(t=>{const tool=t.tool==='AE'?'AE':'CAM';const fn=`${pr}_${t.num}_${t.title}_${tool}.zip`;h+=fr({icon:tool==='AE'?'✨':'🎥',name:fn,badge:tool==='AE'?'b-ae':'b-cam',bt:`${tool}.zip`,size:'—',copyable:true,fname:fn});});}
-    if(urlIt.length){h+=`<div class="sd">Clueso URL — Guided Practice</div>`;urlIt.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.url`;h+=fr({icon:'🔗',name:fn,badge:'b-url',bt:'.url',size:'—',copyable:true,fname:fn});});}
-    if(intIt.length){h+=`<div class="sd">Interactive — replica files</div>`;intIt.forEach(t=>{const ext=t.type==='interactive-html'?'.html':'.zip';const fn=`${pr}_${t.num}_${t.title}${ext}`;h+=fr({icon:t.type==='interactive-html'?'⚡':'📦',name:fn,badge:t.type==='interactive-html'?'b-html':'b-izip',bt:t.type==='interactive-html'?'Interactive .html':'Articulate .zip',size:'—',copyable:true,fname:fn});});}
+    const b=bn(`Lesson Source — ${l.code}`,['Source zips must be _CAM.zip or _AE.zip only. Embed ALL PPT, images, fonts inside before zipping.','Guided Practice: .url file only. No zip.','HTML interactive source: Word document (.docx) or HTML file. Articulate interactive source: .zip file.'],['Self-contained zips: everything inside. URL files link to Clueso. Interactive sources copied alongside output replicas.']);
+    h=b+`<div class="file-area">${toolbar(zipIt.length+urlIt.length+intIt.length*2,'Files')}${colH()}`;
+    if(zipIt.length){h+=`<div class="sect-div">Source ZIPs — Lesson &amp; Demo</div>`;zipIt.forEach(t=>{const tool=t.tool==='AE'?'AE':'CAM';const fn=`${pr}_${t.num}_${t.title}_${tool}.zip`;h+=row({icon:tool==='AE'?'✨':'🎥',name:fn,type:`${tool}.zip`,typeClass:tool==='AE'?'tb-ae':'tb-cam',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});}
+    if(urlIt.length){h+=`<div class="sect-div">Clueso URL — Guided Practice</div>`;urlIt.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.url`;h+=row({icon:'🔗',name:fn,type:'.url',typeClass:'tb-url',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});}
+    if(intIt.length){
+      h+=`<div class="sect-div">Interactive — source files</div>`;
+      intIt.forEach(t=>{
+        if(t.type==='interactive-html'){
+          const fn1=`${pr}_${t.num}_${t.title}.docx`;const fn2=`${pr}_${t.num}_${t.title}.html`;
+          h+=row({icon:'📝',name:fn1,sub:'Word document source for HTML interactive',type:'.docx',typeClass:'tb-docx',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn1});
+          h+=row({icon:'⚡',name:fn2,sub:'HTML file source (alternative to Word)',type:'.html',typeClass:'tb-html',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn2});
+        }else{
+          const fn=`${pr}_${t.num}_${t.title}.zip`;
+          h+=row({icon:'📦',name:fn,sub:'Articulate source zip',type:'.zip',typeClass:'tb-izip',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});
+        }
+      });
+    }
     h+='</div>';
   }
   m.innerHTML=h;
@@ -621,104 +730,65 @@ function rLesson(m){
 function rTranscript(m){
   S.sub='transcript';
   const p=PROGS.find(x=>x.id===S.prog);
-  const cnum=S.course.replace('crs','');
-  const cpad=String(parseInt(cnum)).padStart(2,'0');
+  const cnum=S.course.replace('crs',''),cpad=String(parseInt(cnum)).padStart(2,'0');
   const pr=`${p.code}_CRS${cpad}`;
-  const cd=CRSDET[`${S.prog}_${S.course}`];
-  const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;
-  if(!l){m.innerHTML=cs();return;}
+  const cd=CRSDET[`${S.prog}_${S.course}`];const l=cd?cd.lessons.find(x=>x.id===S.lesson):null;
+  if(!l){m.innerHTML=`<div class="file-area">`+cs()+'</div>';return;}
   const mp4s=l.output.filter(t=>t.type==='lesson'||t.type==='demo');
-  const b=bn('transcript folder',['This folder name is always lowercase "transcript" — no prefix, no code, no suffix. Do not rename it ever.','One .en.vtt file per MP4. The filename must match the MP4 exactly, replacing the extension with .en.vtt.','Caption files must be uploaded only after the final approved MP4 is in Final_Output.'],['Contains .en.vtt caption files for all MP4s in this lesson.','Format: PRG_CRS##_L.TT_Title.en.vtt — the .en. denotes English language.','Guided Practice and interactive files do not have caption files — no .vtt needed for them.']);
-  let h=b+vt(mp4s.length,'VTT files')+`<div class="flw">${lh()}`;
-  mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.en.vtt`;h+=fr({icon:'💬',name:fn,badge:'b-vtt',bt:'.en.vtt',size:'—',copyable:true,fname:fn});});
+  const b=bn('transcript folder',['This folder name is always lowercase "transcript" — no prefix, no code. Do not rename it.','One .en.vtt per MP4. Filename must match the MP4 exactly, with .en.vtt extension.','Upload caption files only after the final approved MP4 is in Final_Output.'],['Contains .en.vtt caption files for all MP4s in this lesson.','Format: PRG_CRS##_L.TT_Title.en.vtt — .en. denotes English language.','Guided Practice and interactive files do not have caption files.']);
+  let h=b+`<div class="file-area">${toolbar(mp4s.length,'VTT files')}${colH()}`;
+  mp4s.forEach(t=>{const fn=`${pr}_${t.num}_${t.title}.en.vtt`;h+=row({icon:'💬',name:fn,type:'.en.vtt',typeClass:'tb-vtt',modified:'—',modBy:'—',size:'—',sharing:'Internal',activity:'—',copyable:true,fname:fn});});
   m.innerHTML=h+'</div>';
 }
 
 function rTOC(m){
-  const key=S.toc||`${S.prog}_${S.course}`;
-  const pid=key.split('_')[0];
-  const toc=TOC[pid];
-  const p=PROGS.find(x=>x.id===pid);
-  if(!toc){m.innerHTML=cs();return;}
-
+  const key=S.toc||`${S.prog}_${S.course}`;const pid=key.split('_')[0];
+  const toc=TOC[pid];const p=PROGS.find(x=>x.id===pid);
+  if(!toc){m.innerHTML=`<div class="file-area">`+cs()+'</div>';return;}
   function cR(c){return c.lessons.reduce((a,l)=>a+lR(l),0);}
   function lR(l){return l.topics.reduce((a,t)=>a+Math.max(1,t.subs?t.subs.length:1),0);}
-
   let rows='';
-  toc.courses.forEach((course,ci)=>{
-    let fC=true;
-    const cRc=cR(course);
-    course.lessons.forEach((lesson,li)=>{
-      let fL=true;
-      const lRc=lR(lesson);
+  toc.courses.forEach((course)=>{
+    let fC=true;const cRc=cR(course);
+    course.lessons.forEach((lesson)=>{
+      let fL=true;const lRc=lR(lesson);
       lesson.topics.forEach((topic,ti)=>{
-        const subs=topic.subs&&topic.subs.length?topic.subs:[''];
-        const tRc=subs.length;
+        const subs=topic.subs&&topic.subs.length?topic.subs:[''];const tRc=subs.length;
         subs.forEach((sub,si)=>{
           rows+=`<tr>`;
-          if(fC&&fL&&ti===0&&si===0) rows+=`<td class="tcr" rowspan="${cRc}">${course.name}</td>`;
-          if(fL&&ti===0&&si===0) rows+=`<td class="tlr" rowspan="${lRc}" style="font-size:11.5px">${lesson.name}</td>`;
-          if(si===0) rows+=`<td class="ttc" rowspan="${tRc}">${topic.name}</td>`;
-          rows+=`<td class="tsc">${sub}</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">—</td></tr>`;
+          if(fC&&fL&&ti===0&&si===0)rows+=`<td class="tcr" rowspan="${cRc}">${course.name}</td>`;
+          if(fL&&ti===0&&si===0)rows+=`<td style="font-size:11.5px;font-weight:500" rowspan="${lRc}">${lesson.name}</td>`;
+          if(si===0)rows+=`<td class="ttc" rowspan="${tRc}">${topic.name}</td>`;
+          rows+=`<td class="tsc">${sub}</td><td style="font-size:10px;color:var(--od-muted)">—</td></tr>`;
           if(fL&&ti===0&&si===0)fL=false;
         });
       });
       if(fC)fC=false;
     });
   });
-
-  m.innerHTML=`<div class="tv">
-    <div class="ttb">
-      <button class="tbk" onclick="go('course',{toc:null})">← Back to course</button>
-      <div class="tttl">${p.code} — Table of Contents</div>
-      <button class="tdl" onclick="dlTOC('${pid}')">⬇ Download as Excel</button>
-    </div>
-    <table class="tt"><thead><tr><th>Course</th><th>Lesson</th><th>Topic</th><th>Sub-topic</th><th>Duration</th></tr></thead><tbody>${rows}</tbody></table>
-  </div>`;
+  m.innerHTML=`<div class="toc-wrap"><div class="toc-toolbar">
+    <button class="toc-btn back" onclick="go('course',{toc:null})">← Back to course</button>
+    <div class="toc-title">${p.code} — Table of Contents</div>
+    <button class="toc-btn" onclick="dlTOC('${pid}')">⬇ Download as Excel</button>
+  </div>
+  <table class="toc-table"><thead><tr><th>Course</th><th>Lesson</th><th>Topic</th><th>Sub-topic</th><th>Duration</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function dlTOC(pid){
   const toc=TOC[pid];if(!toc){toast('No TOC data');return;}
   let csv='Course,Lesson,Topic,Sub-topic,Duration\n';
   toc.courses.forEach(c=>{c.lessons.forEach(l=>{l.topics.forEach(t=>{(t.subs&&t.subs.length?t.subs:['']).forEach(s=>{csv+=`"${c.name}","${l.name}","${t.name}","${s}","—"\n`;});});});});
-  const p=PROGS.find(x=>x.id===pid);
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`${p.code}_TOC.csv`;a.click();
-  toast(`Downloaded: ${p.code}_TOC.csv`);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`${PROGS.find(x=>x.id===pid).code}_TOC.csv`;a.click();toast('Downloaded TOC CSV');
 }
 
 function cs(){return `<div class="cs"><div class="csi">📁</div><div class="cst">Not yet configured</div><div class="css">This content will be available soon.</div></div>`;}
-
-function cpf(name,btn){navigator.clipboard.writeText(name).then(()=>{btn.textContent='copied';btn.classList.add('copied');toast('Copied: '+name);setTimeout(()=>{btn.textContent='copy';btn.classList.remove('copied');},1800);});}
-function copyAll(){const ns=[...document.querySelectorAll('.fn:not(.fo):not(.toc)')].map(e=>e.textContent.trim()).filter(Boolean);if(!ns.length){toast('No filenames at this level');return;}navigator.clipboard.writeText(ns.join('\n')).then(()=>toast(`Copied ${ns.length} filenames`));}
+function cpf(name,btn){navigator.clipboard.writeText(name).then(()=>{btn.innerHTML='✓';btn.classList.add('copied');toast('Copied: '+name);setTimeout(()=>{btn.innerHTML='⎘';btn.classList.remove('copied');},1800);});}
+function copyAll(){const ns=[...document.querySelectorAll('.row-name:not(.link)')].map(e=>e.textContent.trim()).filter(Boolean);if(!ns.length){toast('No filenames at this level');return;}navigator.clipboard.writeText(ns.join('\n')).then(()=>toast(`Copied ${ns.length} filenames`));}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
 
-function openPopup(){document.getElementById('pop').classList.remove('hid');}
-function closePopup(){document.getElementById('pop').classList.add('hid');}
-function toggleCheck(el){el.classList.toggle('ck');const ck=document.querySelectorAll('.ci.ck').length;const tot=document.querySelectorAll('.ci').length;document.getElementById('prl').textContent=`${ck} of ${tot} completed`;document.getElementById('prf').style.width=Math.round(ck/tot*100)+'%';}
-
-function dlCheck(type){
-  const vendor=document.getElementById('f-vendor').value||'Vendor';
-  const fm=document.getElementById('f-fm').value||'FM';
-  const prog=document.getElementById('f-prog').value||'Programme';
-  const date=document.getElementById('f-date').value||new Date().toISOString().split('T')[0];
-  const items=[...document.querySelectorAll('.ci')].map((el,i)=>({step:i+1,label:el.querySelector('.clb').textContent.trim(),done:el.classList.contains('ck')?'YES':'NO'}));
-  if(type==='csv'){
-    let csv=`Simplilearn Vendor Onboarding Checklist\nVendor,${vendor}\nFM / Lead,${fm}\nProgramme,${prog}\nDate,${date}\n\nStep,Task,Completed\n`;
-    items.forEach(it=>{csv+=`${it.step},"${it.label}",${it.done}\n`;});
-    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`Vendor_Onboarding_${vendor}_${date}.csv`;a.click();toast('Downloaded checklist CSV');
-  }else{
-    const win=window.open('','_blank');
-    win.document.write(`<!DOCTYPE html><html><head><title>Vendor Onboarding Checklist</title><style>body{font-family:sans-serif;padding:36px;max-width:680px;margin:auto;color:#1c1a16}h1{font-size:18px;margin-bottom:3px}h2{font-size:12px;color:#7a7668;font-weight:400;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-top:14px}th{background:#1c1a16;color:#fff;padding:7px 11px;text-align:left;font-size:11px}td{padding:7px 11px;border-bottom:1px solid #e2e0d8;font-size:12px;vertical-align:top}.yes{color:#1a7a3c;font-weight:600}.no{color:#c72f2f}.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;padding:14px;background:#faf9f6;border:1px solid #e2e0d8;border-radius:6px}.meta-item label{font-size:9px;font-weight:600;color:#7a7668;text-transform:uppercase;letter-spacing:.1em;display:block}.meta-item p{font-size:13px;font-weight:600;margin-top:1px}@media print{button{display:none}}</style></head><body>
-    <button onclick="window.print()" style="margin-bottom:18px;padding:7px 14px;background:#1c1a16;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:12px">🖨 Print / Save as PDF</button>
-    <h1>Simplilearn — Vendor Onboarding Checklist</h1><h2>Blended Learning · OneDrive Folder Access</h2>
-    <div class="meta"><div class="meta-item"><label>Vendor</label><p>${vendor}</p></div><div class="meta-item"><label>FM / Lead</label><p>${fm}</p></div><div class="meta-item"><label>Programme</label><p>${prog}</p></div><div class="meta-item"><label>Date</label><p>${date}</p></div></div>
-    <table><tr><th style="width:36px">#</th><th>Task</th><th style="width:72px">Status</th></tr>${items.map(it=>`<tr><td>${it.step}</td><td>${it.label}</td><td class="${it.done==='YES'?'yes':'no'}">${it.done==='YES'?'✓ Done':'Pending'}</td></tr>`).join('')}</table>
-    </body></html>`);win.document.close();toast('PDF opened — use Print to save');
-  }
-}
-
-document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
-render();bc();nav();
+document.getElementById('f-d').value=new Date().toISOString().split('T')[0];
+go('zone',{zone:'internal',vendor:null,prog:null,course:null,folder:null,subfolder:null,lesson:null,sub:null,toc:null});
 </script>
 </body>
 </html>
